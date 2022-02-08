@@ -32,7 +32,7 @@
 
 <!-- 헤더 -->
 <div>
-	<a href="index.jsp"><img id="btn_home" src="resources/image/logo.png" alt="알고싶지캠핑?"></a>
+	<a href="main.do"><img id="btn_home" src="resources/image/logo.png" alt="알고싶지캠핑?"></a>
 	
 	<!-- 로그인 안 된 상태 : 로그인,회원가입버튼 -->
 	<c:if test="${ empty user }">

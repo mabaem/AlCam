@@ -284,7 +284,7 @@
 			return;
 		}
 			
-		f.action="modify.do?m_grade=" + m_grade + "&m_byear=" + m_byear + "&m_bmonth=" + m_bmonth + "&m_bday=" + m_bday;  
+		f.action="admin_modify.do?m_grade=" + m_grade + "&m_byear=" + m_byear + "&m_bmonth=" + m_bmonth + "&m_bday=" + m_bday;  
 		f.submit();	
 	}
 	
@@ -389,8 +389,8 @@
 <form name="f" method="POST" action="modify.do" enctype="multipart/form-data">
    <input type="hidden" name="m_idx"   value="${ vo.m_idx }">
    <div id='box'>
-
-		<table class="table">
+   
+		<table class="table">		
 			<tr>
 				<td colspan="2" align="center">
 					<img src="${ pageContext.request.contextPath }/resources/image/${ vo.m_filename }" id="my_img" width="200" height="200">
@@ -495,11 +495,11 @@
 					       onclick="send(this.form);">
 				    
 			        <input class="btn btn-info" type="button" value="목록보기" 
-					       onclick="location.href='list.do?m_idx='+${vo.m_idx}">
+					       onclick="location.href='admin_list.do?m_idx='+${vo.m_idx}">
 				</td>
 			</tr>
 		</table>
-				
+
 	</div>
 </form>
 

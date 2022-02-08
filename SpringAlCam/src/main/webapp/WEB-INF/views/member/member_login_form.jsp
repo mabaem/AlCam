@@ -22,17 +22,19 @@
 		font-family: '맑은 고딕';
 	}
 	#title_login{
-		text-align: center;	
-		font-size: 40px;
-		
+		text-align: center;			
 		margin-top: 30px;
 		margin-bottom: 30px;
+	}
+	#img_btn_home{
+		width: 250px;
+		height: 110px;
 	}
 	#input_id, #input_pwd{
 		margin: 10px auto;
 	}
 	#m_id, #m_pwd{
-		width: 300px;
+		width: 400px;
 	}
 	#subject_login{	
 		margin-top: 30px;
@@ -103,7 +105,11 @@
 <input type="hidden"  name="url"  value="${ param.url }">   
 
 <div class="container" id="box_login">
-	<div id="title_login">로그인</div>
+	<div id="title_login">
+		<a href="../main.do">
+			<img id="img_btn_home" src="${ pageContext.request.contextPath }/resources/image/logo.png" alt="알고싶지캠핑?">
+		</a>
+	</div>
 	
 	<div id="subject_login">
 		<form class="form-horizontal" action="/action_page.php">

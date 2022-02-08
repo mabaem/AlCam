@@ -36,4 +36,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	//메인페이지로 포워드
+	@RequestMapping("main.do")
+	public String main() {
+		
+		return "index";
+	}
+	
 }

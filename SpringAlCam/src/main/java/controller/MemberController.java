@@ -48,20 +48,6 @@ public class MemberController {
 	}
 	
 	
-	//회원정보 조회 페이지
-	@RequestMapping("/member/list.do")
-	public String list(Model model, @RequestParam(value="m_idx", defaultValue="0", required = false) int m_idx) {
-		
-		List<MemberVo> list = member_dao.selectList();
-		MemberVo user_vo    = member_dao.selectOne(m_idx);
-		
-		model.addAttribute("list",list);
-		model.addAttribute("user_vo",user_vo);
-		
-		return "member/member_list";
-	}
-	
-	
 	//로그인폼띄우기
 	@RequestMapping("/member/login_form.do")
 	public String login_form() {
@@ -74,8 +60,6 @@ public class MemberController {
 	public String login(String m_id, String m_pwd,
 			            @RequestParam(value="url",defaultValue="") String url,
 			            Model model) {
-		
-		//System.out.println(url);
 		
 		//m_id에 해당되는 vo 얻어온다
 		MemberVo user = member_dao.selectOne(m_id);
@@ -102,7 +86,7 @@ public class MemberController {
 		//url이 비어있는 경우
 		if(url.isEmpty()) {
 
-			return "redirect:list.do?m_idx=" + user.getM_idx();
+			return "redirect:../main.do?m_idx=" + user.getM_idx();
 		}
 		
 		//보던 페이지가 있는경우 : 해당 페이지로 이동
@@ -116,7 +100,7 @@ public class MemberController {
 		//session에서 로그인한 user정보 삭제
 		session.removeAttribute("user");
 		
-		return "redirect:list.do";
+		return "redirect:../main.do";
 	}
 	
 	//회원가입 입력폼
@@ -184,7 +168,7 @@ public class MemberController {
 		//DB insert
 		int res = member_dao.insert(vo);
 		
-		return "redirect:list.do";
+		return "redirect:../main.do";
 	}
 
 	//회원가입 시 아이디 중복 체크
@@ -240,7 +224,7 @@ public class MemberController {
 	    return num;
 	}
 	
-	//수정폼 띄우기
+	//회원정보 수정폼 띄우기
 	@RequestMapping("/member/modify_form.do")
 	public String modify_form(int m_idx, Model model) {
 	
@@ -250,8 +234,19 @@ public class MemberController {
 		
 		return "member/member_modify_form";
 	}
+	
+	//관리자페이지 수정폼 띄우기
+	@RequestMapping("/member/admin_modify_form.do")
+	public String admin_modify_form(int m_idx, Model model) {
+	
+		MemberVo vo = member_dao.selectOne(m_idx);
 
-	//수정
+		model.addAttribute("vo", vo);
+		
+		return "member/admin_modify_form";
+	}
+
+	//회원정보 수정
 	@RequestMapping("/member/modify.do")
 	public String modify(MemberVo vo,
 						 @RequestParam(value="m_grade")  String m_grade, 
@@ -270,6 +265,27 @@ public class MemberController {
 		int res = member_dao.update(vo);
 		
 		return "redirect:list.do?m_idx=" + vo.getM_idx();
+	}
+	
+	//관리자페이지 수정
+	@RequestMapping("/member/admin_modify.do")
+	public String admin_modify(MemberVo vo,
+						 @RequestParam(value="m_grade")  String m_grade, 
+						 @RequestParam(value="m_byear")  int    m_byear, 
+			             @RequestParam(value="m_bmonth") int    m_bmonth, 
+			             @RequestParam(value="m_bday")   int    m_bday) {
+			
+		//생년월일
+		vo.setM_byear(m_byear);
+		vo.setM_bmonth(m_bmonth);
+		vo.setM_bday(m_bday);
+		
+		//회원등급
+		vo.setM_grade(m_grade);
+		
+		int res = member_dao.update(vo);
+		
+		return "redirect:admin_list.do?m_idx=" + vo.getM_idx();
 	}
 	
 	//프로필사진 수정
@@ -345,7 +361,7 @@ public class MemberController {
 				
 		int res = member_dao.delete(m_idx);
 		
-		return "redirect:list.do";
+		return "redirect:admin_list.do";
 	}
 	
 	//회원탈퇴
@@ -367,5 +383,28 @@ public class MemberController {
 		
 		return "redirect:logout.do";
 	}
+	
+	//회원정보수정 페이지
+	@RequestMapping("/member/list.do")
+	public String list(Model model, @RequestParam(value="m_idx", defaultValue="0", required = false) int m_idx) {
+		
+		MemberVo user_vo    = member_dao.selectOne(m_idx);
+		
+		model.addAttribute("user_vo",user_vo);
+		
+		return "member/member_profile";
+	}
+	
+	//관리자 페이지
+	@RequestMapping("/member/admin_list.do")
+	public String admin_list(Model model) {
+		
+		List<MemberVo> list = member_dao.selectList();
+		
+		model.addAttribute("list",list);
+		
+		return "member/admin_list";
+	}
+	
 	
 }

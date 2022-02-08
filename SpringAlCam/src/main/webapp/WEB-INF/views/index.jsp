@@ -23,12 +23,12 @@
 	
 	<!-- 헤더 -->
 	<div id="header">
-		<%@ include file="WEB-INF/views/header.jsp" %>
+		<%@ include file="header.jsp" %>
 	</div>
 	
 	<!-- 메뉴 -->
 	<div id="nav">
-		<%@ include file="WEB-INF/views/menu.jsp" %>
+		<%@ include file="menu.jsp" %>
 	</div>
 	
 	<!-- 메인 -->
@@ -38,17 +38,17 @@
 		<c:if test="${ empty param.menu }">
 			<!-- 키워드검색 -->
 			<div id="search">
-				<%@ include file="WEB-INF/views/search.jsp" %>
+				<%@ include file="search.jsp" %>
 			</div>			
 			
 			<!-- 공지사항 -->	
 			<div id="notice">
-				<%@ include file="WEB-INF/views/notice.jsp" %>
+				<%@ include file="notice.jsp" %>
 			</div>
 			
 			<!-- 인기글(조회수) -->
 			<div id="best">
-				<%@ include file="WEB-INF/views/best.jsp" %>
+				<%@ include file="best.jsp" %>
 			</div>
 		</c:if>
 		
@@ -56,29 +56,29 @@
 		
 		<!-- 1. 캠핑장소검색 누른 경우(menu=place) -->
 		<c:if test="${ (param.menu eq 'place') }">
-			<%@include file="WEB-INF/views/place/place_list.jsp" %>	
+			<%@include file="place/place_list.jsp" %>	
 		</c:if>
 		
 		
 		<!-- 2. 캠핑장소추천 누른 경우(menu=recommend_place) -->
 		<c:if test="${ (param.menu eq 'recommend_place') }">
-			<%@include file="WEB-INF/views/recommend_place/r_place_list.jsp" %>	
+			<%@include file="recommend_place/r_place_list.jsp" %>	
 		</c:if>
 		
 		
 		<!-- 3. 캠핑용품검색 누른 경우(menu=goods) -->
 		<c:if test="${ (param.menu eq 'goods') }">
-			<%@include file="WEB-INF/views/goods/goods_list.jsp" %>	
+			<%@include file="goods/goods_list.jsp" %>	
 		</c:if>
 		
 		<!-- 4. 고객센터 누른 경우(menu=notice) -->
 		<c:if test="${ (param.menu eq 'notice') }">
-			<%@include file="WEB-INF/views/notice/notice_list.jsp" %>	
+			<%@include file="notice/notice_list.jsp" %>	
 		</c:if>
 		
 		<!-- 5. 마이페이지 누른 경우(menu=member) -->
 		<c:if test="${ (param.menu eq 'member') }">
-			<%@include file="WEB-INF/views/member/member_index.jsp" %>	
+			<%@include file="member/member_index.jsp" %>	
 		</c:if>
 		
 	
@@ -86,7 +86,7 @@
 	
 	<!-- 푸터 -->
 	<div id="footer">
-		<%@ include file="WEB-INF/views/footer.jsp" %>
+		<%@ include file="footer.jsp" %>
 	</div>
 
 
