@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<!-- 전체조회 -->
+	<select id="member_list"  resultType="member">
+	    select * from membertb order by m_idx
+	</select> 
+	
+	<!-- m_idx 1건조회  -->
+	<select id="member_one_m_idx"  parameterType="int"  resultType="member">
+	    select * from membertb where m_idx=#{m_idx}
+	</select>
+	
+	<!-- m_id 1건조회  -->
+	<select id="member_one_m_id"  parameterType="String"  resultType="member">
+	    select * from membertb where m_id=#{m_id}
+	</select>
+	
+	<!-- 추가 -->
+	<insert id="member_insert" parameterType="vo.MemberVo">
+		insert into membertb values( (select nvl(max(m_idx),0) + 1 from membertb), 
+		                            #{m_name}, 
+		                            #{m_id}, 
+		                            #{m_pwd}, 
+		                            #{m_byear},
+		                            #{m_bmonth},
+		                            #{m_bday},
+		                            #{m_gender},
+		                            #{m_tel},
+		                            #{m_addr}, 
+		                            #{m_zipcode}, 
+		                            #{m_email}, 
+		                            #{m_grade},
+		                            #{m_filename},
+		                            sysdate
+		                            )
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="member_update" parameterType="vo.MemberVo">
+		update membertb set m_name=#{m_name},
+		                    m_id=#{m_id},
+		                    m_pwd=#{m_pwd},
+		                    m_byear=#{m_byear},
+		                    m_bmonth=#{m_bmonth},
+		                    m_bday=#{m_bday},
+		                    m_gender=#{m_gender},
+		                    m_tel=#{m_tel},
+		                    m_addr=#{m_addr},
+		                    m_zipcode=#{m_zipcode},
+		                    m_email=#{m_email},
+		                    m_grade=#{m_grade}
+		                    where m_idx=#{m_idx}
+	</update>
+
+	<!-- 프로필사진 수정 -->
+	<update id="member_update_img" parameterType="vo.MemberVo">
+		update membertb set m_filename=#{m_filename} where m_idx=#{m_idx}
+	</update>
+
+
+	<!-- 삭제 -->
+	<delete id="member_delete" parameterType="int">
+		delete from membertb where m_idx=#{m_idx}
+	</delete> 
+
+</mapper>
+
