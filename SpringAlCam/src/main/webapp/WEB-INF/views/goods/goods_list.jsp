@@ -76,10 +76,11 @@
 </script>
 
 <style type="text/css">
-	#goods_box{
+	#div_goods_box{
 		margin: auto;
 		/* padding: 20px; */
-		font-family: '맑은 고딕'
+		font-family: '맑은 고딕';
+		
 	}
 	#div_goods_menu{
 		width: 20%;
@@ -93,9 +94,10 @@
 		padding: 20px;
 	}
 	.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
+    	display: block;
+    	margin-top: 0;
 	}
+	
 	button{
 		width: 100%;
 	}
@@ -111,14 +113,13 @@
 
 </head>
 <body>
-<div id="goods_box">
-
+<div id="div_goods_box">
 	<div id="div_goods_menu" >
-			<label style="font-size: 20px; margin-bottom: 20px;">캠핑용품검색</label>
+		<label style="font-size: 20px; margin-bottom: 20px;">캠핑용품검색</label>
 		
-		  <button class="btn btn-default" type="button" id="kind" value="취사용품">
-		  		취사용품
-		  </button>
+		<button class="btn btn-default" type="button" id="kind" value="취사용품">
+		  	취사용품
+		</button>
 		  
 	    <div class="dropdown">
 		  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">

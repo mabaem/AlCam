@@ -19,7 +19,7 @@
 	#member_index_box{
 		margin: auto;
 		/* padding: 20px; */
-		font-family: '맑은 고딕'
+		font-family: '맑은 고딕';
 	}
 	#div_member_menu{
 		width: 30%;

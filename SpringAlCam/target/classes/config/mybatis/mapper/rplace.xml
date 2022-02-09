@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
      <!-- ###########아래 select문 수정필요############ -->
      <!-- 조건별/페이지별 조회 -->
      <select id="rplace_condition_list"  parameterType="Map"  resultType="rplace">
-    	  select * from recommend_place  order by idx desc 
+    	  select * from recommend_place
      </select>
      
      <!-- 검색조건별 전체게시물수 : 동적쿼리 -->

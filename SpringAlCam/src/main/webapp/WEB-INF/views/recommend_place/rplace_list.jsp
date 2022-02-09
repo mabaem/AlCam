@@ -95,13 +95,13 @@
 	   if(search != 'all' && search_text==''){
 		   
 		   alert("검색어를 입력하세요");
-		   $("#search").val("");
-		   $("#search").focus();
+		   $("#search_text").val("");
+		   $("#search_text").focus();
 		   return;  
 	   }
 	   
 	   //검색요청
-	   location.href="${ pageContext.request.contextPath }/recommend_place/list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text);
+	   location.href="${ pageContext.request.contextPath }/main.do?menu=recommend_place";
 	   
 	   
    }//end search()
@@ -226,14 +226,14 @@
        
        <!-- 검색메뉴 -->
         <div id="rplace_search_menu">
-        	<select id="rplace_search">
+        	<select id="search">
         		<option value="all">전체보기</option>
         		<option value="name">이름</option>
         		<option value="subject">제목</option>
         		<option value="content">내용</option>
         		<option value="name_subject_content">이름+제목+내용</option>
              </select>
-             <input id="rplace_search_text" value="${ param.search_text }">
+             <input id="search_text" value="${ param.search_text }">
              <input  class="btn-default" type="button" value="검색" onclick="search();">
         </div>
        

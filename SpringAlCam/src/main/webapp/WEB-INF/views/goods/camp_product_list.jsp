@@ -16,8 +16,8 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
-	#box{
-		width:90%;
+	#div_goods_table{
+		width: 100%;
 	}
 	img{
 		width: 120px;
@@ -30,7 +30,7 @@
 
 	
 	<fmt:setLocale value="ko"/>
-	<div id = "box">
+	<div id = "div_goods_table">
 		<table class = "table table-striped table-hover">
 			<!-- title -->
 			<tr>

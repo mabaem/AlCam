@@ -11,18 +11,23 @@
 	
 	#btn_home{
 		margin-right: 640px;
+		width: 180px;
+		height: 60px;
 	}
 	
 	#btn_join_form{
-		
+		width: 80px;
+		height: 40px;
 	}
 	
 	#btn_login_form{
-		
+		width: 80px;
+		height: 40px;
 	}
 	
 	#btn_logout{
-		
+		width: 80px;
+		height: 40px;
 	}
 	
 </style>
