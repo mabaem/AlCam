@@ -34,7 +34,7 @@ function find() {
 		  $("#text_search").focus();
 		return;
 	}
-	location.href="camping/search.do?text_search=" + encodeURIComponent(text_search);
+	location.href="place/search.do?text_search=" + encodeURIComponent(text_search);
 	
 }
 

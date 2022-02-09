@@ -33,7 +33,7 @@ public class PlaceController {
 	@Autowired
 	HttpServletRequest request;
 
-	@RequestMapping("camping/search.do")
+	@RequestMapping("place/search.do")
 	public String search_map(@RequestParam(value = "text_search", defaultValue = "") String text_search,
 			@RequestParam(value = "page", defaultValue = "1") int nowPage, Model model) {
 		int pageNo = nowPage;
@@ -158,6 +158,7 @@ public class PlaceController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
+		
 		return "place/place_list";
 	}// end-search
 	
