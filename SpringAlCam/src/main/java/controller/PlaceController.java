@@ -20,7 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import myutil.MyPlace;
+import myutil.MyConstant;
 import myutil.Paging;
 import vo.PlaceVo;
 
@@ -37,8 +37,8 @@ public class PlaceController {
 	public String search_map(@RequestParam(value = "text_search", defaultValue = "") String text_search,
 			@RequestParam(value = "page", defaultValue = "1") int nowPage, Model model) {
 		int pageNo = nowPage;
-		int start = (nowPage - 1) * MyPlace.Camping.BLOCK_LIST + 1;
-		int end = start + MyPlace.Camping.BLOCK_LIST - 1;
+		int start = (nowPage - 1) * MyConstant.Camping.BLOCK_LIST + 1;
+		int end = start + MyConstant.Camping.BLOCK_LIST - 1;
 		String pageMenu = "";
 		// 검색범위 및 조건을 담을 객체
 		// 데이터 전달을 위한 list 생성
@@ -145,8 +145,8 @@ public class PlaceController {
 					 					  search_filter,
 					 					  nowPage,
 					 					  rowTotal,
-					 					  MyPlace.Camping.BLOCK_LIST,
-					 					  MyPlace.Camping.BLOCK_PAGE );
+					 					  MyConstant.Camping.BLOCK_LIST,
+					 					  MyConstant.Camping.BLOCK_PAGE );
 			 
 			rd.close();
 			conn.disconnect();

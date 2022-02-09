@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rplace">
+     
+     <!-- 전체조회 -->
+     <select id="rplace_list"  resultType="rplace">
+          select * from recommend_place  order by idx desc
+     </select>
+     
+     
+     <!-- ###########아래 select문 수정필요############ -->
+     <!-- 조건별/페이지별 조회 -->
+     <select id="rplace_condition_list"  parameterType="Map"  resultType="rplace">
+    	  select * from recommend_place  order by idx desc 
+     </select>
+     
+     <!-- 검색조건별 전체게시물수 : 동적쿼리 -->
+     <!-- if test안의 name : Map 안에 등록된 key, 조건문에서는 #{} 안붙인다! -->
+     <select id="rplace_rowtotal"  parameterType="Map"  resultType="int">
+     
+         select nvl(count(*),0) from recommend_place
+         <trim prefix="where" prefixOverrides="or">
+         	<if test="name != null">
+         		m_name like '%' || #{name} || '%'
+         	</if>
+         	
+         	<if test="subject != null">
+         		or subject like '%' || #{subject} || '%'
+         	</if>
+         	
+         	<if test="content != null">
+         		or content like '%' || #{content} || '%'
+         	</if>
+         </trim>
+        
+     </select>
+     
+          
+     <!-- idx에 해당되는 게시물 1건 -->
+     <select id="rplace_one"  parameterType="int"  resultType="rplace">
+          select * from recommend_place where idx=#{ idx }
+     </select>
+     
+     <!-- 조회수 증가 -->
+     <update id="rplace_update_readhit"  parameterType="int">
+          update recommend_place set readhit = readhit + 1 
+          where  idx=#{ idx }
+     </update>
+     
+     
+     
+     <!-- 새글쓰기 -->
+     <insert id="rplace_insert"  parameterType="rplace">
+         insert into  recommend_place values(
+                          seq_recommend_place_idx.nextVal, 
+                          #{ subject },
+                          #{ content },
+                          #{ filename },
+                          #{ ip },
+                          sysdate,
+                          sysdate,
+                          default,
+                          default,
+                          #{ m_idx },
+                          #{ m_name },
+                          #{ p_idx },
+                          #{ p_name },
+                          #{ p_addr }
+                         )
+     
+     </insert>
+     
+     <!-- 사용유무설정(삭제체크) -->
+     <update id="rplace_update_use_yn"  parameterType="int">
+          update recommend_place set use_yn = 'n' 
+          where  idx=#{ idx }     
+     </update>
+     
+     
+     <!-- 수정하기 -->
+     <update id="rplace_update"  parameterType="rplace">
+          update recommend_place set subject = #{ subject },
+                           content = #{ content },
+                           ip      = #{ ip },
+                           modifydate = sysdate 
+          where idx=#{ idx }
+     </update>
+     
+     <!-- 삭제하기 -->
+     <delete id="rplace_delete" parameterType="int">
+     	delete * from recommend_place where idx = #{idx}
+     </delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

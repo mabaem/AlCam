@@ -11,10 +11,12 @@
 	
 	<typeAliases>
 		<typeAlias type="vo.MemberVo"  alias="member"/>
+		<typeAlias type="vo.RPlaceVo"   alias="rplace"/>
 	</typeAliases>
 
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/member.xml" />
+		<mapper resource="config/mybatis/mapper/rplace.xml" />
 	</mappers>
 </configuration>

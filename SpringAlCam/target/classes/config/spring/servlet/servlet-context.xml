@@ -27,6 +27,11 @@
 	<!-- 자동생성(Auto-Detecting) -->
 	<context:component-scan base-package="com.ic.cam" />
 	
+	<!-- RPlaceController -->
+	<beans:bean class="controller.RPlaceController">
+		<beans:property name="rplace_dao" ref="rplace_dao"/>
+	</beans:bean>
+	
 	<!-- 수동생성 -->
 	<!-- MemberController -->
 	<beans:bean  class="controller.MemberController">

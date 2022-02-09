@@ -7,15 +7,16 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	
+	#index_notice_box{	
+	}
 </style>
 
 </head>
 <body>
 
 <!-- 공지사항 -->
-<div id="">
-	공지사항
+<div id="index_notice_box">
+	<iframe width="500" height="390" src="notice/list.do"></iframe>
 </div>
 
 </body>

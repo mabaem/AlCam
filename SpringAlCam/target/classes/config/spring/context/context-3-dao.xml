@@ -9,5 +9,10 @@
 	<bean id="member_dao"  class="dao.MemberDaoImpl">
 	    <property name="sqlSession"  ref="sqlSession"/>
 	</bean>
+	
+	<!-- RPlaceDaoImpl -->
+	<bean id="rplace_dao"  class="dao.RPlaceDaoImpl">
+	    <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
 
 </beans>

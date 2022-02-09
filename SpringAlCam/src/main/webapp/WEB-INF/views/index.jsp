@@ -14,6 +14,11 @@
 
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 
+<style type="text/css">
+	.if{
+		border: none;
+	}
+</style>
 
 </head>
 <body>
@@ -62,7 +67,8 @@
 		
 		<!-- 2. 캠핑장소추천 누른 경우(menu=recommend_place) -->
 		<c:if test="${ (param.menu eq 'recommend_place') }">
-			<%@include file="recommend_place/r_place_list.jsp" %>	
+			<%-- <%@include file="recommend_place/rplace_list.jsp" %> --%>
+			<iframe class="if" width="1000"  height="570" src="recommend_place/list.do"></iframe>	
 		</c:if>
 		
 		
@@ -73,7 +79,7 @@
 		
 		<!-- 4. 고객센터 누른 경우(menu=notice) -->
 		<c:if test="${ (param.menu eq 'notice') }">
-			<%@include file="notice/notice_list.jsp" %>	
+			<%@include file="notice/notice_list.jsp" %>
 		</c:if>
 		
 		<!-- 5. 마이페이지 누른 경우(menu=member) -->
