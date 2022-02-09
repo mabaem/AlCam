@@ -59,5 +59,10 @@
 	<beans:bean  class="controller.PlaceController">
 	    
 	</beans:bean>
+	
+	<!-- 캠핑 용품 컨트롤러 -->
+	<beans:bean  class="controller.CampProductController">
+	    
+	</beans:bean>
 
 </beans:beans>

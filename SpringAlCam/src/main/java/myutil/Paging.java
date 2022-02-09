@@ -91,8 +91,8 @@ public class Paging {
 	}//end-getPaging()
 	
 	
-	//댓글용 페이지 생성
-	public static String getPaging(int nowPage, int rowTotal,int blockList, int blockPage){
+	//캠핑용품 페이지 생성
+	public static String getGoodsPaging(String p_name, int nowPage, int rowTotal,int blockList, int blockPage){
 		
 		int totalPage/*전체페이지수*/,
             startPage/*시작페이지번호*/,
@@ -129,9 +129,12 @@ public class Paging {
 		
 		//HTML코드를 저장할 StringBuffer생성=>코드생성
 		sb = new StringBuffer();
+		
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
 		if(isPrevPage){
-			sb.append("<a href ='#' onclick='comment_list(" + (startPage-1)  +");'>◀</a>");
+			
+			sb.append(String.format("<a href ='#' onclick='search_product(\"%s\",%d);'>◀</a>", p_name, (startPage-1)));
+			//sb.append("<a href ='#' onclick='search_product(" + p_name + "," +(startPage-1)  +");'>◀</a>");
 		}
 		else
 			sb.append("◀");
@@ -141,14 +144,16 @@ public class Paging {
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
 			if(i == nowPage){ //현재 있는 페이지
-				sb.append("&nbsp;<b><font color='red'>");
+				sb.append("&nbsp;<b><font color='black'>");
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</font></b>");
 			}
 			else{//현재 페이지가 아니면
-				sb.append("&nbsp;<a href ='#' onclick='comment_list(" + i  +");'>");
+				
+				//sb.append("&nbsp;<a href ='#' onclick='search_product(" + p_name + "," + i  +");'>");
+				sb.append(String.format("&nbsp;<a href ='#' onclick='search_product(\"%s\",%d);'>", p_name, i));
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
@@ -161,7 +166,8 @@ public class Paging {
 //-----그룹페이지처리 다음 ----------------------------------------------------------------------------------------------
 		if(isNextPage){
 			//String.format("<a href ='#' onclick='comment_list(%d));'>▶</a>", endPage+1)
-			sb.append("<a href ='#' onclick='comment_list(" + (endPage+1)  +");'>▶</a>");
+			//sb.append("<a href ='#' onclick='search_product(" + p_name +  ","+ (endPage+1)  +");'>▶</a>");
+			sb.append(String.format("<a href ='#' onclick='search_product(\"%s\",%d);'>▶</a>", p_name, (endPage+1)));
 			
 		}
 		else
@@ -169,7 +175,7 @@ public class Paging {
 //---------------------------------------------------------------------------------------------------------------------	    
 
 		return sb.toString();
-	}//end-getPaging()
+	}//end-getGoodsPaging()
 	
 	
 	public static String getPaging(String pageURL,String search_filter,int nowPage, int rowTotal,int blockList, int blockPage){
@@ -209,6 +215,7 @@ public class Paging {
 		
 		//HTML코드를 저장할 StringBuffer생성=>코드생성
 		sb = new StringBuffer();
+		
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
 		if(isPrevPage){
 			sb.append("<a href ='"+pageURL+"?page=");
