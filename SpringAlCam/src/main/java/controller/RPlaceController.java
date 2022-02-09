@@ -46,10 +46,11 @@ public class RPlaceController {
 	public String best(Model model) {
 		
 		//게시글 목록가져오기
-		List<RPlaceVo> best_list = rplace_dao.selectBestList();
+		List<RPlaceVo> list = rplace_dao.selectBestList();
 		
-		model.addAttribute("best_list", best_list);
 		
+		model.addAttribute("list", list);
+
 		return "recommend_place/rplace_best_list";
 	}
 	

@@ -71,9 +71,10 @@
 			<iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/list.do"></iframe>	
 		</c:if>
 		
+		<!-- 2-1. 베스트글 선택한 경우 -->
 		<c:if test="${ not empty param.idx }">
 			  <iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/view.do?idx=${param.idx} "></iframe>
-		 </c:if>
+		</c:if>
 		
 		<!-- 3. 캠핑용품검색 누른 경우(menu=goods) -->
 		<c:if test="${ (param.menu eq 'goods') }">

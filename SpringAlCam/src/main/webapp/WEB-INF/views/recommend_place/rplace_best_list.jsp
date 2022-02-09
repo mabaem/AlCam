@@ -54,7 +54,7 @@
 				<span class="span_writer">&nbsp;&nbsp;작성자</span>
 				<span class="span_readhit">&nbsp;조회수</span>
 			</li>
-			<c:forEach var="vo" items="${ best_list }">
+			<c:forEach var="vo" items="${ list }">
 				<li>
 					<a href="#" onclick="window.parent.location.href='${ pageContext.request.contextPath }/main.do?menu=recommend_place&idx=${ vo.idx }&page=${ empty param.page ? 1 : param.page }'">
 						·
