@@ -158,6 +158,7 @@
  	<input class="btn" id="btn_rplace_insert" type="button"  value="글쓰기" 
           onclick="insert_form();">
   </div>
+   
   <div id="rplace_box">
        <!-- 게시글 리스트 -->
        <table class="table  table-striped ">
@@ -237,6 +238,7 @@
         </div>
        
   </div>  
+  
 </body>
 </html>
 

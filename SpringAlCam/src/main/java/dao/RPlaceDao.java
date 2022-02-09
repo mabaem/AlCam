@@ -20,5 +20,6 @@ public interface RPlaceDao {
 	int            delete(int idx);
 	
 	int            update_readhit(int idx);
+	List<RPlaceVo> selectBestList();
 	
 }

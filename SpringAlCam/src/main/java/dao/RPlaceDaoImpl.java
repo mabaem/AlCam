@@ -68,4 +68,10 @@ public class RPlaceDaoImpl implements RPlaceDao {
 		return sqlSession.update("rplace.rplace_update_use_yn", idx);
 	}
 
+	@Override
+	public List<RPlaceVo> selectBestList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("rplace.rplace_best_list");
+	}
+
 }

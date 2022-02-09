@@ -40,6 +40,20 @@ public class RPlaceController {
 	public void setRplace_dao(RPlaceDao rplace_dao) {
 		this.rplace_dao = rplace_dao;
 	}
+	
+	//베스트글 10건 조회
+	@RequestMapping("/recommend_place/best.do")
+	public String best(Model model) {
+		
+		//게시글 목록가져오기
+		List<RPlaceVo> best_list = rplace_dao.selectBestList();
+		
+		model.addAttribute("best_list", best_list);
+		
+		return "recommend_place/rplace_best_list";
+	}
+	
+	
 
 	//게시글 조회
 	@RequestMapping("/recommend_place/list.do")
@@ -122,7 +136,7 @@ public class RPlaceController {
 
 	//게시글보기
 	@RequestMapping("/recommend_place/view.do")
-	public String view(int idx, int page, Model model) {
+	public String view(int idx, @RequestParam(name="page",defaultValue="1") int page, Model model) {
 		
 		RPlaceVo vo = rplace_dao.selectOne(idx);
 		

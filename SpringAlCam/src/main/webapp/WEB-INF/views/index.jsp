@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/main.css">
 
 <style type="text/css">
-	.if{
+	.if_rplace{
 		border: none;
 	}
 </style>
@@ -66,11 +66,14 @@
 		
 		
 		<!-- 2. 캠핑장소추천 누른 경우(menu=recommend_place) -->
-		<c:if test="${ (param.menu eq 'recommend_place') }">
+		<c:if test="${ (empty param.idx) and (param.menu eq 'recommend_place') }">
 			<%-- <%@include file="recommend_place/rplace_list.jsp" %> --%>
-			<iframe class="if" width="1000"  height="570" src="recommend_place/list.do"></iframe>	
+			<iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/list.do"></iframe>	
 		</c:if>
 		
+		<c:if test="${ not empty param.idx }">
+			  <iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/view.do?idx=${param.idx} "></iframe>
+		 </c:if>
 		
 		<!-- 3. 캠핑용품검색 누른 경우(menu=goods) -->
 		<c:if test="${ (param.menu eq 'goods') }">

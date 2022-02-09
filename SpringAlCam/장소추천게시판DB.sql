@@ -97,7 +97,8 @@ drop table recommend_place
 	
 
 
-
+--조회수별 베스트글 10건 조회
+select * from (select * from recommend_place order by readhit desc) where rownum <= 10;
 
 
 
