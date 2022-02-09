@@ -32,11 +32,16 @@ public class PlaceController {
 
 	@Autowired
 	HttpServletRequest request;
+	
+	
 
-	@RequestMapping("place/search.do")
+	@RequestMapping("/place/search.do")
 	public String search_map(@RequestParam(value = "text_search", defaultValue = "") String text_search,
-			@RequestParam(value = "page", defaultValue = "1") int nowPage, Model model) {
+							 @RequestParam(value = "page", defaultValue = "1") int nowPage, Model model) {
 		int pageNo = nowPage;
+		String paging_text = text_search;
+		System.out.printf("페이지는%d\n",pageNo);
+		System.out.printf("검색어=%s\n",paging_text);
 		int start = (nowPage - 1) * MyConstant.Camping.BLOCK_LIST + 1;
 		int end = start + MyConstant.Camping.BLOCK_LIST - 1;
 		String pageMenu = "";
@@ -49,6 +54,7 @@ public class PlaceController {
 		// 카카오 API
 		try {
 			text_search = URLEncoder.encode(text_search, "utf-8");
+			System.out.printf("카카오인코딩%s",text_search);
 			String kakaoAK = "KakaoAK 6b374997db253e62e6e35773bd3daf88";
 			// 검색 조건은 지역
 			String urlStr = String.format(
@@ -87,12 +93,12 @@ public class PlaceController {
 			// 카카오에서 구한 좌표를 double 형변환
 			double mapX = Double.parseDouble(imsi_x);
 			double mapY = Double.parseDouble(imsi_y);
-			System.out.printf("%f\n", mapX);
-			System.out.printf("%f\n", mapY);
+			System.out.printf("좌표X=%f\n", mapX);
+			System.out.printf("좌표Y=%f\n", mapY);
 			String serviceKey = "HUGsei948k7GTAIm951Gwaph5wGoiBzWrH7jKaVNWZ56lzC84RVFoXia4FQqpBlT3ncDyVnrgO%2BGaIG0gvp%2BOQ%3D%3D";
 			String urlBuilder = "http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/locationBasedList?"
 					+ "serviceKey=" + serviceKey + "&MobileOS=ETC" + "&MobileApp=AppTest" + "&mapX=" + mapX + "&mapY="
-					+ mapY + "&radius=15000" + "&pageNo="+pageNo + "&numOfRows=5" + "&_type=json";
+					+ mapY + "&radius=15000" + "&pageNo=" + pageNo + "&numOfRows=5" + "&_type=json";
 
 			/* 추가 해야될 내용 */
 			// urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" +
@@ -101,6 +107,7 @@ public class PlaceController {
 			// URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 
 			URL url = new URL(urlBuilder);
+			System.out.printf("URL=%s\n",url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-type", "application/json");
@@ -139,14 +146,14 @@ public class PlaceController {
 				
 				list.add(vo);
 			}
-			System.out.println(rowTotal);
-			 String search_filter = String.format("text_search=%s", text_search);
-			 pageMenu = Paging.getPaging("search.do", 
-					 					  search_filter,
-					 					  nowPage,
-					 					  rowTotal,
-					 					  MyConstant.Camping.BLOCK_LIST,
-					 					  MyConstant.Camping.BLOCK_PAGE );
+			
+			System.out.printf("인코딩확인 %s",paging_text);
+			 //String search_filter = String.format("text_search=%s", text_search);
+			 pageMenu = Paging.getPlacePaging(paging_text,
+					 					 nowPage,
+					 					 rowTotal,
+					 					 MyConstant.Camping.BLOCK_LIST,
+					 					 MyConstant.Camping.BLOCK_PAGE);
 			 
 			rd.close();
 			conn.disconnect();
@@ -159,8 +166,9 @@ public class PlaceController {
 		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
 		
-		return "place/place_list";
+		return "place/camping_list";
 	}// end-search
+	
 	
 
 	

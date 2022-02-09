@@ -14,11 +14,17 @@
 
 <style type="text/css">
 	#place_box{
+	margin: auto;
 		width: 100%;
-		height: 100%;
+		height: 70%;
+	}
+	#div_place_list{
+		margin: auto;
+		width: 100%;
+		height: 70%;
 	}
 	#p_input_box{
-		margin: 0 auto;
+		margin:  auto;
 		text-align: center;
 		padding: 20px;
 	}
@@ -38,17 +44,36 @@
 }
 </style>
 <script type="text/javascript">
-function find() {
+	var global_page = 1;
+	$(document).ready(function(){
+		$("#p_btn_search").click(function() {
+			var text_search = $("#text_search").val();
+
+			if(text_search==''){
+				alert('검색어를 입력하세요');
+				  $("#text_search").val("");
+				  $("#text_search").focus();
+				return;
+			}			
+			search_place(text_search,1);
+			
+		});
+	}); //end-ready
+	function search_place(text_search,page) {
 	
-	var text_search = $("#p_text_search").val().trim();
-	console.log(p_text_search);
-	if(text_search==''){
-		alert('검색어를 입력하세요');
-		  $("#p_text_search").val("");
-		  $("#p_text_search").focus();
-		return;
-	}
-	location.href="${ pageContext.request.contextPath }/place/search.do?text_search=" + encodeURIComponent(text_search);
+	global_page = page;
+	//page = "${param.page}";
+	$.ajax({
+		url			: "place/search.do",
+		data		:{"text_search":text_search,"page":page},
+		success		: function(result_data) {
+			$("#disp").html(result_data);
+		},
+		error		:function(err){
+			alert(err.responseText);
+		}
+	});
+	//location.href="${ pageContext.request.contextPath }/place/search.do?text_search=" + encodeURIComponent(text_search);
 	
 }
 
@@ -62,23 +87,23 @@ function find() {
 		<!-- 검색 -->
 		<div id="p_search_box">
 			<div class="input-group" id="p_input_box">
-				<input type="text" id="p_text_search" placeholder="캠핑장소 검색">
-				<input type="button" id="p_btn_search" class="btn btn-success" onclick="find()" value="검색">
+				<input type="text" id="text_search" placeholder="캠핑장소 검색" value="${param.text_search }">
+				<input type="button" id="p_btn_search" class="btn btn-success"value="검색">
 			</div>
 		</div>
 		
 		<!-- 장소리스트 출력 -->
-		<div>
+		<div id="disp">
 			<!-- 키워드, 주소, 장소명 등으로 캠핑장소 검색 -->
 			<%-- <%@ include file="camping_list.jsp" %> --%>
-			<table>
+			
+			<%-- <table>
 			<tr>
 				<th>대표사진</th>
 				<th>장소</th>
 				<th>주소</th>
 				<th>전화번호</th>
-				<th>경도</th>
-				<th>위도</th>
+				<th>즐겨찾기</th>
 			</tr>
 			<c:forEach var="vo" items="${list}">
 					<tr>	
@@ -94,7 +119,7 @@ function find() {
 						<td>${vo.p_name} </td>
 						<td>${vo.p_addr}</td>
 						<td>${vo.p_tel}</td>
-						<td></td>
+						<td>토글버튼 위치</td>
 						<td></td>
 					</tr>
 			</c:forEach>
@@ -106,7 +131,7 @@ function find() {
                     </div>            
                 </td>
              </tr>				
-		</table>
+		</table> --%>
 		</div>
 	</div>
 </div>
