@@ -20,36 +20,30 @@
 
 <style type="text/css">
 
-	#box{
+	#profile_box{
 		width: 500px;
 		margin: auto;
-		margin-top: 50px;
 	}
 
-	table{
+	#profile_data_align{
 		width: 100%;
 	}
 	
-	th{
-		text-align: center;
-		font-weight: bold;
-	}
-	
-	#title{
+	#profile_title{
 		text-align: center;
 		
-		font-size: 25px;
+		font-size: 20px;
+		font-weight: bold;
+		
+		margin-bottom: 20px;
+	}
+	
+	#profile_data_align > th{
+		text-align: center;
 		font-weight: bold;
 	}
 	
-	#empty_message{
-		text-align: center;
-		color: red;
-		font-size: 15px;
-		font-weight: 800;
-	}
-	
-	#data_align > td {
+	#profile_data_align > td {
 		text-align: center; 
 		vertical-align: middle;
 	}
@@ -89,12 +83,11 @@
 <body>
 
 
-	<div>
-		<h1 id="title">프로필정보</h1>
-	
-
-	  	<div id="box">
-		      <table id="data_align" class="table">
+	<div id="profile_box">
+		<h1 id="profile_title">회원정보수정</h1>
+		
+	  	<div>
+		      <table id="profile_data_align" class="table">
 		      
 		      		<tr>
 		      			<th>프로필사진</th>

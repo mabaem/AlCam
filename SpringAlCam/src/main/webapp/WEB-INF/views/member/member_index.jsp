@@ -35,10 +35,11 @@
 		font-weight: bold;
 		font-size: 18px;
 	}
-	#member_index_name{
+	#member_index_hello{
 		font-size: 16px;
 	}
-	iframe{
+	
+	.if_member_index{
 		border: none;
 	}
 	
@@ -95,21 +96,21 @@
 	
 	<!-- 마이페이지 내용 출력 -->
 	<div id="div_member_content">
-		<%-- 
+		 
 		<!-- 마이페이지 기본화면(프로필사진, 환영인사) -->
-		<c:if test="${ param.menu eq 'member'}">
+		<c:if test="${ (param.menu eq 'member') and (empty param.submenu) }">
 			<div style="text-align: center; margin-top: 20px;">		
 				<img src="${ pageContext.request.contextPath }/resources/image/${ user.m_filename }" width="90" height="90">
 				<br><br>
 				<span id="member_index_name">${ user.m_name }</span><span id="member_index_hello">님 안녕하세요</span>
 			</div>
 		</c:if>
-		 --%>
+		
 		 
 		<!-- 각 리스트 눌렀을 때 div_member_content에 내용 뿌려주기 -->
 		<!-- 회원정보수정 -->
 		<c:if test="${ param.submenu eq 'myprofile'}">
-		   <iframe  width="800"  height="800" src="member/list.do?m_idx=${user.m_idx }"></iframe>
+		   <iframe class="if_member_index" width="800"  height="500" src="member/list.do?m_idx=${user.m_idx }"></iframe>
 		</c:if>
 
 		<!-- 즐겨찾기 -->
@@ -118,7 +119,7 @@
 			
 		<!-- 관리자페이지 -->
 		<c:if test="${ param.submenu eq 'admin'}">
-		   <iframe   width="800"  height="800" src="member/admin_list.do"></iframe>
+		   <iframe class="if_member_index"  width="800"  height="500" src="member/admin_list.do"></iframe>
 		</c:if>
 		
 	</div>

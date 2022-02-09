@@ -19,43 +19,38 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style type="text/css">
-
-	#member_box{
-		width: 500px;
-		margin: auto;
-		margin-top: 50px;
-	}
 	
 	#admin_box{
-		width: 1500px;
+		width: 500px;
 		margin: auto;
-		margin-top: 50px;
 	}
 
-	table{
+	#admin_data_align{
 		width: 100%;
 	}
 	
-	th{
-		text-align: center;
-		font-weight: bold;
-	}
-	
-	#title{
+	#admin_title{
 		text-align: center;
 		
-		font-size: 25px;
+		font-size: 20px;
 		font-weight: bold;
+		
+		margin-bottom: 20px;
 	}
 	
-	#empty_message{
+	#admin_empty_message{
 		text-align: center;
 		color: red;
 		font-size: 15px;
 		font-weight: 800;
 	}
 	
-	#data_align > td {
+	#admin_data_align > tr > th{
+		text-align: center;
+		font-weight: bold;
+	}
+	
+	#admin_data_align > td {
 		text-align: center; 
 		vertical-align: middle;
 	}
@@ -122,22 +117,15 @@
 
 		<!-- 관리자 로그인 -->
 		<c:if test="${ user.m_grade == '관리자' }">
+		<h1 id="admin_title">관리자페이지</h1>
 		<div id="admin_box">
 		      
-			 <table id="data_align" class="table">
+			 <table class="table" id="admin_data_align">
 						
-		      		<tr class="success">
+		      		<tr>
 		      			<th>번호</th>
-		      			<th>프로필사진</th>
 		      			<th>이름</th>
 		      			<th>아이디</th>
-		      			<th>비밀번호</th>
-		      			<th>생년월일</th>
-		      			<th>성별</th>
-		      			<th>전화번호</th>
-		      			<th>이메일</th>
-		      			<th>우편번호</th>
-		      			<th>주소</th>
 		      			<th>가입일자</th>
 		      			<th>회원구분</th>
 		      			<th>편집</th>
@@ -146,41 +134,22 @@
 		      		<!-- Data가 없는 경우 -->
 		      		<c:if test="${ empty list }">
 		      			<tr>
-		      				<td id="empty_message" colspan="10">회원정보가 없습니다</td>
+		      				<td id="admin_empty_message" colspan="10">회원정보가 없습니다</td>
 		      			</tr>
 		      		</c:if>
 		      		   		
 		      		<!-- Data가 있는 경우 -->
 		      		<c:forEach var="vo" items="${ list }">
-		      			<tr id="data_align">
-			      		   		<td>${ vo.m_idx }</td>
-			      		   		<td>
-			      		   			<img src="${ pageContext.request.contextPath }/resources/image/${ vo.m_filename }" width="90" height="90">
-			      		   		</td>
-			      		   		<td>${ vo.m_name }</td>
-			      		   		<td>${ vo.m_id }</td>
-			      		   		<td>${ vo.m_pwd_hidden }</td>
-			      		   		<td>${ vo.m_byear }/${ vo.m_bmonth }/${ vo.m_bday }</td>
-			      		   		<td>${ vo.m_gender }</td>
-			      		   		<td>
-			      		   			<!-- 전화번호가 10자리인 경우 -->
-			      		   			<c:if test="${ fn:length(vo.m_tel)==10 }">
-			      		   				${fn:substring(vo.m_tel, 0, 3)}-${fn:substring(vo.m_tel, 3, 6)}-${fn:substring(vo.m_tel, 6, 10)}
-			      		   			</c:if>
-			      		   			<!-- 전화번호가 11자리인 경우 -->
-			      		   			<c:if test="${ fn:length(vo.m_tel)==11 }">
-			      		   				${fn:substring(vo.m_tel, 0, 3)}-${fn:substring(vo.m_tel, 3, 7)}-${fn:substring(vo.m_tel, 7, 11)}
-			      		   			</c:if>
-			      		   		</td>
-			      		   		<td>${ vo.m_email }</td>
-			      		   		<td>${ vo.m_zipcode }</td>
-			      		   		<td>${ vo.m_addr }</td>
-			      		   		<td>${ fn:substring(vo.m_regdate,0,10) }</td>
-			      		   		<td>${ vo.m_grade }</td>
-			      		   		<td>
-				      		   			<input class="btn btn-info"   type="button" value="수정" onclick="modify_form('${ vo.m_idx }');">
-				      		   			<input class="btn btn-danger" type="button" value="삭제" onclick="del('${ vo.m_idx }');">
-			      		   		</td>
+		      			<tr>
+		      		   		<td>${ vo.m_idx }</td>
+		      		   		<td>${ vo.m_name }</td>
+		      		   		<td>${ vo.m_id }</td>
+		      		   		<td>${ fn:substring(vo.m_regdate,0,10) }</td>
+		      		   		<td>${ vo.m_grade }</td>
+		      		   		<td>
+			      		   			<input class="btn btn-info"   type="button" value="수정" onclick="modify_form('${ vo.m_idx }');">
+			      		   			<input class="btn btn-danger" type="button" value="삭제" onclick="del('${ vo.m_idx }');">
+		      		   		</td>
 			      	</tr>
 					</c:forEach>
 			 </table>

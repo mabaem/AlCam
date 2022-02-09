@@ -29,6 +29,8 @@
 	#img_btn_home{
 		width: 250px;
 		height: 110px;
+		
+		margin-bottom: 40px;
 	}
 	#input_id, #input_pwd{
 		margin: 10px auto;
