@@ -3,14 +3,19 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
 
-<!-- 전체조회 -->
+	<!-- 최신글 10건 조회 -->
+	<select id="notice_recent_list" resultType="notice">
+		select * from (select * from notice order by n_regdate desc) where <![CDATA[rownum <= 10]]>
+	</select>
+
+	<!-- 전체조회 -->
      <select id="notice_list"  resultType="notice">
           select * from notice order by n_idx desc
      </select>
      
      <!-- 조건별/페이지별 조회 -->
      <select id="notice_condition_list"  parameterType="Map"  resultType="notice">
-    	  select * from notice  order by n_idx desc 
+    	  select * from notice  order by n_idx desc
      </select>
      
      <!-- 검색조건별 게시물수 -->
@@ -68,9 +73,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
      </update>
 <!-- 수정하기 -->
      <update id="notice_update"  parameterType="notice">
-          update notice set n_subject = #{ n_subject},
+          update notice set
+          					n_subject = #{ n_subject},
                            	n_content = #{ n_content},
-                           	n_regdate = sysdate 
+                           	n_modifydate = sysdate,
+                           	n_filename = #{ n_filename}
           where n_idx=#{ n_idx }
           
      </update>

@@ -70,6 +70,12 @@ public class NoticeDaoImpl implements NoticeDao {
 		return sqlSession.update("notice.notice_update_readhit", n_idx);
 	}
 
+	@Override
+	public List<NoticeVo> selectRecentList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("notice.notice_recent_list");
+	}
+
 	
 
 	

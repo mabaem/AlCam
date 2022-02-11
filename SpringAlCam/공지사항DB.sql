@@ -36,7 +36,8 @@
 
 
 
-
+--select * from (select * from notice order by n_regdate asc) where <![CDATA[rownum <= 10]]>
+--select * from (select * from notice order by n_regdate asc) where rownum <= 10
 
 
 

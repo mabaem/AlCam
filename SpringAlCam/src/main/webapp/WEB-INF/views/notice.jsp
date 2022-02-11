@@ -7,7 +7,7 @@
 	}
 </style>
 
-<!-- 공지사항 -->
+<!-- 공지사항 최신글 -->
 <div id="index_notice_box">
-	<iframe width="500" height="390" src="notice/list.do"></iframe>
+	<iframe id="if_notice" width="500" height="390" src="notice/recent.do"></iframe>
 </div>

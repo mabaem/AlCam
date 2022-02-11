@@ -19,6 +19,7 @@ public interface NoticeDao {
 	int            delete(int n_idx);
 	
 	int            update_readhit(int n_idx);
+	List<NoticeVo> selectRecentList();
 	
 	
 

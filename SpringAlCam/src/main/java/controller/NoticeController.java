@@ -40,8 +40,23 @@ public class NoticeController {
 		this.notice_dao = notice_dao;
 	}
 	
-	// 게시글 조회
+	
+	//최신글 10건 조회
+	@RequestMapping("/notice/recent.do")
+	public String recent(Model model) {
 		
+		//게시글 목록가져오기
+		List<NoticeVo> list = notice_dao.selectRecentList();
+		
+		
+		model.addAttribute("list", list);
+
+		return "notice/notice_recent_list";
+	}
+	
+	
+	
+	// 게시글 조회
 		@RequestMapping("/notice/list.do")
 		public String list(@RequestParam(name="page",       defaultValue="1")     int nowPage,  
 				           @RequestParam(value="search",     defaultValue="all")   String search, 
@@ -131,6 +146,7 @@ public class NoticeController {
 			}
 			
 			model.addAttribute("vo", vo);
+			model.addAttribute("page", page);
 			
 			return "notice/notice_view";
 		}
@@ -255,10 +271,12 @@ public class NoticeController {
 		
 		//수정하기
 		@RequestMapping("/notice/modify.do")
-		public String modify(NoticeVo vo, int page, String search, String search_text, Model model) {
+		public String modify(NoticeVo vo, int page, String search, String search_text, Model model) throws Exception {
 			
 			//로그인된 유저 정보 얻어오기
 			MemberVo user = (MemberVo) session.getAttribute("user");
+			
+			
 			if(user==null) {
 				
 				model.addAttribute("reason", "session_timeout");
@@ -268,6 +286,45 @@ public class NoticeController {
 				
 				return "redirect:list.do";
 			}
+			
+			
+			//이미지 넣기
+			//상대경로->절대(저장경로)
+			String webPath = "/resources/image/";
+			String absPath = application.getRealPath(webPath);
+			
+			String n_filename = "no_file";
+			MultipartFile n_photo = vo.getN_photo();
+			
+			//프로필 사진 업로드 안 된 경우 기본사진 적용 안함!!
+			if(n_photo.isEmpty()) {
+				n_filename = null;
+			}
+			
+			//프로필 사진 업로드 된 경우
+			if(!n_photo.isEmpty()) {
+				n_filename = n_photo.getOriginalFilename();
+				
+				//저장경로
+				File f = new File(absPath, n_filename);
+				
+				//동일이름의 화일이 존재하는지 여부
+				if(f.exists()) {
+					long tm = System.currentTimeMillis();
+					//화일명 = 시간_화일명
+					n_filename = String.format("%d_%s", tm, n_filename);
+					
+					//저장경로 재설정
+					f = new File(absPath, n_filename);
+				}
+				
+				//임시경로화일->지정된 위치로 복사
+				n_photo.transferTo(f);
+
+			}//end: if(m_filename.isEmpty())
+			
+			vo.setN_filename(n_filename);
+			
 		
 			//DB update
 			int res = notice_dao.update(vo);
