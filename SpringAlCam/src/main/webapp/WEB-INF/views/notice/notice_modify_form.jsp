@@ -68,7 +68,7 @@
 </script>
 
 
-<form>
+<form name="f" method="POST" action="insert.do" enctype="multipart/form-data">
   <input type="hidden"  name="n_idx"   value="${ vo.n_idx }">
   <input type="hidden"  name="page"    value="${ param.page }">
   <input type="hidden"  name="search"    value="${ param.search }">
