@@ -35,6 +35,9 @@
 	  
 	  var photo   = f.photo.value;
 	  var subject = f.subject.value.trim();
+	  var p_name = f.p_name.value;
+	  var p_addr = f.p_addr.value;
+	  
 	 
 	  //공백처리
 	  var content = f.content.value.replaceAll("\r\n","").trim();
@@ -57,8 +60,7 @@
 	  f.action = "insert.do?page= ${ empty param.page ? 1 : param.page }"; //전송대상
 	  f.submit();//전송
 	  
-	  
-  }
+  }//end send(f)
 
 
 </script>
@@ -91,6 +93,18 @@
 	                     <textarea id="content" name="content" rows="" cols=""></textarea>
 	                 </td>
 	              </tr>
+	              
+	              <tr>
+	                 <th>캠핑장소</th>
+	                 <td>
+	                 	<input type="text" id="p_name" placeholder="캠핑장 이름" value=""><br>
+	                 	<input type="text" id="p_addr" placeholder="캠핑장 주소" value="">
+	                 	<input type="button" id="btn_rplace"  value="장소검색"
+	                 		onclick="window.open('popup.do','popup_rplace','top=100,left=300,width=430,height=500,location=no,status=no,scrollbars=yes');">
+	                 </td>
+	              		
+	              </tr>
+	              
 	              <tr>
 				 <th>이미지첨부</th>
 					 <td><input type="file" name="photo"></td>
