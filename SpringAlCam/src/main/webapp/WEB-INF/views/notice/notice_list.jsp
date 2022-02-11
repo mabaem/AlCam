@@ -141,45 +141,28 @@
 <body>
 
 
- <div style="margin-bottom: 10px; margin-right: 10px;">
-	<font id="notice_title">**공지사항**</font>
-	
-	  <!-- 관리자 로그인 -->
-	<c:if test="${ user.m_grade == '관리자' }"> 
-	   
-           <input  class="btn" id="btn_notice_insert" type="button"  value="글쓰기"  
-                   onclick="insert_form();">
-      
-	</c:if> 
-	
-	<!-- 검색메뉴 -->
-       <div id="notice_search_menu" style="margin-top: 15px">
-        	<select id="notice_search">
-        	     <option value="all">전체보기</option>
-        	     <option value="name">이름</option>
-        	     <option value="subject">제목</option>
-        	     <option value="content">내용</option>
-        	     <option value="name_subject_content">이름+제목+내용</option>  
-        	</select>
-        	<input id="search_text"  value="${ param.search_text }">
-        	<input type="button"  value="검색"  onclick="search();">
-        </div> 
-	
-	 
-		        
+	 <div style="margin-bottom: 10px; margin-right: 10px;">
+	 	<font id="notice_title">공지사항</font>
+		
+		<!-- 관리자 로그인 -->
+		<c:if test="${ user.m_grade == '관리자' }"> 
+		   	<!-- 글쓰기 버튼 -->
+		    <input  class="btn" id="btn_notice_insert" type="button"  value="글쓰기" 
+		    	onclick="insert_form();">
+		</c:if>
 	</div>
 	
 	<div id="notice_box">
-	<!-- 게시판내용 -->
+		<!-- 게시판내용 -->
        <table class="table  table-striped  table-hover">
              
              <!-- 제목 -->
-             <tr class="success">
+             <tr>
                  <th width="10%">번호</th>
-                 <th width="40%">제목</th>
-                 <th width="15%">작성자</th>
+                 <th width="45%">제목</th>
+                 <th width="13%">작성자</th>
                  <th width="20%">작성일자</th>
-                 <th width="15%">조회수</th>
+                 <th width="12%">조회수</th>
              </tr>
              
              <!-- 데이터가 없는 경우 -->
@@ -206,7 +189,7 @@
                          
                          <!-- 삭제된 게시물이면 -->
                          <c:if test="${ vo.n_use_yn eq 'n' }">
-                             <font color=red>(삭제된 게시물)</font>
+                             <font color=red>(삭제된 게시물) ${ vo.n_subject }</font>
                          </c:if>
                          
                          
@@ -219,23 +202,35 @@
       	  </c:if>
              
         
-           <%--   <!-- 페이지 메뉴 -->
-             <tr>
-                <td colspan="5" align="center">
-                    
-                    <div id="page_menu"> 
-                     ${ pageMenu }
-                    </div>
-                                        
-                     
-                </td>
-             </tr>
-         --%>
+           <!-- 페이지 메뉴 -->
+           <tr>
+              <td colspan="5" align="center">
+                  
+                  <div id="page_menu"> 
+                   ${ pageMenu }
+                  </div>
+                                      
+                   
+              </td>
+           </tr>
         
         
         
 	
 	 </table>
+	 
+	 <!-- 검색메뉴 -->
+    <div id="notice_search_menu" style="margin-top: 15px">
+     	<select id="notice_search">
+     	     <option value="all">전체보기</option>
+     	     <option value="name">이름</option>
+     	     <option value="subject">제목</option>
+     	     <option value="content">내용</option>
+     	     <option value="name_subject_content">이름+제목+내용</option>  
+     	</select>
+     	<input id="search_text"  value="${ param.search_text }">
+     	<input  class="btn-default" type="button"  value="검색"  onclick="search();">
+     </div> 
 	 
 	 
 	 

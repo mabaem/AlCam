@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -72,9 +68,6 @@
 </script>
 
 
-</head>
-<body>
-
 <form>
   <input type="hidden"  name="n_idx"   value="${ vo.n_idx }">
   <input type="hidden"  name="page"    value="${ param.page }">
@@ -83,7 +76,7 @@
   
   <div id="box">
         <div class="panel panel-primary">
-	      <div class="panel-heading"><h3>공지사항 수정하기</h3></div>
+          <h3 style="margin-left: 20px;">수정하기</h3>
 	      <div class="panel-body">
 	          <table class="table">
 	              <tr>
@@ -100,9 +93,14 @@
 	              </tr>
 	              
 	              <tr>
+				 	 <th>이미지첨부</th>
+					 <td><input type="file" name="n_photo"></td>
+				 </tr>
+	              
+	              <tr>
 	                 <td colspan="2" align="center">
-	                      <input class="btn  btn-primary" type="button"  value="수정하기" onclick="send(this.form);">
-	                      <input class="btn  btn-success" type="button"  value="목록보기" onclick="location.href='list.do?page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">
+	                      <input class="btn  btn-info" type="button"  value="수정" onclick="send(this.form);">
+	                      <input class="btn  btn-default" type="button"  value="취소" onclick="location.href='list.do?page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">
 	                 </td>
 	              </tr>
 	          </table>
@@ -111,6 +109,3 @@
 	    </div>
   </div>
 </form>
-  
-</body>
-</html>

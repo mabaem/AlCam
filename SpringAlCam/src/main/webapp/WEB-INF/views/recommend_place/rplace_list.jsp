@@ -152,7 +152,7 @@
    
   <div id="rplace_box">
        <!-- 게시글 리스트 -->
-       <table class="table  table-striped ">
+       <table class="table  table-striped table-hover ">
              
              <!-- 제목 -->
              <tr>
@@ -215,7 +215,7 @@
       
        
        <!-- 검색메뉴 -->
-        <div id="rplace_search_menu">
+        <div id="rplace_search_menu" style="margin-top: 15px">
         	<select id="search">
         		<option value="all">전체보기</option>
         		<option value="name">이름</option>

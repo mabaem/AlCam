@@ -182,26 +182,28 @@
   <div id="box">
   	    
   	    <div class="panel panel-primary">
-	      <div class="panel-heading"><h3>***${ vo.m_name }님의 공지사항***</h3></div>
+  	      <h3 style="margin-left: 20px;">[공지사항]&nbsp;${ vo.n_subject }
+	      
+	      <input class="btn  btn-default" type="button"  value="목록보기"  style="float: right; margin-right: 20px;" 
+	                               onclick="location.href='${ pageContext.request.contextPath }/notice/list.do?page=${ param.page }&search=${ param.search}&search_text=${param.search_text}'">
+	       </h3>                 
+	      
 	      <div class="panel-body">
 	          <table class="table">
-	               
-	               
-	               
-	               
-               	   
-               	   <tr>
-               	   
-                   <!-- 제목 -->
-	              	   <th width="10%">제목</th>
-	                   <td>${ vo.n_subject }</td>
-                   
-                   <c:if test="${ vo.n_filename != 'no_file' }">
-                   <!-- 이미지 -->
-                   <th rowspan="6">
-                   	  <img src="${ pageContext.request.contextPath }/resources/image/${ vo.n_filename }" width="250" height="200">
-                   </th>
+	          
+	               <!-- 이미지가 있는 경우 -->
+	          	   <c:if test="${ vo.n_filename != 'no_file' }">
+	                   <th rowspan="6">
+	                   	  <img src="${ pageContext.request.contextPath }/resources/image/${ vo.n_filename }" width="250" height="200">
+	                   </th>
                    </c:if>
+                   
+               	   <tr>
+                   <!-- 제목 -->
+	              	   <th width="20%">제목</th>
+	                   <td width="80%">${ vo.n_subject }</td>
+                   
+                   
 	               </tr>
 	               <!-- 내용 -->
 	               <tr>
@@ -217,20 +219,14 @@
 	               </tr>
 	               
 	               
-                   
 	               <tr>
 	                  <td colspan="2"  align="center">
 	                        
-	                        <input class="btn  btn-success" type="button"  value="목록보기" 
-	                               onclick="location.href='${ pageContext.request.contextPath }/notice/list.do?page=${ param.page }&search=${ param.search}&search_text=${param.search_text}'">
-	                        
-	                        
-	                        
 	                        <!-- 글쓴이 본인만 처리되도록 -->
-	                        <c:if test="${ user.m_idx == vo.m_idx }">
-		                        <input class="btn  btn-info"    type="button"  value="수정하기" 
+	                        <c:if test="${ user.m_idx eq vo.m_idx }">
+		                        <input class="btn  btn-info"    type="button"  value="수정" 
 		                               onclick="location.href='${ pageContext.request.contextPath }/notice/modify_form.do?n_idx=${ vo.n_idx }&page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">
-		                        <input class="btn  btn-danger"  type="button"  value="삭제하기" 
+		                        <input class="btn  btn-danger"  type="button"  value="삭제" 
 		                               onclick="notice_delete();">
 	                        </c:if>
 	                  

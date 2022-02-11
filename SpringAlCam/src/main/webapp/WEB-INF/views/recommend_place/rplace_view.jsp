@@ -187,12 +187,12 @@
 	          	   <tr>
 	          	   	   <!-- 이미지 -->
 	                   <th rowspan="6">
-	                   	  <img src="${ pageContext.request.contextPath }/resources/image/${ vo.filename }" width="100" height="100">
+	                   	  <img src="${ pageContext.request.contextPath }/resources/image/${ vo.filename }" width="250" height="200">
 	                   </th>
                    
 	                   <!-- 제목 -->
 	          	   	   <th width="20%">제목</th>
-	                   <td>${ vo.subject }</td>
+	                   <td width="80%">${ vo.subject }</td>
 	          	   </tr>
 	          	   
 	          	   <tr>
