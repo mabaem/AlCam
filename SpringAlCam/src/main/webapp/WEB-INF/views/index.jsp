@@ -18,6 +18,10 @@
 	.if_rplace{
 		border: none;
 	}
+	
+	.if_notice{
+		border: none;
+	}
 </style>
 
 </head>
@@ -87,9 +91,9 @@
 			<%@include file="goods/goods_list.jsp" %>	
 		</c:if>
 		
-		<!-- 4. 고객센터 누른 경우(menu=notice) -->
-		<c:if test="${ (param.menu eq 'notice') }">
-			<%@include file="notice/notice_list.jsp" %>
+		<!-- 4. 공지사항 누른 경우(menu=notice) -->
+		<c:if test="${ (empty param.n_idx) and (param.menu eq 'notice') }">
+			<iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/list.do"></iframe>	
 		</c:if>
 		
 		<!-- 5. 마이페이지 누른 경우(menu=member) -->

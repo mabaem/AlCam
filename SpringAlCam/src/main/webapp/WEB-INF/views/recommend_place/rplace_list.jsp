@@ -84,8 +84,8 @@
    //검색메뉴
    function search(){
 	   
-	   var search = $("#search").val();	/* ID SELECTOR */
-	   var search_text = $("#search_text").val().trim();
+	   var search 		= $("#search").val();	
+	   var search_text	= $("#search_text").val().trim();
 	   
 	   //전체검색이 아닌데 검색어가 비어있는 경우
 	   if(search != 'all' && search_text==''){

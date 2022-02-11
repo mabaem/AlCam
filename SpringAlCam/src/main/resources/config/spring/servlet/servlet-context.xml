@@ -38,6 +38,11 @@
 	    <beans:property name="member_dao"  ref="member_dao"/>
 	</beans:bean>
 	
+	<!--  NoticeController  -->
+	<beans:bean class="controller.NoticeController">
+	<beans:property name="notice_dao" ref="notice_dao"/>
+	</beans:bean>
+	
 	<!-- 이메일 인증 설정 -->
 	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.gmail.com"/>

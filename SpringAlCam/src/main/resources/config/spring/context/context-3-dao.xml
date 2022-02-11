@@ -14,5 +14,10 @@
 	<bean id="rplace_dao"  class="dao.RPlaceDaoImpl">
 	    <property name="sqlSession"  ref="sqlSession"/>
 	</bean>
+	
+	<!--  NoticeDaoImpl  -->
+	<bean id="notice_dao" class="dao.NoticeDaoImpl">
+	<property name="sqlSession" ref="sqlSession"/>
+	</bean>
 
 </beans>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+<!-- 전체조회 -->
+     <select id="notice_list"  resultType="notice">
+          select * from notice order by n_idx desc
+     </select>
+     
+     <!-- 조건별/페이지별 조회 -->
+     <select id="notice_condition_list"  parameterType="Map"  resultType="notice">
+    	  select * from notice  order by n_idx desc 
+     </select>
+     
+     <!-- 검색조건별 게시물수 -->
+     <select id="notice_rowtotal"  parameterType="Map"  resultType="int">
+     
+         select nvl(count(*),0) from notice
+         <trim prefix="where"  prefixOverrides="or">
+             <if test="name!=null">
+                 m_name like '%' || #{ name } || '%'
+             </if>
+             
+             <if test="subject!=null">
+                 or n_subject  like '%' || #{ subject } || '%'
+             </if>
+             
+             <if test="content!=null">
+                 or n_content  like '%' || #{ content } || '%'
+             </if>
+         </trim>
+        
+     </select>
+
+<!-- n_idx에 해당되는 게시물 1건 -->
+     <select id="notice_one"  parameterType="int"  resultType="notice">
+          select * from notice where n_idx=#{ n_idx }
+     </select>
+
+<!-- 조회수 증가 -->
+     <update id="notice_update_readhit"  parameterType="int">
+          update notice set n_readhit = n_readhit + 1 
+          where n_idx=#{ n_idx }
+     </update>
+
+<!-- 새글쓰기 -->
+     <insert id="notice_insert"  parameterType="vo.NoticeVo">
+         insert into notice values(
+                          seq_notice_n_idx.nextVal, 
+                          #{ n_subject },
+                          #{ n_content },
+                          sysdate,
+                          sysdate,
+                          #{ n_filename },
+                          default,
+                          default,
+                          #{ m_idx },
+                          #{ m_name }
+                          
+                         )
+     
+     </insert>
+<!-- 사용유무설정(사용하지 않겠끔) -->
+     <update id="notice_update_use_yn"  parameterType="int">
+          update notice set n_use_yn = 'n' 
+          where n_idx=#{ n_idx }     
+     </update>
+<!-- 수정하기 -->
+     <update id="notice_update"  parameterType="notice">
+          update notice set n_subject = #{ n_subject},
+                           	n_content = #{ n_content},
+                           	n_regdate = sysdate 
+          where n_idx=#{ n_idx }
+          
+     </update>
+<!--  삭제하기  -->
+<delete id="notice_delete" parameterType="int"> 
+	delete * from notice 
+	where n_idx = #{n_idx} 
+</delete>
+</mapper>

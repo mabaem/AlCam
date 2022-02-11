@@ -30,7 +30,7 @@
 	<a href="main.do?menu=place">캠핑장소검색</a>
 	<a href="main.do?menu=recommend_place">캠핑장소추천</a>
 	<a href="main.do?menu=goods">캠핑용품검색</a>
-	<a href="main.do?menu=notice">고객센터</a>
+	<a href="main.do?menu=notice">공지사항</a>
 	<!-- 로그인시에만 마이페이지 확인가능 -->
 	<c:if test="${ not empty user }">
 		<a href="main.do?menu=member">마이페이지</a>

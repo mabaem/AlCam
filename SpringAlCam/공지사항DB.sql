@@ -12,9 +12,10 @@
    		n_regdate 	 	    date,				--작성날짜
    		n_modifydate	    date,				--수정날짜
    		n_filename varchar2(200) ,				--파일명
-   		n_readhit	   		int,       			 --조회수
-   		m_idx               int    				--회원번호
-   		
+   		n_readhit	int default 0,       		 --조회수
+   		n_use_yn char(1)	default 'y',		--사용유무(y or n)
+   		m_idx               int  ,  			--회원번호
+   		m_name		varchar2(200) 				--작성자명
    )
    
    //기본키
