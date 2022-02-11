@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bmkplace">
+
+	<!-- 즐겨찾기 조회(m_idx별) -->
+	<select id="bmkplace_list" parameterType="int" resultType="vo.BmkPlaceVo">
+		select * from bmk_place_view where m_idx=#{m_idx}
+	</select>
+	
+	<!-- 즐겨찾기 1건 삭제 -->
+	<delete id="bmkplace_delete" parameterType="int">
+		delete from bookmark_place where bmk_p_idx=#{bmk_p_idx}
+	</delete>
+	
+	<!-- 즐겨찾기 여부 조회 -->
+	<select id="bmkplace_one" parameterType="vo.BmkPlaceVo" resultType="vo.BmkPlaceVo">
+		select * from bookmark_place where p_idx=#{p_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<!-- 즐겨찾기 추가 -->
+	<insert id="bmkplace_insert" parameterType="vo.BmkPlaceVo">
+		insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,#{p_idx},#{m_idx})
+	</insert>
+	
+	<!-- 페이징처리 위한 총 즐겨찾기 장소 수 -->
+	<select id="bmkplace_row_total" parameterType="int" resultType="int">
+	    select nvl(count(*),0) from bmk_place_view where m_idx=#{m_idx}
+	</select>
+	
+	<!-- 페이징별 리스트 -->
+	<select id="bmkplace_page_list" parameterType="Map" resultType="vo.BmkPlaceVo">
+		select * from
+		(
+			select
+				rank() over(order by bmk_p_idx asc) as no,
+				p.*
+			from (select * from bmk_place_view where m_idx=#{m_idx}) p
+		)
+		where no between #{start} and #{end}
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

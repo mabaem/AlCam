@@ -1,12 +1,12 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import vo.MemberVo;
 
 public interface MemberDao {
 
-	List<MemberVo> selectList();
 	MemberVo       selectOne(int m_idx);
 	MemberVo       selectOne(String m_id);
 	
@@ -16,5 +16,8 @@ public interface MemberDao {
 	
 	int update_img(MemberVo vo);
 	
+	//페이징 처리
+	int            selectRowTotal();
+	List<MemberVo> selectList(Map map);
 	
 }

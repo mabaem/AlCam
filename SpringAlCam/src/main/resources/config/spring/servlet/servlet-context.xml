@@ -69,5 +69,15 @@
 	<beans:bean  class="controller.CampProductController">
 	    
 	</beans:bean>
+	
+	<!-- BmkPlaceController -->
+	<beans:bean  class="controller.BmkPlaceController">
+	    <beans:property name="bmkplace_dao"  ref="bmkplace_dao"/>
+	</beans:bean>
+	
+	<!-- BmkGoodsController -->
+	<beans:bean  class="controller.BmkGoodsController">
+	    <beans:property name="bmkgoods_dao"  ref="bmkgoods_dao"/>
+	</beans:bean>
 
 </beans:beans>

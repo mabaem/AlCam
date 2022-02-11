@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>알캠 로그인</title>
 
 <!-- BootStrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -82,6 +78,12 @@
   
   function show_message(){
 	  // /member/login_form.do?reason=fail_id
+			  
+	 if("${ param.reason eq 'logout'}"=="true"){
+    	  
+    	  alert('로그인 세션이 만료되었습니다\n로그인 후 이용해주십시오');
+    	  
+      }			  
 
       if("${ param.reason eq 'fail_id'}"=="true"){
     	  
@@ -155,9 +157,6 @@
   
 </script>
 
-</head>
-<body>
-
 <!-- 읽던 페이지 url 정보 읽어오기 -->
 <input type="hidden"  name="url"  value="${ param.url }">   
 
@@ -196,7 +195,3 @@
     	</form>
     </div>
 </div>
-
-
-</body>
-</html>

@@ -19,5 +19,15 @@
 	<bean id="notice_dao" class="dao.NoticeDaoImpl">
 	<property name="sqlSession" ref="sqlSession"/>
 	</bean>
+	
+	<!-- BmkPlaceDaoImpl -->
+	<bean id="bmkplace_dao"  class="dao.BmkPlaceDaoImpl">
+	    <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
+	
+	<!-- BmkGoodsDaoImpl -->
+	<bean id="bmkgoods_dao"  class="dao.BmkGoodsDaoImpl">
+	    <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
 
 </beans>

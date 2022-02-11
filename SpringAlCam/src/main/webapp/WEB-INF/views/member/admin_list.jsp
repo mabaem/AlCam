@@ -5,23 +5,16 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!-- SweetAlert2 사용설정 -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <style type="text/css">
 	
 	#admin_box{
-		width: 500px;
+		width: 700px;
 		margin: auto;
 	}
 
@@ -45,14 +38,18 @@
 		font-weight: 800;
 	}
 	
-	#admin_data_align > tr > th{
+	th{
 		text-align: center;
 		font-weight: bold;
 	}
 	
-	#admin_data_align > td {
+	#admin_align > td {
 		text-align: center; 
 		vertical-align: middle;
+	}
+	
+	#page_align{
+		text-align: center;
 	}
 
 </style>
@@ -62,56 +59,20 @@
 
 	function del(m_idx) {
 		
-		//if(confirm("정말 삭제하시겠습니까?")==false) return;
-		//location.href="delete.do?m_idx=" + m_idx ;
-		
-		Swal.fire({
-			  title: '정말 삭제하시겠습니까?',
-			  text: "선택한 회원정보를 삭제합니다",
-			  icon: 'question',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: '삭제',
-			  cancelButtonText: '취소'
-			}).then((result) => {
-			  if (result.isConfirmed) {
-				  location.href="delete.do?m_idx=" + m_idx;
-				  
-			  }
-			})
+		if(confirm("정말 삭제하시겠습니까?")==false) return;
+		location.href="delete.do?m_idx=" + m_idx + "&page=${ empty param.page ? 1 : param.page }";
 	
 	}
 	
 	//수정폼 띄우기
 	function modify_form(m_idx) {
 
-		//if(confirm("정말 수정하시겠습니까?")==false) retrun;
-		//location.href="modify_form.do?m_idx=" + m_idx;
-
-		Swal.fire({
-			  title: '정말 수정하시겠습니까?',
-			  text: "선택한 회원정보를 수정합니다",
-			  icon: 'question',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: '수정',
-			  cancelButtonText: '취소'
-			}).then((result) => {
-			  if (result.isConfirmed) {
-				  location.href="admin_modify_form.do?m_idx=" + m_idx;
-
-			  }
-			})
+		if(confirm("정말 수정하시겠습니까?")==false) retrun;
+		location.href="admin_modify_form.do?m_idx=" + m_idx + "&page=${ empty param.page ? 1 : param.page }";
 			
 	}
 
 </script>
-
-</head>
-<body>
-
 
 	<div>
 
@@ -122,7 +83,7 @@
 		      
 			 <table class="table" id="admin_data_align">
 						
-		      		<tr>
+		      		<tr class="success">
 		      			<th>번호</th>
 		      			<th>이름</th>
 		      			<th>아이디</th>
@@ -140,7 +101,7 @@
 		      		   		
 		      		<!-- Data가 있는 경우 -->
 		      		<c:forEach var="vo" items="${ list }">
-		      			<tr>
+		      			<tr id="admin_align">
 		      		   		<td>${ vo.m_idx }</td>
 		      		   		<td>${ vo.m_name }</td>
 		      		   		<td>${ vo.m_id }</td>
@@ -150,14 +111,19 @@
 			      		   			<input class="btn btn-info"   type="button" value="수정" onclick="modify_form('${ vo.m_idx }');">
 			      		   			<input class="btn btn-danger" type="button" value="삭제" onclick="del('${ vo.m_idx }');">
 		      		   		</td>
-			      	</tr>
+			      		</tr>
 					</c:forEach>
+					
 			 </table>
+			 
+			 <!-- 페이징메뉴 -->
+			 <c:if test="${ not empty list }">
+				<div id="page_align">
+					${ pageMenu }
+				</div>
+			 </c:if>
 			      
 		 </div>
 		 </c:if>
 
 </div>
-
-</body>
-</html>

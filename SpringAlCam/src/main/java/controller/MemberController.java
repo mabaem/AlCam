@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -23,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.MemberDao;
+import myutil.MyMember;
+import myutil.Paging;
 import vo.MemberVo;
 
 @Controller
@@ -237,11 +240,12 @@ public class MemberController {
 	
 	//관리자페이지 수정폼 띄우기
 	@RequestMapping("/member/admin_modify_form.do")
-	public String admin_modify_form(int m_idx, Model model) {
+	public String admin_modify_form(int m_idx, int page, Model model) {
 	
 		MemberVo vo = member_dao.selectOne(m_idx);
 
 		model.addAttribute("vo", vo);
+		model.addAttribute("page", page);
 		
 		return "member/admin_modify_form";
 	}
@@ -272,8 +276,9 @@ public class MemberController {
 	public String admin_modify(MemberVo vo,
 						 @RequestParam(value="m_grade")  String m_grade, 
 						 @RequestParam(value="m_byear")  int    m_byear, 
-			             @RequestParam(value="m_bmonth") int    m_bmonth, 
-			             @RequestParam(value="m_bday")   int    m_bday) {
+			             @RequestParam(value="m_bmonth") int    m_bmonth,         
+			             @RequestParam(value="m_bday")   int    m_bday,
+			             @RequestParam(value="page")     int    page) {
 			
 		//생년월일
 		vo.setM_byear(m_byear);
@@ -285,7 +290,7 @@ public class MemberController {
 		
 		int res = member_dao.update(vo);
 		
-		return "redirect:admin_list.do?m_idx=" + vo.getM_idx();
+		return "redirect:admin_list.do?m_idx=" + vo.getM_idx() + "&page=" + page;
 	}
 	
 	//프로필사진 수정
@@ -346,7 +351,7 @@ public class MemberController {
 	
 	//관리자 회원삭제
 	@RequestMapping("/member/delete.do")
-	public String delete(int m_idx) {
+	public String delete(int m_idx, @RequestParam(value="page") int page) {
 		
 		//기존 프로필화일 삭제
 		String webPath = "/resources/image/";
@@ -361,7 +366,7 @@ public class MemberController {
 				
 		int res = member_dao.delete(m_idx);
 		
-		return "redirect:admin_list.do";
+		return "redirect:admin_list.do?page=" + page;
 	}
 	
 	//회원탈퇴
@@ -397,11 +402,35 @@ public class MemberController {
 	
 	//관리자 페이지
 	@RequestMapping("/member/admin_list.do")
-	public String admin_list(Model model) {
+	public String admin_list(@RequestParam(name="page",defaultValue="1") int nowPage,
+			                  Model model) {
 		
-		List<MemberVo> list = member_dao.selectList();
+		//페이징 처리
+		int rowTotal = member_dao.selectRowTotal();
+		int start = (nowPage-1) * MyMember.Member.BLOCK_LIST + 1;
+			
+		if(start>rowTotal && nowPage!=1) 
+			nowPage = nowPage-1;
+		
+		start = (nowPage-1) * MyMember.Member.BLOCK_LIST + 1;
+		int end   = start + MyMember.Member.BLOCK_LIST - 1;
+
+		//페이징조건을 담을 맵
+		Map map = new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<MemberVo> list = member_dao.selectList(map);
+		
+		String pageMenu = Paging.getPaging("admin_list.do",
+										    nowPage,     
+					                        rowTotal,
+					                        MyMember.Member.BLOCK_LIST, 
+					                        MyMember.Member.BLOCK_PAGE
+					                        );
 		
 		model.addAttribute("list",list);
+		model.addAttribute("pageMenu", pageMenu);
 		
 		return "member/admin_list";
 	}

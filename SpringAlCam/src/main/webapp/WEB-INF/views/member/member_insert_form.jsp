@@ -5,10 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
    
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,10 +13,6 @@
 
 <!-- 다음 우편번호 검색 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-<!-- SweetAlert2 사용설정 -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
 <style type="text/css">
 
@@ -128,24 +120,11 @@
 			
 			//이메일 정규식체크
 			if(regular_m_email.test(m_email)==false){
-				/*
+				
 				alert('이메일 형식에 맞지 않습니다');
-				 $("#m_email").val('');
-				 $("#m_email").focus();
-				*/
-				Swal.fire({
-					  icon: 'info',
-					  title: '이메일 형식에 맞지 않습니다',
-					  text: '유효한 이메일 주소를 입력해주세요',
-					  confirmButtonText: '확인',
-					  returnFocus: false
-					  }).then((result) => {	
-							if (result.isConfirmed) {
-								$("#m_email").val('');
-								$("#m_email").focus();
-							}
-					  }) 
-					  
+				$("#m_email").val('');
+				$("#m_email").focus();
+
 				return;
 			} 
 			
@@ -158,32 +137,14 @@
 		        success  : function(data){
 		        	if(data=="fail"){
 		        		
-		        		//alert("이메일 주소가 올바르지 않습니다 유효한 이메일 주소를 입력해주세요");
-		        		Swal.fire({
-						  icon: 'info',
-						  title:'이메일 주소가 올바르지 않습니다',
-						  text: '유효한 이메일 주소를 입력해주세요',
-						  confirmButtonText: '확인',
-						  returnFocus: false
-						  }).then((result) => {	
-								if (result.isConfirmed) {
-									$("#m_email").focus();
-								}
-						}) 
-						  
+		        		alert("이메일 주소가 올바르지 않습니다 유효한 이메일 주소를 입력해주세요");
+  
 						$("#m_email").attr("autofocus",true);
 						$(".m_email_message").text("유효한 이메일 주소를 입력해주세요.");
 						$(".m_email_message").css("color","red");
 		        	}else{	  
 		        		
-						//alert("인증번호 발송이 완료되었습니다\n입력한 이메일에서 인증번호 확인을 하세요");
-						Swal.fire({
-						  icon: 'info',
-						  title:'인증번호 발송이 완료되었습니다',
-						  text: '입력한 이메일에서 인증번호 확인을 하세요',
-						  confirmButtonText: '확인',
-						  returnFocus: false
-						})
+						alert("인증번호 발송이 완료되었습니다\n입력한 이메일에서 인증번호 확인을 하세요");
 						  
 		        		$("#m_email2").attr("disabled",false);
 		        		$("#m_email_bt2").css("display","inline-block");
@@ -238,356 +199,141 @@
 		
 		//유효성 체크
 		if(m_name==''){
-			/*
+			
 			alert('이름을 입력하세요');
 			f.m_name.value='';
 			f.m_name.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title:'이름을 입력하세요',
-				  text: '이름이 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_name.value='';
-							f.m_name.focus();
-						}
-				  }) 
 			
 			return;
 		}
 		
 		//이름 정규식체크
 		if(regular_m_name.test(m_name)==false){
-			/*
+			
 			alert('이름 형식에 맞지 않습니다');
 			f.m_name.value='';
 			f.m_name.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '이름 형식에 맞지 않습니다',
-				  text: '5자 이내 한글로 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_name.value='';
-							f.m_name.focus();
-						}
-				  }) 
-				  
+	  
 			return;
 		} 
 		
 		if(m_id==''){
-			/*
+			
 			alert('아이디를 입력하세요');
 			f.m_id.value='';
 			f.m_id.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title:'아이디를 입력하세요',
-				  text: '아이디가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_id.value='';
-							f.m_id.focus();
-						}
-				  }) 
 			
 			return;
 		}
 		
 		if($("#m_id_ck").val()!="true"){
-			/*
+			
 			alert('이미 사용 중인 아이디 입니다');
 			f.m_id.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title:'이미 사용 중인 아이디 입니다',
-				  text: '아이디는 3자리 이상 영문자/숫자조합 이어야 합니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_id.focus();
-						}
-				  }) 
-			
+
 			return;
     	}
 		
 		if(m_pwd==''){
-			/*
+			
 			alert('비밀번호를 입력하세요');
 			f.m_pwd.value='';
 			f.m_pwd.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '비밀번호를 입력하세요',
-				  text: '비밀번호가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_pwd.value='';
-							f.m_pwd.focus();
-						}
-				  }) 
 				
 			return;
 		}
 		
 		//비밀번호 정규식체크
 		if(regular_m_pwd.test(m_pwd)==false){
-			/*
+			
 			alert('비밀번호는 숫자/영문자 모두 포함하여 6~12자리 이내로 입력하세요');
 			f.m_pwd.value='';
 			f.m_pwd.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '비밀번호 형식에 맞지 않습니다',
-				  text: '숫자/영문자 모두 포함하여 6~12자리 이내로 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_pwd.value='';
-							f.m_pwd.focus();
-						}
-				  }) 
 				  
 			return;
 		}
 		
 		//비밀번호 확인란
 		if($("#m_pwd2").val()==''){
-			/*
 			alert('비밀번호를 동일하게 입력하세요');
 			$("#m_pwd2").val('');
 			$("#m_pwd2").focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '비밀번호를 확인하세요',
-				  text: '비밀번호를 동일하게 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							$("#m_pwd2").val('');
-							$("#m_pwd2").focus();
-						}
-				  })
 			
 			return;
 		}
 
 		//비밀번호 일치여부 확인
 		if($("#m_pwd_ck").val()!="true"){
-			/*
 			alert('비밀번호가 일치하지 않습니다');
 			$("#m_pwd2").val('');
 			$("#m_pwd2").focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '비밀번호가 일치하지 않습니다',
-				  text: '비밀번호를 동일하게 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							$("#m_pwd2").val('');
-							$("#m_pwd2").focus();
-						}
-				  })
 			
 			return;
 	    }
 			
 		if(m_byear=='출생년도'){
-			/*
 			alert('출생년도를 선택하세요');
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '출생년도를 선택하세요',
-				  text: '출생년도를 선택하지 않았습니다.',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  })
 				
 			return;
 		}
 		
 		if(m_bmonth=='출생월'){
-			/*
 			alert('출생월을 선택하세요');
-			*/		
-			Swal.fire({
-				  icon: 'info',
-				  title: '출생월을 선택하세요',
-				  text: '출생월을 선택하지 않았습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  })
 				
 			return;
 		}
 						
 		if(m_bday=='출생일'){
-			/*
 			alert('출생일을 선택하세요');
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '출생일을 선택하세요',
-				  text: '출생일을 선택하지 않았습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  })
 				
 			return;
 		}
 		
 		if(m_tel==''){
-			/*
 			alert('전화번호를 입력하세요');
 			f.m_tel.value='';
 			f.m_tel.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '전화번호를 입력하세요',
-				  text: '전화번호가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_tel.value='';
-							f.m_tel.focus();
-						}
-				  }) 
-				
+
 			return;
 		}
 		
 		//전화번호 정규식체크
 		if(regular_m_tel.test(m_tel)==false){
-			/*
 			alert('전화번호 형식에 맞지 않습니다');
 			f.m_tel.value='';
 			f.m_tel.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '전화번호 형식에 맞지 않습니다',
-				  text: '숫자만 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_tel.value='';
-							f.m_tel.focus();
-						}
-				  }) 
-				  
+  
 			return;
 		} 
 		
 		if($("#m_email").val()==""){
-			/*
 			alert('이메일을 입력하세요');
 			$("#m_email").val('');
 			$("#m_email").focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '이메일을 입력하세요',
-				  text: '이메일이 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							$("#m_email").val('');
-							$("#m_email").focus();
-						}
-				  }) 
 			
 			return;
     	}
 
 		if($("#m_email_ck").val()!="true"){
-			/*
 			alert('이메일 인증을 완료해주세요');
 			$("#m_email2").focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '이메일 인증을 완료해주세요',
-				  text: '이메일로 발송된 인증번호를 확인하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							$("#m_email2").focus();
-						}
-				  }) 
 			
 			return;
     	}
 				
 		if(m_zipcode==''){
-			/*
 			alert('우편번호를 입력하세요');
 			f.m_zipcode.value='';
 			f.m_zipcode.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '우편번호를 입력하세요',
-				  text: '우편번호가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_zipcode.value='';
-							f.m_zipcode.focus();
-						}
-				  }) 
 				
 			return;
 		}
 		
 		if(m_addr==''){
-			/*
 			alert('주소를 입력하세요');
 			f.m_addr.value='';
 			f.m_addr.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '주소를 입력하세요',
-				  text: '주소가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_addr.value='';
-							f.m_addr.focus();
-						}
-				  }) 
-				  
+	  
 			return;
 		}
 				
@@ -617,9 +363,6 @@
     }
 
 </script>
-
-</head>
-<body>
 
 <div id="box">   
 <form name="f" method="POST" action="insert.do" enctype="multipart/form-data">
@@ -734,6 +477,3 @@
 	</table>
 </form>
 </div>
-
-</body>
-</html>

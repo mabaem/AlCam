@@ -3,13 +3,9 @@
     
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
+<!DOCTYPE html>
+    
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,13 +14,10 @@
 <!-- 다음 우편번호검색 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<!-- SweetAlert2 사용설정 -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <style type="text/css">
 
 	#box{
-		width: 700px;
+		width: 750px;
 		margin: auto;
 		margin-top: 50px;
 	}
@@ -59,232 +52,101 @@
 		
 		if(${user.m_grade=="관리자"})
 			var m_grade = f.m_grade.value;
+		
+		if(m_name==''){
+			alert('이름을 입력하세요');
+			f.m_name.value='';
+			f.m_name.focus();
+				
+			return;
+		}
 
 		if(m_pwd==''){
-			/*
 			alert('비밀번호를 입력하세요');
 			f.m_pwd.value='';
 			f.m_pwd.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '비밀번호를 입력하세요',
-				  text: '비밀번호가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_pwd.value='';
-							f.m_pwd.focus();
-						}
-				  }) 
 				
 			return;
 		}
 		
 		//비밀번호 정규식체크
 		if(regular_m_pwd.test(m_pwd)==false){
-			/*
 			alert('비밀번호는 숫자/영문자 모두 포함하여 6~12자리 이내로 입력하세요');
 			f.m_pwd.value='';
-			f.m_pwd.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '비밀번호 형식에 맞지 않습니다',
-				  text: '숫자/영문자 모두 포함하여 6~12자리 이내로 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_pwd.value='';
-							f.m_pwd.focus();
-						}
-				  }) 
+			f.m_pwd.focus(); 
 				  
 			return;
 		}
 			
 		if(m_byear=='출생년도'){
-			/*
 			alert('출생년도를 선택하세요');
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '출생년도를 선택하세요',
-				  text: '출생년도를 선택하지 않았습니다.',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  })
 				
 			return;
 		}
 		
 		if(m_bmonth=='출생월'){
-			/*
 			alert('출생월을 선택하세요');
-			*/		
-			Swal.fire({
-				  icon: 'info',
-				  title: '출생월을 선택하세요',
-				  text: '출생월을 선택하지 않았습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  })
 				
 			return;
 		}
 						
 		if(m_bday=='출생일'){
-			/*
 			alert('출생일을 선택하세요');
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '출생일을 선택하세요',
-				  text: '출생일을 선택하지 않았습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  })
 				
 			return;
 		}
 		
 		if(m_tel==''){
-			/*
 			alert('전화번호를 입력하세요');
 			f.m_tel.value='';
 			f.m_tel.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '전화번호를 입력하세요',
-				  text: '전화번호가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_tel.value='';
-							f.m_tel.focus();
-						}
-				  }) 
-				
+
 			return;
 		}
 		
 		//전화번호 정규식체크
 		if(regular_m_tel.test(m_tel)==false){
-			/*
 			alert('전화번호 형식에 맞지 않습니다');
 			f.m_tel.value='';
 			f.m_tel.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '전화번호 형식에 맞지 않습니다',
-				  text: '숫자만 입력하세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_tel.value='';
-							f.m_tel.focus();
-						}
-				  }) 
 				  
 			return;
 		} 
 		
 		if($("#m_email").val()==""){
-			/*
 			alert('이메일을 입력하세요');
 			$("#m_email").val('');
-			$("#m_email").focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '이메일을 입력하세요',
-				  text: '이메일이 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							$("#m_email").val('');
-							$("#m_email").focus();
-						}
-				  }) 
+			$("#m_email").focus(); 
 			
 			return;
     	}
 		
 		//이메일 정규식체크
 		if(regular_m_email.test(m_email)==false){
-			/*
 			alert('이메일 형식에 맞지 않습니다');
 			 $("#m_email").val('');
 			 $("#m_email").focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '이메일 형식에 맞지 않습니다',
-				  text: '유효한 이메일 주소를 입력해주세요',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							$("#m_email").val('');
-							$("#m_email").focus();
-						}
-				  }) 
 				  
 			return;
 		} 
 		
 		if(m_zipcode==''){
-			/*
 			alert('우편번호를 입력하세요');
 			f.m_zipcode.value='';
 			f.m_zipcode.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '우편번호를 입력하세요',
-				  text: '우편번호가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_zipcode.value='';
-							f.m_zipcode.focus();
-						}
-				  }) 
 				
 			return;
 		}
 		
 		if(m_addr==''){
-			/*
 			alert('주소를 입력하세요');
 			f.m_addr.value='';
 			f.m_addr.focus();
-			*/
-			Swal.fire({
-				  icon: 'info',
-				  title: '주소를 입력하세요',
-				  text: '주소가 비어있습니다',
-				  confirmButtonText: '확인',
-				  returnFocus: false
-				  }).then((result) => {	
-						if (result.isConfirmed) {
-							f.m_addr.value='';
-							f.m_addr.focus();
-						}
-				  }) 
 				  
 			return;
 		}
 			
-		f.action="admin_modify.do?m_grade=" + m_grade + "&m_byear=" + m_byear + "&m_bmonth=" + m_bmonth + "&m_bday=" + m_bday;  
+		f.action="admin_modify.do?m_grade=" + m_grade + "&m_byear=" + m_byear + "&m_bmonth=" + m_bmonth + "&m_bday=" + m_bday + "&page=${page}";  
 		f.submit();	
 	}
 	
@@ -378,9 +240,6 @@
 	
 </script>
 
-</head>
-<body>
-
 <!--화일업로드용 폼  -->
 <form enctype="multipart/form-data" id="ajaxForm" method="post">
     <input type="file" id="ajaxFile" style="display:none;"  onChange="ajaxFileChange();">
@@ -400,7 +259,7 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input name="m_name" value="${ vo.m_name }" readonly="readonly"></td>
+				<td><input name="m_name" value="${ vo.m_name }"></td>
 			</tr>
 			<tr>
 				<th>아이디</th>
@@ -495,14 +354,10 @@
 					       onclick="send(this.form);">
 				    
 			        <input class="btn btn-info" type="button" value="목록보기" 
-					       onclick="location.href='admin_list.do?m_idx='+${vo.m_idx}">
+					       onclick="location.href='admin_list.do?m_idx=${vo.m_idx}&page=${param.page}'">
 				</td>
 			</tr>
 		</table>
 
 	</div>
 </form>
-
-
-</body>
-</html>
