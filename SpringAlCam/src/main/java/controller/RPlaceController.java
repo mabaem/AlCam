@@ -2,6 +2,7 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -210,7 +211,7 @@ public class RPlaceController {
 	
 	//수정하기
 	@RequestMapping("/recommend_place/modify.do")
-	public String modify(RPlaceVo vo, int page, String search, String search_text, Model model) {
+	public String modify(RPlaceVo vo, int page, String search, String search_text, Model model) throws Exception {
 		
 		//로그인된 유저 정보 얻어오기
 		MemberVo user = (MemberVo) session.getAttribute("user");
@@ -228,6 +229,44 @@ public class RPlaceController {
 		//IP구하기
 		String ip = request.getRemoteAddr();
 		vo.setIp(ip);
+		
+		//이미지 넣기
+		//상대경로->절대(저장경로)
+		String webPath = "/resources/image/";
+		String absPath = application.getRealPath(webPath);
+		
+		String filename = "no_file";
+		MultipartFile photo = vo.getPhoto();
+		
+		//프로필 사진 업로드 안 된 경우 기본사진 적용
+		if(photo.isEmpty()) {
+			filename = "rplace_default_img.jpg";
+		}
+		
+		//프로필 사진 업로드 된 경우
+		if(!photo.isEmpty()) {
+			filename = photo.getOriginalFilename();
+			
+			//저장경로
+			File f = new File(absPath, filename);
+			
+			//동일이름의 화일이 존재하는지 여부
+			if(f.exists()) {
+				long tm = System.currentTimeMillis();
+				//화일명 = 시간_화일명
+				filename = String.format("%d_%s", tm, filename);
+				
+				//저장경로 재설정
+				f = new File(absPath, filename);
+			}
+			
+			//임시경로화일->지정된 위치로 복사
+			photo.transferTo(f);
+
+		}//end: if(m_filename.isEmpty())
+		
+		vo.setFilename(filename);
+		
 		
 		//DB update
 		int res = rplace_dao.update(vo);
@@ -314,6 +353,7 @@ public class RPlaceController {
 		}//end: if(m_filename.isEmpty())
 		
 		vo.setFilename(filename);
+		
 		
 	
 		//DB insert

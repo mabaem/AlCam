@@ -25,23 +25,45 @@
 
 </script>
 
-	
+<style type="text/css">
+	#tb_popup_result{
+		border: 1px;
+	}
+	#tb_popup_result > th{
+		text-align: center;
+	}
+</style>
 
-	<table>
-			<tr>
-				<th>이름</th>
-				<th>주소</th>
-				<!-- <th></th> -->
-			</tr>
-			
-			<c:forEach var="vo" items="${list}">
-				<tr>
-					<td id="p_name">${vo.p_name} </td>
-					<td id="p_addr">${vo.p_addr}</td>
-					<td>
-						<input type="button" id="btn_select_popup_list" value="선택"
-							onclick="send('${vo.p_name}','${vo.p_addr}')">
-					</td>					
+
+
+<div>
+	<!-- 데이터가 없는 경우 -->
+    <c:if test="${ empty list }">
+        <tr>
+           <td colspan="5" align="center">
+              <font color="red">해당하는 결과가 없습니다.</font>
+           </td>
+        </tr>
+    </c:if>
+
+	<!-- 데이터가 있는 경우 -->
+    <c:if test="${ not empty list }">
+		<table id="tb_popup_result">
+				<tr style="font-size: 15px;">
+					<th style="width: 30%;">이름</th>
+					<th style="width: 55%;">주소</th>
+					<th style="width: 15%;">장소선택</th>
 				</tr>
-			</c:forEach>
-	</table>	
+				<c:forEach var="vo" items="${list}">
+					<tr>
+						<td id="p_name">${vo.p_name} </td>
+						<td id="p_addr">${vo.p_addr}</td>
+						<td>
+							<input type="button" class="btn btn-default" id="btn_select_popup_list" value="선택"
+								onclick="send('${vo.p_name}','${vo.p_addr}')">
+						</td>					
+					</tr>
+				</c:forEach>
+		</table>
+	</c:if>
+</div>

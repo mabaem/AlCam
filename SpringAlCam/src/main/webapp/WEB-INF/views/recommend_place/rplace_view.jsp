@@ -176,8 +176,12 @@
 </script>
 
   <div id="box">
-  	    <div class="panel panel-primary">
-	      <div class="panel-heading"><h3>${ vo.m_name }님의 글</h3></div>
+  	    <div class="panel panel-success">
+  	      <h3 style="margin-left: 20px;">[캠핑장소추천]&nbsp;${ vo.subject }
+  	      
+  	      <input class="btn  btn-default" type="button"  value="목록보기" style="float: right; margin-right: 20px;" 
+	                               onclick="location.href='${ pageContext.request.contextPath }/recommend_place/list.do?page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">
+	      </h3>                  
 	      <div class="panel-body">
 	          <table class="table">
 	          	   <tr>
@@ -227,15 +231,12 @@
 	               <tr>
 	                  <td colspan="3"  align="center">
 	                        
-	                        <input class="btn  btn-success" type="button"  value="목록보기" 
-	                               onclick="location.href='${ pageContext.request.contextPath }/recommend_place/list.do?page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">
-	                        
 	                        
 	                        <!-- 글쓴이 본인만 처리되도록 -->
-	                        <c:if test="${ user.m_idx == vo.m_idx }">
-		                        <input class="btn  btn-info"    type="button"  value="수정하기" 
+	                        <c:if test="${ user.m_idx eq vo.m_idx }">
+		                        <input class="btn  btn-info"    type="button"  value="수정" 
 		                               onclick="location.href='${ pageContext.request.contextPath }/recommend_place/modify_form.do?idx=${ vo.idx }&page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">
-		                        <input class="btn  btn-danger"  type="button"  value="삭제하기" 
+		                        <input class="btn  btn-danger"  type="button"  value="삭제" 
 		                               onclick="rplace_delete();">
 	                        </c:if>
 	                  

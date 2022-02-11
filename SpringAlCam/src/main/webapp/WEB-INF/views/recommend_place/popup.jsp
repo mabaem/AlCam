@@ -36,21 +36,33 @@
 								$("#disp").html(result_data);
 						  },
 			error		: function(err){
-								alert(err.responseText);
+								//alert(err.responseText);
 						  }
 		});
 		
   }//end search_place()
-  
-	
 
 </script>
 
+<style type="text/css">
+	#popup_box{
+		width: 100%;
+		height: 100%;
+		padding: 10px;
+		display: block;
+		
+	}
+</style>
 
 
-	<input type="text" id="search_text_rplace" placeholder="키워드를 입력하세요" value="${param.search_text_rplace }">
+<div id="popup_box">
+	<input type="text" id="search_text_rplace" placeholder="키워드를 입력하세요" value="${param.search_text_rplace }"
+		style="width:50%;">
 	<input type="button" id="search_btn_rplace" class="btn " value="장소검색">
+	
+	<hr>
 	
 	<div id="disp">
 	
 	</div>
+</div>

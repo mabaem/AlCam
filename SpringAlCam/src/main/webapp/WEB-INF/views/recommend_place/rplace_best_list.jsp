@@ -6,56 +6,58 @@
 <style type="text/css">
 	
 	#div_rplace_best{
-		border: 1px solid black;
+	
 	}
 	
-	a{
-		text-decoration: none;
+	#tb_rplace_best{
+		padding: 10px;
+	}
+	#tb_rplace_best > th{
+		font-size: 18px;
 	}
 	
-	ul{
-		list-style: none;
+	#tb_rplace_best > tr:hover{
+		font-weight: bold;
 	}
 	
-	.span_title{
-		color: black;
-		width: 230px;
-		display: inline-block;
-	}
-	
-	.span_writer{
-		color: black;
-		width: 100px;
-		display: inline-block;
-		text-align: center;
-	}
-	
-	.span_readhit{
-		color: red;
-		width: 60px;
-		display: inline-block;
-		text-align: center;
-	}
 		
 </style>
 
 	<div id="div_rplace_best">
-		<ul>
-			<p>[인기글]</p>
-			<li>
-				<span class="span_title">&nbsp;&nbsp;제목</span>
-				<span class="span_writer">&nbsp;&nbsp;작성자</span>
-				<span class="span_readhit">&nbsp;조회수</span>
-			</li>
-			<c:forEach var="vo" items="${ list }">
-				<li>
-					<a href="#" onclick="window.parent.location.href='${ pageContext.request.contextPath }/main.do?menu=recommend_place&idx=${ vo.idx }&page=${ empty param.page ? 1 : param.page }'">
-						·
-						<span class="span_title">${ vo.subject }</span>
-						<span class="span_writer">${ vo.m_name }</span>
-						<span class="span_readhit">${ vo.readhit }</span>
-					</a>
-				</li>
-			</c:forEach>
-		</ul>
+	
+		<div class="panel panel-success">
+  	      	<h3 style="margin-left: 10px;">[인기글]</h3>
+  	      
+	  	      <div class="panel-body">
+	  	      		<table id="tb_rplace_best">
+	  	      			<tr style="text-align: left;">
+	  	      				<th width="65%">제목</th>
+	  	      				<th width="20%">작성자</th>
+	  	      				<th width="15%" style="color: #23a51d;">조회수</th>
+	  	      			</tr>
+	  	      			
+	  	      			<!-- 데이터가 없는경우 -->
+	  	      			<c:if test="${ empty list }">
+	  	      				<tr>
+			                    <td colspan="5" align="center">
+			                       <font color="black">작성된 게시글이 없습니다</font>
+			                    </td>
+			                 </tr>
+	  	      			</c:if>
+	  	      			
+	  	      			<!-- 데이터가 있는 경우 -->
+			            <c:if test="${ not empty list}">
+		  	      			<c:forEach var="vo" items="${ list }">
+		  	      				<tr onclick="window.parent.location.href='${ pageContext.request.contextPath }/main.do?menu=recommend_place&idx=${ vo.idx }&page=${ empty param.page ? 1 : param.page }'"
+		  	      					onmouseover="this.style.color='#23a51d'" onmouseout="this.style.color='black'">
+		  	      					<td>${ vo.subject }</td>
+		  	      					<td>${ vo.m_name }</td>
+		  	      					<td style="text-align: center; color: #23a51d;">${ vo.readhit }</td>
+		  	      				</tr>
+		  	      			</c:forEach>
+	  	      			</c:if>
+	  	      		</table>
+	  	      		
+				</div>
+		</div>
 	</div>

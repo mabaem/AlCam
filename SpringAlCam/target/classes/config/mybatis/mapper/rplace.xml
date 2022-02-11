@@ -84,10 +84,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
      
      <!-- 수정하기 -->
      <update id="rplace_update"  parameterType="rplace">
-          update recommend_place set subject = #{ subject },
-                           content = #{ content },
-                           ip      = #{ ip },
-                           modifydate = sysdate 
+          update recommend_place set
+          				   subject  = #{ subject },
+                           content  = #{ content },
+                           filename = #{ filename },
+                           ip       = #{ ip },
+                           modifydate = sysdate,
+                           p_name   = #{ p_name },
+                           p_addr   = #{ p_addr }
           where idx=#{ idx }
      </update>
      
