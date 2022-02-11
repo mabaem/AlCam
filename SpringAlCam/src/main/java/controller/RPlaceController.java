@@ -278,12 +278,6 @@ public class RPlaceController {
 		//System.out.printf("%d %s", vo.getM_idx(), vo.getM_name());
 		
 		
-		//#########장소idx 임의 지정 = 1##########
-		vo.setP_idx(1);
-		vo.setP_name("");
-		vo.setP_addr("");
-
-		
 		//이미지 넣기
 		//상대경로->절대(저장경로)
 		String webPath = "/resources/image/";
@@ -354,7 +348,7 @@ public class RPlaceController {
 			// 카카오 API
 			try {
 				search_text_rplace = URLEncoder.encode(search_text_rplace, "utf-8");
-				System.out.printf("카카오인코딩%s",search_text_rplace);
+				//System.out.printf("카카오인코딩%s",search_text_rplace);
 				String kakaoAK = "KakaoAK 6b374997db253e62e6e35773bd3daf88";
 				// 검색 조건 : 키워드로 장소 검색
 				String urlStr = String.format("https://dapi.kakao.com/v2/local/search/keyword.json?query=%s", search_text_rplace);
@@ -425,7 +419,9 @@ public class RPlaceController {
 								
 				for (int i = 0; i < parse_item.size(); i++) {
 					camping_data = (JSONObject) parse_item.get(i);
+					
 					RPlaceVo vo = new RPlaceVo();
+					
 					vo.setP_name((String) camping_data.get("facltNm"));
 					vo.setP_addr((String) camping_data.get("addr1"));
 					
@@ -445,7 +441,7 @@ public class RPlaceController {
 			
 			model.addAttribute("list", list);
 			
-			return "recommend_place/rplace_keyword_search";
+			return "recommend_place/popup_result";
 	}// end-keyword_search
 	
 	

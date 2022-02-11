@@ -5,10 +5,6 @@
 <%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>    
     
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -147,11 +143,6 @@
 
 </script>
 
-
-
-</head>
-<body>
-
   <div style="margin-bottom: 10px; margin-right: 10px;">
   	<font id="rplace_title">캠핑장소추천</font>
   	<!-- 글쓰기 버튼 -->
@@ -237,17 +228,3 @@
         </div>
        
   </div>  
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-

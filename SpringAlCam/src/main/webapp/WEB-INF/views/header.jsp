@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <style type="text/css">
 	
@@ -32,9 +28,6 @@
 	
 </style>
 
-</head>
-<body>
-
 <!-- 헤더 -->
 <div>
 	<a href="main.do"><img id="btn_home" src="resources/image/logo.png" alt="알고싶지캠핑?"></a>
@@ -49,6 +42,3 @@
 		<a href="member/logout.do"><img id="btn_logout" src="resources/image/btn_logout.png" alt="로그아웃"></a>
 	</c:if>
 </div>
-
-</body>
-</html>

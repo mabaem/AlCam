@@ -69,7 +69,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
                           default,
                           #{ m_idx },
                           #{ m_name },
-                          #{ p_idx },
                           #{ p_name },
                           #{ p_addr }
                          )

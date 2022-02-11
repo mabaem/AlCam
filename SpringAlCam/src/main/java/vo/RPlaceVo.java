@@ -21,8 +21,8 @@ public class RPlaceVo {
 	int    m_idx;
 	String m_name;
 	
-	//생략할지?
-	int p_idx;
+	//삭제
+	//int p_idx;
 	String p_name;
 	String p_addr;
 	
@@ -108,12 +108,11 @@ public class RPlaceVo {
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
-	public int getP_idx() {
-		return p_idx;
-	}
-	public void setP_idx(int p_idx) {
-		this.p_idx = p_idx;
-	}
+
+	/*
+	 * public int getP_idx() { return p_idx; } public void setP_idx(int p_idx) {
+	 * this.p_idx = p_idx; }
+	 */
 	public String getP_name() {
 		return p_name;
 	}

@@ -5,10 +5,6 @@
 <%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>     
     
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -179,8 +175,6 @@
 
 </script>
 
-</head>
-<body>
   <div id="box">
   	    <div class="panel panel-primary">
 	      <div class="panel-heading"><h3>${ vo.m_name }님의 글</h3></div>
@@ -269,5 +263,3 @@
 	    
 	    
   </div> <!-- End "box" -->
-</body>
-</html>

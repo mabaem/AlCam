@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -24,7 +20,7 @@
 	  height: 150px;
 	  resize: none;
   }
-
+  
 </style>
 
 <script type="text/javascript">
@@ -65,10 +61,6 @@
 
 </script>
 
-
-</head>
-<body>
-
 <form name="f" method="POST" action="insert.do" enctype="multipart/form-data">
 
   <input type="hidden"  name="page"    value="${ param.page }">
@@ -97,8 +89,8 @@
 	              <tr>
 	                 <th>캠핑장소</th>
 	                 <td>
-	                 	<input type="text" id="p_name" placeholder="캠핑장 이름" value=""><br>
-	                 	<input type="text" id="p_addr" placeholder="캠핑장 주소" value="">
+	                 	<input type="text" id="p_name" placeholder="캠핑장 이름" value=""   style="width: 60%;"><br>
+	                 	<input type="text" id="p_addr" placeholder="캠핑장 주소" value=""   style="width: 60%;">
 	                 	<input type="button" id="btn_rplace"  value="장소검색"
 	                 		onclick="window.open('popup.do','popup_rplace','top=100,left=300,width=430,height=500,location=no,status=no,scrollbars=yes');">
 	                 </td>
@@ -123,6 +115,3 @@
 	    </div>
   </div>
 </form>
-  
-</body>
-</html>

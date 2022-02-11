@@ -1,4 +1,8 @@
 /*
+--테이블삭제
+--drop table recommend_place
+
+
 
  
    create sequence seq_recommend_place_idx
@@ -17,7 +21,6 @@
    		readhit	 int      default 0,    --조회수
    		m_idx               int,     	--회원번호
    		m_name	varchar2(200),			--작성자이름
-   		p_idx               int,    	--장소번호
    		p_name	varchar2(200),			--장소이름
    		p_addr	varchar2(200)			--장소주소
    )
@@ -31,10 +34,7 @@
    alter table recommend_place
       add constraint  fk_recommend_place_m_idx foreign key(m_idx)
 	                                          references  membertb(m_idx) ;
-   alter table recommend_place
-      add constraint  fk_recommend_place_p_idx foreign key(p_idx)
-	                                          references place(p_idx) ; 
-	       
+
 
 	
 	--샘플데이터
@@ -51,7 +51,6 @@
    		default,	--조회수
    		1,			--샘플_장소추천m_idx
    		'일길동',		--샘플_장소추천m_name
-   		1,			--샘플_장소추천p_idx
    		'난지캠핑장',	--샘플_장소추천p_name
    		'서울시'		--샘플_장소추천p_addr 		
     );
@@ -69,7 +68,6 @@
    		default,	--조회수
    		1,			--샘플_장소추천m_idx
    		'일길동',		--샘플_장소추천m_name
-   		1,			--샘플_장소추천p_idx
    		'난지캠핑장',	--샘플_장소추천p_name
    		'서울시'		--샘플_장소추천p_addr 	
     );
@@ -77,7 +75,7 @@
 commit
 
                                                                                               
-	select * from recommend_place
+select * from recommend_place
 	  
 	  
 
@@ -87,8 +85,7 @@ select * from place
 
 
 
---테이블삭제
-drop table recommend_place
+
 
 	       
 	       

@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <style type="text/css">
 	#menu{
@@ -29,9 +25,6 @@
 	
 </style>
 
-</head>
-<body>
-
 <!-- 메뉴(페이지리스트) -->
 <div id="menu" class="div_menu">	
 	<a href="main.do?menu=place">캠핑장소검색</a>
@@ -43,7 +36,3 @@
 		<a href="main.do?menu=member">마이페이지</a>
 	</c:if>
 </div>
-
-
-</body>
-</html>

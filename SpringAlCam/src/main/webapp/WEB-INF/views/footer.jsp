@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <style type="text/css">
 	.footer_box{
@@ -15,9 +11,6 @@
 	}
 </style>
 
-</head>
-<body>
-
 <!-- 푸터 -->
 <div class="footer_box">
 	<span>프로젝트명 : 알캠(AlCam)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
@@ -26,6 +19,3 @@
 	<span>주제 : 캠핑 정보 공유, 커뮤니티 사이트&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
 	<span>목적 : 캠핑을 잘 모르지만 캠핑을 해보고싶은 사람들을 위한 커뮤니티 웹사이트&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
 </div>
-
-</body>
-</html>
