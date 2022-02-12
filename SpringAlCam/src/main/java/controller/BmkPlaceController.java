@@ -82,7 +82,7 @@ public class BmkPlaceController {
 	//장소즐겨찾기 추가
 	@RequestMapping("/member/bmkplace_insert.do")
 	@ResponseBody
-	public Map bmkplace_insert(BmkPlaceVo paramVo, @RequestParam(value="page", defaultValue="1") int page) {
+	public Map bmkplace_insert(BmkPlaceVo paramVo) {
 		
 		
 		BmkPlaceVo vo = bmkplace_dao.selectOne(paramVo);

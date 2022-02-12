@@ -128,16 +128,5 @@ drop table    bookmark_place
 drop view     bmk_place_view
 drop sequence seq_bookmark_bmk_place_p_idx
 
-select nvl(count(*),0) from bmk_place_view where m_idx=1
-
-select * from
-		(
-			select
-				rank() over(order by bmk_p_idx asc) as no,
-				p.*
-			from (select * from bmk_place_view where m_idx=1) p
-		)
-where no between 1 and 3
-
 
 */

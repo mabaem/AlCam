@@ -54,8 +54,6 @@ insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      
 insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      2)
 insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      3)
 insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      4)
-insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      4)
-insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      4)
 
 --Ä·ÇÎ¿ëÇ° »ùÇÃµ¥ÀÌÅÍ
 insert into goods values
@@ -108,15 +106,5 @@ drop sequence seq_bookmark_bmk_goods_g_idx
 select sum(amount) from bmk_goods_view;
 select nvl(sum(amount),0) from bmk_goods_view where m_idx=1
 
-select nvl(count(*),0) from bmk_goods_view where m_idx=1
-
-select * from
-(
-	select
-		rank() over(order by bmk_g_idx asc) as no,
-		g.*
-	from (select * from bmk_goods_view where m_idx=1) g
-)
-where no between 1 and  2
 
 */
