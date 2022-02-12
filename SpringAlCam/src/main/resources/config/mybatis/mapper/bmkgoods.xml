@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-m
 	
 	<!-- 즐겨찾기 추가 -->
 	<insert id="bmkgoods_insert" parameterType="vo.BmkGoodsVo">
-		insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal,#{bmk_g_cnt},#{g_idx},#{m_idx})
+		insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal,1,#{g_idx},#{m_idx})
 	</insert>
 	
 	<!-- 페이징처리 위한 총 즐겨찾기 용품 수 -->
