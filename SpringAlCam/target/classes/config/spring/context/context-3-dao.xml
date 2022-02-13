@@ -28,6 +28,10 @@
 	<!-- BmkGoodsDaoImpl -->
 	<bean id="bmkgoods_dao"  class="dao.BmkGoodsDaoImpl">
 	    <property name="sqlSession"  ref="sqlSession"/>
+	</bean>	
+	<!-- PlaceDaoImpl -->
+	<bean id="place_dao"  class="dao.PlaceDaoImpl">
+	    <property name="sqlSession"  ref="sqlSession"/>
 	</bean>
 
 </beans>

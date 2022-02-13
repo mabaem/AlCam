@@ -47,7 +47,16 @@
 		<c:if test="${ empty param.menu }">
 			<!-- 키워드검색 -->
 			<div id="search">
-				<%@ include file="search.jsp" %>
+			<%@include file="place/place_list.jsp" %>
+			
+			<c:if test="${ (param.menu eq 'place') and (not empty param.text_search) }">
+			
+				<jsp:forward page="place/search.do?text_search=${param.text_search}"></jsp:forward>
+				
+				<%-- <meta http-equiv="refresh" content="0;URL='place/search.do?text_search=${param.text_search}'"> --%>
+				<%-- place/search.do?text_search=${param.text_search} --%>
+			</c:if>
+			<%-- 	<%@ include file="search.jsp" %> --%>
 			</div>			
 			
 			<!-- 공지사항 -->	
@@ -69,9 +78,9 @@
 		</c:if>
 		
 		
-		
 		<!-- 2. 캠핑장소추천 누른 경우(menu=recommend_place) -->
 		<c:if test="${ (empty param.idx) and (param.menu eq 'recommend_place') }">
+			<%-- <%@include file="recommend_place/rplace_list.jsp" %> --%>
 			<iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/list.do"></iframe>	
 		</c:if>
 		
@@ -86,25 +95,15 @@
 		</c:if>
 		
 		
-		
 		<!-- 3. 캠핑용품검색 누른 경우(menu=goods) -->
 		<c:if test="${ (param.menu eq 'goods') }">
 			<%@include file="goods/goods_list.jsp" %>	
 		</c:if>
 		
-		
-		
 		<!-- 4. 공지사항 누른 경우(menu=notice) -->
 		<c:if test="${ (empty param.n_idx) and (param.menu eq 'notice') }">
 			<iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/list.do"></iframe>	
 		</c:if>
-		
-		<!-- 4-1. 공지사항글 선택한 경우 -->
-		<c:if test="${ not empty param.n_idx }">
-			  <iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/view.do?n_idx=${param.n_idx} "></iframe>
-		</c:if>
-		
-		
 		
 		<!-- 5. 마이페이지 누른 경우(menu=member) -->
 		<c:if test="${ (param.menu eq 'member') }">

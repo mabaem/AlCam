@@ -22,5 +22,6 @@
 		<mapper resource="config/mybatis/mapper/notice.xml" />
 		<mapper resource="config/mybatis/mapper/bmkplace.xml" />
 		<mapper resource="config/mybatis/mapper/bmkgoods.xml" />
+		<mapper resource="config/mybatis/mapper/place.xml" />
 	</mappers>
 </configuration>

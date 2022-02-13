@@ -26,7 +26,10 @@
 	
 	<!-- 자동생성(Auto-Detecting) -->
 	<context:component-scan base-package="com.ic.cam" />
-	
+		<!-- Camping장 위치 검색 컨트롤러 -->
+	<beans:bean  class="controller.PlaceController">
+	    <beans:property name="place_dao" ref="place_dao"/>
+	</beans:bean>
 	<!-- RPlaceController -->
 	<beans:bean class="controller.RPlaceController">
 		<beans:property name="rplace_dao" ref="rplace_dao"/>
@@ -59,10 +62,6 @@
 				<beans:prop key="mail.debug">true</beans:prop>
 			</beans:props>
 		</beans:property>
-	</beans:bean>
-	<!-- Camping장 위치 검색 컨트롤러 -->
-	<beans:bean  class="controller.PlaceController">
-	    
 	</beans:bean>
 	
 	<!-- 캠핑 용품 컨트롤러 -->

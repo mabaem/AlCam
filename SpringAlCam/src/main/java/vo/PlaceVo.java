@@ -2,28 +2,29 @@ package vo;
 
 public class PlaceVo {
 
-	int    p_idx;
+	String p_idx;
 	String p_name;
 	String p_addr;
 	String p_tel;
 	String p_filename;
-	double p_x;
-	double p_y;
 	
-	
-	int    distance;
-	
-	
-	public int getDistance() {
-		return distance;
+
+	public PlaceVo() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setDistance(int distance) {
-		this.distance = distance;
+
+	public PlaceVo(String p_idx, String p_name, String p_addr, String p_tel, String p_filename) {
+		super();
+		this.p_idx = p_idx;
+		this.p_name = p_name;
+		this.p_addr = p_addr;
+		this.p_tel = p_tel;
+		this.p_filename = p_filename;
 	}
-	public int getP_idx() {
+	public String getP_idx() {
 		return p_idx;
 	}
-	public void setP_idx(int p_idx) {
+	public void setP_idx(String p_idx) {
 		this.p_idx = p_idx;
 	}
 	public String getP_name() {
@@ -50,18 +51,7 @@ public class PlaceVo {
 	public void setP_filename(String p_filename) {
 		this.p_filename = p_filename;
 	}
-	public double getP_x() {
-		return p_x;
-	}
-	public void setP_x(double p_x) {
-		this.p_x = p_x;
-	}
-	public double getP_y() {
-		return p_y;
-	}
-	public void setP_y(double p_y) {
-		this.p_y = p_y;
-	}
+
 
 	
 	

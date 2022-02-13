@@ -8,7 +8,7 @@ public class BmkPlaceVo {
 	String p_addr;
 	String p_tel;
 	String p_filename;
-	int    p_idx;
+	String    p_idx;
 	
 	public int getBmk_p_idx() {
 		return bmk_p_idx;
@@ -46,10 +46,10 @@ public class BmkPlaceVo {
 	public void setP_filename(String p_filename) {
 		this.p_filename = p_filename;
 	}
-	public int getP_idx() {
+	public String getP_idx() {
 		return p_idx;
 	}
-	public void setP_idx(int p_idx) {
+	public void setP_idx(String p_idx) {
 		this.p_idx = p_idx;
 	}
 	

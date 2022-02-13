@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,41 +21,45 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.PlaceDao;
 import myutil.MyConstant;
 import myutil.Paging;
+import vo.BmkPlaceVo;
 import vo.PlaceVo;
 
 @Controller
 public class PlaceController {
 
+	PlaceDao place_dao;
+	
 	@Autowired
 	HttpSession session;
 
 	@Autowired
 	HttpServletRequest request;
-	
-	
+
+	public void setPlace_dao(PlaceDao place_dao) {
+		this.place_dao = place_dao;
+	}
 
 	@RequestMapping("/place/search.do")
 	public String search_map(@RequestParam(value = "text_search", defaultValue = "") String text_search,
 							 @RequestParam(value = "page", defaultValue = "1") int nowPage, Model model) {
 		int pageNo = nowPage;
 		String paging_text = text_search;
-		System.out.printf("페이지는%d\n",pageNo);
-		System.out.printf("검색어=%s\n",paging_text);
 		int start = (nowPage - 1) * MyConstant.Camping.BLOCK_LIST + 1;
 		int end = start + MyConstant.Camping.BLOCK_LIST - 1;
 		String pageMenu = "";
 		// 검색범위 및 조건을 담을 객체
 		// 데이터 전달을 위한 list 생성
 		List<PlaceVo> list = new ArrayList<PlaceVo>();
+		List<BmkPlaceVo> list2 = new ArrayList<BmkPlaceVo>();
 		// 카카오API를 통한 임시좌표 변수
 		String imsi_x = "";
 		String imsi_y = "";
 		// 카카오 API
 		try {
 			text_search = URLEncoder.encode(text_search, "utf-8");
-			System.out.printf("카카오인코딩%s",text_search);
 			String kakaoAK = "KakaoAK 6b374997db253e62e6e35773bd3daf88";
 			// 검색 조건은 지역
 			String urlStr = String.format(
@@ -93,8 +98,6 @@ public class PlaceController {
 			// 카카오에서 구한 좌표를 double 형변환
 			double mapX = Double.parseDouble(imsi_x);
 			double mapY = Double.parseDouble(imsi_y);
-			System.out.printf("좌표X=%f\n", mapX);
-			System.out.printf("좌표Y=%f\n", mapY);
 			String serviceKey = "HUGsei948k7GTAIm951Gwaph5wGoiBzWrH7jKaVNWZ56lzC84RVFoXia4FQqpBlT3ncDyVnrgO%2BGaIG0gvp%2BOQ%3D%3D";
 			String urlBuilder = "http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/locationBasedList?"
 					+ "serviceKey=" + serviceKey + "&MobileOS=ETC" + "&MobileApp=AppTest" + "&mapX=" + mapX + "&mapY="
@@ -107,7 +110,6 @@ public class PlaceController {
 			// URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
 
 			URL url = new URL(urlBuilder);
-			System.out.printf("URL=%s\n",url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-type", "application/json");
@@ -133,19 +135,55 @@ public class PlaceController {
 			//페이징 처리를 위한 전체 검색 갯수 찾기
 			int rowTotal = Integer.parseInt( parse_body.get("totalCount").toString());
 			
-			
 			for (int i = 0; i < parse_item.size(); i++) {
 				camping_data = (JSONObject) parse_item.get(i);
+				String p_name = (String) camping_data.get("facltNm");
+				String p_addr = (String) camping_data.get("addr1");
+				String p_tel = (String) camping_data.get("tel");		
+				String p_filename = (String) camping_data.get("firstImageUrl");
+				System.out.println(p_filename);
+				String p_idx = (String.valueOf(camping_data.get("contentId")));
+				
+				String table_idx = place_dao.selectlist(p_idx);
+				
+				System.out.printf("table_idx = %s\n",table_idx);
 				PlaceVo vo = new PlaceVo();
+				BmkPlaceVo vo2 = new BmkPlaceVo();
+				if(p_filename==null) {
+					p_filename = "default_img.png";
+				}
+				if(p_tel == null) {
+					p_tel = "등록된 번호가 없습니다";
+				}
+				/*
 				vo.setP_name((String) camping_data.get("facltNm"));
 				vo.setP_addr((String) camping_data.get("addr1"));
 				vo.setP_tel((String) camping_data.get("tel"));
 				vo.setP_filename((String) camping_data.get("firstImageUrl"));
-				//vo.setP_x((Double) camping_data.get("mapX"));
-				//vo.setP_y((Double) camping_data.get("mapY"));
-				
+				vo.setP_idx((String) camping_data.get("contentId"));
+				*/
+				vo.setP_name(p_name);
+				vo.setP_addr(p_addr);
+				vo.setP_tel(p_tel);
+				vo.setP_filename(p_filename);
+				vo.setP_idx(p_idx);
 				list.add(vo);
-			}
+			
+				vo2.setP_name(p_name);
+				vo2.setP_addr(p_addr);
+				vo2.setP_filename(p_filename);
+				vo2.setP_tel(p_tel);
+				vo2.setP_idx(p_idx);
+				
+				if(Objects.equals(p_idx, table_idx)) {
+					//System.out.println("통과호출");
+					
+				}else{
+					//System.out.println("저장호출");
+					int res = place_dao.insert(vo);
+					
+				}
+		
 			
 			System.out.printf("인코딩확인 %s",paging_text);
 			 //String search_filter = String.format("text_search=%s", text_search);
@@ -154,17 +192,17 @@ public class PlaceController {
 					 					 rowTotal,
 					 					 MyConstant.Camping.BLOCK_LIST,
 					 					 MyConstant.Camping.BLOCK_PAGE);
-			 
+			 model.addAttribute("pageMenu", pageMenu); 
 			rd.close();
 			conn.disconnect();
-
+		}
 		} // end try-catch
 		catch (Exception e) {
 			 System.out.println(e.getMessage());
 		}
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pageMenu", pageMenu);
+		
 		
 		return "place/camping_list";
 	}// end-search

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="place">
+
+	<!-- 추가 -->
+	<insert id="place_insert" parameterType="vo.PlaceVo">
+		insert into place values(#{p_idx},#{p_name},#{p_addr},#{p_tel},#{p_filename})
+	</insert>
+	
+		<!-- 중복제거 -->
+	<select id="place_list" parameterType="String" resultType="String">
+		select p_idx from place where p_idx=#{p_idx}
+	</select>
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
