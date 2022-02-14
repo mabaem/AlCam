@@ -69,7 +69,6 @@
    		readhit	 int      default 0,    --조회수
    		m_idx               int,     	--회원번호
    		m_name	varchar2(200),			--작성자이름
-   		p_idx   varchar2(500),	    	--장소번호
    		p_name	varchar2(200),			--장소이름
    		p_addr	varchar2(200)			--장소주소
    );
