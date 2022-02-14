@@ -92,7 +92,7 @@
 		p_name		varchar2(500) not null ,		--장소명
 		p_addr	    varchar2(200) not null ,		--주소
 		p_tel		varchar2(100) not null ,		--전화번호
-		p_filename	varchar2(1000)		   ,		--이미지
+		p_filename	varchar2(1000)		   			--이미지
 
 	
 	);
