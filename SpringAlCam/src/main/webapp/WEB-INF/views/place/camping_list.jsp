@@ -13,10 +13,54 @@
 	width: 120px;
 	height: 92px;
 }
-
-
 </style>
+<script type="text/javascript">
+function bmkplace_insert(f){
+	
+	//로그인 안된상태 체크
+	if("${empty user}" == "true"){
+		
+		if(confirm("즐겨찾기 등록은 로그인 후에 이용가능합니다\n로그인하시겠습니까?")==false)return;
+		
+		//로그인폼으로 이동: 현재 위치를 넘겨주고 
+		//현재주소위치: location.href
+		// xxx 로그인 후 원위치로 이동 안됨 xxx
+		location.href="member/login_form.do?url="+encodeURIComponent(location.href);
+		return;				
+	}
+	
+	var p_idx = f.p_idx.value;
+	console.log(p_idx);
+	
+	//로그인이 된 경우 ajax를 이용해서 장바구니 담기 처리
+	$.ajax({
+		url       :"${ pageContext.request.contextPath }/member/bmkplace_insert.do",	
+		data      :{"p_idx":p_idx, "m_idx":"${user.m_idx}"},
+		dataType  :"json",
+		success   : function(result_data){
+			
+			// result_data = {"result" : "success"} //장바구니 담기 성공시 
+			// result_data = {"result" : "exist"} //장바구니에 이미 담겨있는 경우
+			
+			if(result_data.result == "success"){
+				if(confirm("캠핑장을 즐겨찾기에 등록하였습니다\n즐겨찾기로 이동하시겠습니까?")==false)return;
+				
+				location.href="main.do?menu=member&submenu=bookmark_place";
+				return;
+			}
+			
+			if(result_data.result == "exist"){
+				alert("캠핑장이 이미 즐겨찾기에 등록되어 있습니다");
+			}
+		},
+		error     : function(err){
+			alert(err.responseText);
+		}	
+	}); 
+	
+}
 
+</script>
 <div>
 		<table>
 		<c:if test="${empty list }">
@@ -46,9 +90,10 @@
 						<td>${vo.p_tel}</td>
 						<td>
 						<div>
-						<input type="checkbox" id="toggleBtn">
-							 <label for="toggleBtn" class="toggleBtn">장소 담기</label>
-							 <div class="box1"></div>
+						<form>
+						<input type="hidden" id="p_idx" value="${vo.p_idx }">
+						<input type="button" id="bmkinsert_btn" value="장소담기" onclick="bmkplace_insert(this.form)">
+						</form>
 						</div>
 						</td>
 					</tr>
