@@ -81,7 +81,7 @@ function bmkplace_insert(f){
 						<img src="${ pageContext.request.contextPath }/resources/image/default_img.png">
 						</c:if>
 						<c:if test="${ not empty vo.p_filename }">
-						<img src="${vo.p_filename }">
+						<img src="${vo.p_filename }" onError="this.src='${ pageContext.request.contextPath }/resources/image/default_img.png'">
 						</c:if>
 						</td>
 				
