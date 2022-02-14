@@ -105,6 +105,11 @@
 			<iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/list.do"></iframe>	
 		</c:if>
 		
+		<!-- 4-1. 공지사항글 선택한 경우 -->
+		<c:if test="${ not empty param.n_idx }">
+			<iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/view.do?n_idx=${ param.n_idx }"></iframe>
+		</c:if>
+		
 		<!-- 5. 마이페이지 누른 경우(menu=member) -->
 		<c:if test="${ (param.menu eq 'member') }">
 			<%@include file="member/member_index.jsp" %>	
