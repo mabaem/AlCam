@@ -22,6 +22,7 @@
 	}
 	
 	#btn_logout{
+		margin-left: 80px;
 		width: 80px;
 		height: 40px;
 	}
