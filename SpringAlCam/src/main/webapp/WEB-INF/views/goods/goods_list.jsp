@@ -3,10 +3,6 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
 <!-- bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -113,8 +109,6 @@
 	}
 </style>
 
-</head>
-<body>
 <div id="div_goods_box">
 	<div id="div_goods_menu" >
 		<label style="font-size: 20px; margin-bottom: 20px;">캠핑용품검색</label>
@@ -196,7 +190,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>
-
-

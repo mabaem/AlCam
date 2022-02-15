@@ -342,9 +342,11 @@ public class MemberController {
 		vo.setM_filename(filename);
 		
 		int res = member_dao.update_img(vo);
-		
+		//System.out.println(absPath);
 		Map map = new HashMap();
 		map.put("filename", filename);
+		
+		//session.get
 		
 		return map;
 	}

@@ -13,6 +13,11 @@
 	width: 120px;
 	height: 92px;
 }
+
+#div_camping_list_table{
+	width: 100%;
+}
+
 </style>
 <script type="text/javascript">
 function bmkplace_insert(f){
@@ -61,8 +66,10 @@ function bmkplace_insert(f){
 }
 
 </script>
-<div>
-		<table>
+
+
+<div id = "div_camping_list_table">
+		<table class = "table table-striped table-hover">
 		<c:if test="${empty list }">
 			검색된 캠핑장이 없습니다.
 		</c:if>

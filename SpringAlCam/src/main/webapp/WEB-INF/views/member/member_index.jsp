@@ -118,7 +118,6 @@
 				<span id="member_index_name">${ user.m_name }</span><span id="member_index_hello">님 안녕하세요</span>
 			</div>
 		</c:if>
-		 
 		<!-- 회원정보수정 -->
 		<c:if test="${ param.submenu eq 'myprofile'}">
 		   <iframe class="if_member_index" width="800"  height="800" src="member/list.do?m_idx=${user.m_idx }"></iframe>

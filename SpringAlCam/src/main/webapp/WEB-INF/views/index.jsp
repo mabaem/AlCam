@@ -118,14 +118,19 @@
 	
 	</div>
 	
-	<!-- 푸터 -->
-	<div id="footer">
-		<%@ include file="footer.jsp" %>
-	</div>
+	
 
 
 </div>
 
 
 </body>
+
+<footer>
+	<!-- 푸터 -->
+	<div id="footer">
+		<%@ include file="footer.jsp" %>
+	</div>
+</footer>
+
 </html>
