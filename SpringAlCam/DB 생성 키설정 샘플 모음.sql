@@ -236,6 +236,8 @@
 
 -----------------------------------------------------------------------
 
+
+
 	--sample data(샘플입니다)
 	insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
                              '일길동',
@@ -394,6 +396,62 @@
 		'abc.jpg'
 	);
 	
+	
+	--멤버 샘플데이터
+update membertb set m_filename='sample' where m_idx=4
+
+insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
+                             '라이언',
+                             'lion',
+                             'lion1234',
+                             '2022',
+                             '1',
+                             '1',
+                             '남자',
+                             '01012345678',
+                             '서울 관악구 시흥대로 552',
+                             '08768',
+                             'javaspring@naver.com',
+                             '일반',
+                             'sample',
+                             sysdate
+);
+
+insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
+                             '어피치',
+                             'peach',
+                             'peach1234',
+                             '2022',
+                             '1',
+                             '1',
+                             '여자',
+                             '01012345678',
+                             '서울 관악구 시흥대로 552',
+                             '08768',
+                             'javaspring@naver.com',
+                             '일반',
+                             'sample',
+                             sysdate
+);
+
+
+insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
+                             '관리자'
+                             'admin',
+                             '1234',
+                             '2022',
+                             '1',
+                             '1',
+                             '남자',
+                             '01012345678',
+                             '서울 관악구 시흥대로 552',
+                             '08768',
+                             'javaspring@naver.com',
+                             '관리자',
+                             'sample',
+                             sysdate
+);
+
 	
 
 commit

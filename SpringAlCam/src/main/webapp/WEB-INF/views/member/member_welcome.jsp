@@ -28,7 +28,7 @@
 </style>
 
 <div  id="welcome_box">
-	<img src="${ pageContext.request.contextPath }/resources/image/${ vo.m_filename }" width="100" height="100">
+	<img src="${ pageContext.request.contextPath }/resources/image/${ vo.m_filename }" width="200" height="200">
 	<br><br>
 	<span id="member_index_name">${ vo.m_name }</span><span id="member_index_hello">님 안녕하세요</span>
 </div>

@@ -192,13 +192,18 @@
 	                   </th>
                    </c:if>
                    
-               	   <tr>
                    <!-- 제목 -->
+               	   <tr>
 	              	   <th width="20%">제목</th>
-	                   <td width="80%">${ vo.n_subject }</td>
-                   
-                   
+	                   <td width="80%">${ vo.n_subject }</td>                   
 	               </tr>
+	               
+	               <tr>
+	                   <!-- 작성자 -->
+	                   <th>작성자</th>
+	                   <td>${ vo.m_name }</td>  
+	               </tr>
+	               
 	               <!-- 내용 -->
 	               <tr>
 	                   <th>내용</th>
@@ -231,9 +236,9 @@
 	      </div>
 	    </div><!--End Panel  -->
 	    
-	    <!-- <!-- 댓글입력창 -->
-	    <div>
-	        <textarea id="comment_content" placeholder="댓글은 로그인후에 작성가능합니다"></textarea>
+	    <!-- 댓글입력창 -->
+	    <!-- <div>
+	         <textarea id="comment_content" placeholder="댓글은 로그인후에 작성가능합니다"></textarea>
 	        <input    id="comment_button"  type="button" value="댓글달기" onclick="add_comment();">    
 	    </div>
 	    
@@ -242,7 +247,7 @@
 	    댓글출력창 
 	    <div id="comment_display">
 	        
-	    </div> 
+	    </div>  -->
 	    
 	    
   </div><!-- End Box -->
