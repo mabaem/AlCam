@@ -437,5 +437,15 @@ public class MemberController {
 		return "member/admin_list";
 	}
 	
+	//마이페이지 클릭 시 첫 화면
+	@RequestMapping("/member/welcome.do")
+	public String my_page(Model model, @RequestParam(value="m_idx", defaultValue="0", required = false) int m_idx) {
+
+		MemberVo vo    = member_dao.selectOne(m_idx);
+		
+		model.addAttribute("vo",vo);
+		
+		return "member/member_welcome";
+	}
 	
 }

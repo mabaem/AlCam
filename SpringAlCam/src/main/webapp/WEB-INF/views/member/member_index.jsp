@@ -42,13 +42,6 @@
 		color: black;
 		text-decoration : none;
 	}
-	#member_index_name{
-		font-weight: bold;
-		font-size: 18px;
-	}
-	#member_index_hello{
-		font-size: 16px;
-	}
 	
 	.if_member_index{
 		border: none;
@@ -112,11 +105,7 @@
 	
 		<!-- 마이페이지 기본화면(프로필사진, 환영인사) -->
 		<c:if test="${ (param.menu eq 'member') and (empty param.submenu) }">
-			<div style="text-align: center; margin-top: 20px;">		
-				<img src="${ pageContext.request.contextPath }/resources/image/${ user.m_filename }" width="90" height="90">
-				<br><br>
-				<span id="member_index_name">${ user.m_name }</span><span id="member_index_hello">님 안녕하세요</span>
-			</div>
+			<iframe class="if_member_index" width="800"  height="800" src="member/welcome.do?m_idx=${user.m_idx }"></iframe>
 		</c:if>
 		<!-- 회원정보수정 -->
 		<c:if test="${ param.submenu eq 'myprofile'}">

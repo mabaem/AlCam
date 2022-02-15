@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-m
 		select * from
 		(
 			select
-				rank() over(order by bmk_p_idx asc) as no,
+				rank() over(order by bmk_p_idx desc) as no,
 				p.*
 			from (select * from bmk_place_view where m_idx=#{m_idx}) p
 		)
