@@ -41,16 +41,9 @@
 	}
   
    #page_menu{
-      font-size: 20px;
-      font-weight: bold;
   }
   
   .page_box{
-     display: inline-block;
-     width: 30px;
-     height: 30px;
-     border: 1px solid gray;
-     text-align: center;
   }
     
   a:hover, /* OPTIONAL*/

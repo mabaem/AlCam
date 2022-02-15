@@ -2,7 +2,6 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -72,8 +71,8 @@ public class RPlaceController {
 			@RequestParam(value = "search_text", defaultValue = "") String search_text,
 			Model model) {
 		
-		//String paging_text = search_text;
 		//게시물에서 가져올 범위 계산
+		
 		int start = (nowPage-1) * MyConstant.RPlace.BLOCK_LIST + 1;
 		int end   = start + MyConstant.RPlace.BLOCK_LIST - 1;
 		String pageMenu = "";
@@ -122,7 +121,7 @@ public class RPlaceController {
 		int rowTotal = rplace_dao.selectRowTotal(map);
 				
 		//검색필터 생성
-		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
+		String search_filter = String.format("search=\'%s\'&search_text=\'%s\'", search, search_text);
 		
 		//페이징 메뉴 생성 + 검색필터 추가
 		pageMenu = Paging.getPaging("list.do",
@@ -132,6 +131,8 @@ public class RPlaceController {
 				                    MyConstant.RPlace.BLOCK_LIST,
 				                    MyConstant.RPlace.BLOCK_PAGE
 				                    );
+		
+		System.out.printf("%s\n", pageMenu);
 				
 		//게시글 목록가져오기
 		List<RPlaceVo> list = rplace_dao.selectList(map);

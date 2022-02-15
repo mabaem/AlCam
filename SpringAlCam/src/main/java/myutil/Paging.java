@@ -46,9 +46,7 @@ public class Paging {
 		sb = new StringBuffer();
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
 		if(isPrevPage){
-			sb.append("<a href ='"+pageURL+"?page=");
-			sb.append(startPage-1);
-			sb.append("'>◀</a>");
+			sb.append(String.format("<a href =\'%s\'?page=\'%d\'>◀</a>", pageURL, (startPage-1)));
 		}
 		else
 			sb.append("◀");
@@ -255,6 +253,13 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 	}//end-getGoodsPaging()
 	
 	
+	
+	
+	
+//---------------------------------------------------------------------------------------------------------------------	    
+	
+	//페이징 검색조건포함
+	//notice, rplace
 	public static String getPaging(String pageURL,String search_filter,int nowPage, int rowTotal,int blockList, int blockPage){
 		
 		int totalPage/*전체페이지수*/,
@@ -288,26 +293,32 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 		//boolean형 변수의 값을 설정
 		if(endPage < totalPage) isNextPage = true;
 		//시작페이지의 값이 1보다 작으면 이전페이징 적용할 수 있도록 값설정
-		if(startPage > 1)isPrevPage = true;
+		if(startPage > 1) isPrevPage = true;
 		
 		//HTML코드를 저장할 StringBuffer생성=>코드생성
 		sb = new StringBuffer();
 		
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
 		if(isPrevPage){
-			sb.append("<a href ='"+pageURL+"?page=");
-			sb.append(startPage-1);
+			sb.append("<a  href='"+pageURL+"?page=");
+			sb.append((startPage-1));
 			sb.append("&" + search_filter);
 			sb.append("'>◀</a>");
+			
+			//System.out.printf("1이전%s\n",sb);
+			
 		}
-		else
+		else {
 			sb.append("◀");
+			//System.out.printf("2이전%s\n",sb);
+		}
+		
 		
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
 		sb.append("|");
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
-			if(i == nowPage){ //현재 있는 페이지
+			if(i == nowPage){ //현재 있는 페이지				
 				sb.append("&nbsp;<b><font color='red'>");
 				sb.append("<span class='page_box'>");
 				sb.append(i);
@@ -334,6 +345,8 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 			sb.append(endPage+1);
 			sb.append("&" + search_filter);
 			sb.append("'>▶</a>");
+			
+			
 		}
 		else
 			sb.append("▶");
