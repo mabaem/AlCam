@@ -136,7 +136,7 @@
 			<tr id="bmkplace_data_align">
 				<td><input type="checkbox" name="check_box" value="${ vo.bmk_p_idx }"></td>			
 				<td>
-   		   			<img src="${ pageContext.request.contextPath }/resources/image/${ vo.p_filename }" width="90" height="90">
+   		   			<img src="${ vo.p_filename }" width="90" height="90" onError="this.src='${ pageContext.request.contextPath }/resources/image/default_img.png'">
    		   		</td>
 				<td>${ vo.p_name }</td>
 				<td>${ vo.p_addr }</td>

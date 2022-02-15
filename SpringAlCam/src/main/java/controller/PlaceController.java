@@ -146,7 +146,6 @@ public class PlaceController {
 				
 				String table_idx = place_dao.selectlist(p_idx);
 				
-				System.out.printf("table_idx = %s\n",table_idx);
 				PlaceVo vo = new PlaceVo();
 				BmkPlaceVo vo2 = new BmkPlaceVo();
 				if(p_filename==null) {
@@ -185,7 +184,7 @@ public class PlaceController {
 				}
 		
 			
-			System.out.printf("인코딩확인 %s",paging_text);
+
 			 //String search_filter = String.format("text_search=%s", text_search);
 			 pageMenu = Paging.getPlacePaging(paging_text,
 					 					 nowPage,
