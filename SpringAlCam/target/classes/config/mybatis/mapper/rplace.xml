@@ -13,11 +13,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
      	select * from (select * from recommend_place order by readhit desc) where <![CDATA[rownum <= 10]]>
      </select>
      
-     
-     <!-- ###########아래 select문 수정필요############ -->
      <!-- 조건별/페이지별 조회 -->
      <select id="rplace_condition_list"  parameterType="Map"  resultType="rplace">
-    	  select * from recommend_place order by idx desc
+    	  select * from
+		  (
+			select
+				rank() over(order by idx desc) as no,
+				rp.*
+			from (
+				select * from recommend_place
+		         <trim prefix="where" prefixOverrides="or">
+		         	<if test="name != null">
+		         		m_name like '%' || #{name} || '%'
+		         	</if>
+		         	
+		         	<if test="subject != null">
+		         		or subject like '%' || #{subject} || '%'
+		         	</if>
+		         	
+		         	<if test="content != null">
+		         		or content like '%' || #{content} || '%'
+		         	</if>
+		         </trim>
+			) rp
+		  )
+		  where no between #{start} and #{end}
      </select>
      
      <!-- 검색조건별 전체게시물수 : 동적쿼리 -->

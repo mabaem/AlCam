@@ -72,7 +72,6 @@ public class RPlaceController {
 			@RequestParam(value = "search_text", defaultValue = "") String search_text,
 			Model model) {
 		
-		int pageNo = nowPage;
 		//String paging_text = search_text;
 		//게시물에서 가져올 범위 계산
 		int start = (nowPage-1) * MyConstant.RPlace.BLOCK_LIST + 1;
@@ -136,7 +135,7 @@ public class RPlaceController {
 				
 		//게시글 목록가져오기
 		List<RPlaceVo> list = rplace_dao.selectList(map);
-		
+				
 		//session에 봤다는 정보는 삭제
 		session.removeAttribute("show");
 		

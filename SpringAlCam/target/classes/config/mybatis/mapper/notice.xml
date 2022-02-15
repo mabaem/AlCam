@@ -15,7 +15,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
      
      <!-- 조건별/페이지별 조회 -->
      <select id="notice_condition_list"  parameterType="Map"  resultType="notice">
-    	  select * from notice  order by n_idx desc
+    	  select * from
+		  (
+			select
+				rank() over(order by n_idx desc) as no,
+				n.*
+			from (
+				select * from notice
+		         <trim prefix="where" prefixOverrides="or">
+		         	<if test="name != null">
+		         		m_name like '%' || #{name} || '%'
+		         	</if>
+		         	
+		         	<if test="subject != null">
+		         		or n_subject like '%' || #{subject} || '%'
+		         	</if>
+		         	
+		         	<if test="content != null">
+		         		or n_content like '%' || #{content} || '%'
+		         	</if>
+		         </trim>
+			) n
+		  )
+		  where no between #{start} and #{end}
      </select>
      
      <!-- 검색조건별 게시물수 -->

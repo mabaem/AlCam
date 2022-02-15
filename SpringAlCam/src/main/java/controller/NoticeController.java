@@ -69,6 +69,7 @@ public class NoticeController {
 			//게시물에서 가져올 범위 계산
 			int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST + 1;
 			int end   = start + MyConstant.Notice.BLOCK_LIST - 1;
+			String pageMenu = "";
 			
 			//검색범위 및 조건을 담을 객체
 			Map map = new HashMap();
@@ -107,13 +108,13 @@ public class NoticeController {
 			//검색필터
 			String search_filter = String.format("search=%s&search_text=%s", search,search_text);
 			
-			String pageMenu = Paging.getPaging("list.do", 
-					                            search_filter,
-					                            nowPage, 
-					                            rowTotal, 
-					                            MyConstant.Notice.BLOCK_LIST,
-					                            MyConstant.Notice.BLOCK_PAGE
-					                            );
+			pageMenu = Paging.getPaging("list.do", 
+					                    search_filter,
+					                    nowPage, 
+					                    rowTotal, 
+					                    MyConstant.Notice.BLOCK_LIST,
+					                    MyConstant.Notice.BLOCK_PAGE
+					                    );
 			
 			//System.out.println(pageMenu);
 			

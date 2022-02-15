@@ -81,11 +81,12 @@
    }//end insert_form()
 
    
-   //검색메뉴
-   function search(){
+/*    //검색메뉴
+   function search_condition(){
 	   
 	   var search 		= $("#search").val();	
 	   var search_text	= $("#search_text").val().trim();
+	   var page = ${ param.page};
 	   
 	   //전체검색이 아닌데 검색어가 비어있는 경우
 	   if(search != 'all' && search_text==''){
@@ -97,11 +98,33 @@
 	   }
 	   
 	   //검색요청
-	   location.href="${ pageContext.request.contextPath }/list.do?search=" + search + "&search_text=" + search_text;
+	   location.href="list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text);
 	   
 	   
-   }//end search()
+   }//end search() */
    
+   
+   //function search_condition_rplace
+   $(document).ready(function(){
+		$("#search_condition_rplace").click(function() {
+			
+			var search 		= $("#search").val();	
+			   var search_text	= $("#search_text").val().trim();
+			   
+			   //전체검색이 아닌데 검색어가 비어있는 경우
+			   if(search != 'all' && search_text==''){
+				   
+				   alert("검색어를 입력하세요");
+				   $("#search_text").val("");
+				   $("#search_text").focus();
+				   return;  
+			   }
+			   
+			   //검색요청
+			   location.href="list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text);
+			   
+		});
+   });
    
 
 </script>
@@ -217,7 +240,7 @@
        </table>
        
       <!-- 검색메뉴 -->
-     <div id="rplace_search_menu" style="margin-top: 15px">
+    <div id="rplace_search_menu" style="margin-top: 15px">
      	<select id="search">
      		<option value="all">전체보기</option>
      		<option value="name">이름</option>
@@ -226,7 +249,7 @@
      		<option value="name_subject_content">이름+제목+내용</option>
           </select>
           <input id="search_text" value="${ param.search_text }">
-          <input  class="btn-default" type="button" value="검색" onclick="search();">
+          <input  class="btn-default" type="button" value="검색" id="search_condition_rplace">
      </div>
        
       
