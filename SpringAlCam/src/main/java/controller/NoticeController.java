@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -230,7 +231,7 @@ public class NoticeController {
 		// /notice/delete.do?b_idx=5&page=3&search=all&search_text=
 		@RequestMapping("/notice/delete.do")
 		public String delete(int n_idx,
-				              int page,
+							@RequestParam(name="page",defaultValue="1") int page,
 				              String search,
 				              String search_text,
 				              Model model) {
@@ -257,7 +258,7 @@ public class NoticeController {
 		}
 		//수정폼 띄우기
 		@RequestMapping("/notice/modify_form.do")
-		public String modify_form(int n_idx, int page, Model model) {
+		public String modify_form(int n_idx, @RequestParam(name="page",defaultValue="1") int page, Model model) {
 			
 			//수정할 게시물 얻어오기
 			NoticeVo vo = notice_dao.selectOne(n_idx);
@@ -271,7 +272,7 @@ public class NoticeController {
 		
 		//수정하기
 		@RequestMapping("/notice/modify.do")
-		public String modify(NoticeVo vo, int page, String search, String search_text, Model model) throws Exception {
+		public String modify(NoticeVo vo, @RequestParam(name="page",defaultValue="1") int page, String search, String search_text, Model model) throws Exception {
 			
 			//로그인된 유저 정보 얻어오기
 			MemberVo user = (MemberVo) session.getAttribute("user");
@@ -293,16 +294,16 @@ public class NoticeController {
 			String webPath = "/resources/image/";
 			String absPath = application.getRealPath(webPath);
 			
-			String n_filename = "no_file";
+			String n_filename = vo.getN_filename();
 			MultipartFile n_photo = vo.getN_photo();
 			
-			//프로필 사진 업로드 안 된 경우 기본사진 적용 안함!!
-			if(n_photo.isEmpty()) {
-				n_filename = null;
-			}
-			
-			//프로필 사진 업로드 된 경우
-			if(!n_photo.isEmpty()) {
+			//파일명이 없는 경우(원래 글에 사진이 없었을 경우)
+			if(Objects.equals(n_filename, "no_file")) {
+				//System.out.println("통과");
+				
+			}else{	//파일명이 있는 경우(원래 사진이 있었을 경우)
+				//System.out.println("저장");
+				
 				n_filename = n_photo.getOriginalFilename();
 				
 				//저장경로
@@ -320,8 +321,8 @@ public class NoticeController {
 				
 				//임시경로화일->지정된 위치로 복사
 				n_photo.transferTo(f);
-
-			}//end: if(m_filename.isEmpty())
+			}
+			
 			
 			vo.setN_filename(n_filename);
 			

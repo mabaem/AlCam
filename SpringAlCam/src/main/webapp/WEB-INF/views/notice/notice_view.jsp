@@ -186,9 +186,9 @@
 	          <table class="table">
 	          
 	               <!-- 이미지가 있는 경우 -->
-	          	   <c:if test="${ vo.n_filename != 'no_file' }">
+	          	   <c:if test="${ vo.n_filename ne 'no_file' }">
 	                   <th rowspan="6">
-	                   	  <img src="${ pageContext.request.contextPath }/resources/image/${ vo.n_filename }" width="250" height="200">
+	                   	  <img src="${ pageContext.request.contextPath }/resources/image/${ vo.n_filename }" width="250" height="200"  onerror="this.style.display='none';">
 	                   </th>
                    </c:if>
                    

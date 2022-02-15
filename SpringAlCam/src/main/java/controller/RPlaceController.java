@@ -170,7 +170,7 @@ public class RPlaceController {
 	//삭제하기
 	// /recommend_place/delete.do?b_idx=5&page=3&search=all%search_text=
 	@RequestMapping("/recommend_place/delete.do")
-	public String delete(int idx, int page, String search, String search_text, Model model) {
+	public String delete(int idx, @RequestParam(name="page",defaultValue="1") int page, String search, String search_text, Model model) {
 		
 		//기존 사진화일 삭제
 		String webPath = "/resources/image/";
@@ -197,7 +197,7 @@ public class RPlaceController {
 	//수정폼 띄우기
 	// /recommend_place/modify_form.do?b_idx=5
 	@RequestMapping("/recommend_place/modify_form.do")
-	public String modify_form(int idx, int page, Model model) {
+	public String modify_form(int idx, @RequestParam(name="page",defaultValue="1") int page, Model model) {
 		
 		//수정할 게시물 얻어오기
 		RPlaceVo vo = rplace_dao.selectOne(idx);
@@ -211,7 +211,7 @@ public class RPlaceController {
 	
 	//수정하기
 	@RequestMapping("/recommend_place/modify.do")
-	public String modify(RPlaceVo vo, int page, String search, String search_text, Model model) throws Exception {
+	public String modify(RPlaceVo vo, @RequestParam(name="page",defaultValue="1") int page, String search, String search_text, Model model) throws Exception {
 		
 		//로그인된 유저 정보 얻어오기
 		MemberVo user = (MemberVo) session.getAttribute("user");
