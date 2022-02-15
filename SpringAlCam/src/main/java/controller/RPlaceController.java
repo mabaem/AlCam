@@ -72,9 +72,12 @@ public class RPlaceController {
 			@RequestParam(value = "search_text", defaultValue = "") String search_text,
 			Model model) {
 		
+		int pageNo = nowPage;
+		//String paging_text = search_text;
 		//게시물에서 가져올 범위 계산
 		int start = (nowPage-1) * MyConstant.RPlace.BLOCK_LIST + 1;
 		int end   = start + MyConstant.RPlace.BLOCK_LIST - 1;
+		String pageMenu = "";
 		
 		//검색범위 및 조건을 담을 객체
 		Map map = new HashMap();
@@ -123,13 +126,13 @@ public class RPlaceController {
 		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		
 		//페이징 메뉴 생성 + 검색필터 추가
-		String pageMenu = Paging.getPaging("list.do",
-											search_filter,
-				                            nowPage, 
-				                            rowTotal, 
-				                            MyConstant.RPlace.BLOCK_LIST,
-				                            MyConstant.RPlace.BLOCK_PAGE
-				                            );
+		pageMenu = Paging.getPaging("list.do",
+									search_filter,
+				                    nowPage, 
+				                    rowTotal, 
+				                    MyConstant.RPlace.BLOCK_LIST,
+				                    MyConstant.RPlace.BLOCK_PAGE
+				                    );
 				
 		//게시글 목록가져오기
 		List<RPlaceVo> list = rplace_dao.selectList(map);
@@ -138,8 +141,8 @@ public class RPlaceController {
 		session.removeAttribute("show");
 		
 		//model통해서 request binding
-		model.addAttribute("list", list);
 		model.addAttribute("pageMenu", pageMenu);
+		model.addAttribute("list", list);
 		
 		return "recommend_place/rplace_list";
 	}

@@ -144,10 +144,25 @@
 </script>
 
   <div style="margin-bottom: 10px; margin-right: 10px;">
-  	<font id="rplace_title">캠핑장소추천</font>
-  	<!-- 글쓰기 버튼 -->
- 	<input class="btn" id="btn_rplace_insert" type="button"  value="글쓰기" 
-          onclick="insert_form();">
+  	
+  	 <font id="rplace_title">캠핑장소추천</font>
+  	 
+  	 <!-- 검색메뉴 -->
+     <%-- <div id="rplace_search_menu" style="margin-top: 15px">
+     	<select id="search">
+     		<option value="all">전체보기</option>
+     		<option value="name">이름</option>
+     		<option value="subject">제목</option>
+     		<option value="content">내용</option>
+     		<option value="name_subject_content">이름+제목+내용</option>
+          </select>
+          <input id="search_text" value="${ param.search_text }">
+          <input  class="btn-default" type="button" value="검색" onclick="search();">
+     </div> --%>
+  	
+  	 <!-- 글쓰기 버튼 -->
+ 	 <input class="btn" id="btn_rplace_insert" type="button"  value="글쓰기" 
+            onclick="insert_form();">
   </div>
    
   <div id="rplace_box">
@@ -214,17 +229,6 @@
        
       
        
-       <!-- 검색메뉴 -->
-        <div id="rplace_search_menu" style="margin-top: 15px">
-        	<select id="search">
-        		<option value="all">전체보기</option>
-        		<option value="name">이름</option>
-        		<option value="subject">제목</option>
-        		<option value="content">내용</option>
-        		<option value="name_subject_content">이름+제목+내용</option>
-             </select>
-             <input id="search_text" value="${ param.search_text }">
-             <input  class="btn-default" type="button" value="검색" onclick="search();">
-        </div>
+      
        
   </div>  

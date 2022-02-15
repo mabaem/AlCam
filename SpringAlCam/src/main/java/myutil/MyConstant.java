@@ -9,7 +9,7 @@ public class MyConstant {
 		public static final int BLOCK_LIST = 10;
 		
 		//1화면에 보여질 페이지 메뉴수
-		public static final int BLOCK_PAGE = 10;
+		public static final int BLOCK_PAGE = 5;
 		
 	}
 	
