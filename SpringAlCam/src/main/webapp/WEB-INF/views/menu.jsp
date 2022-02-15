@@ -48,6 +48,6 @@
 	<a href="main.do?menu=place">캠핑장소검색</a>
 	<a href="main.do?menu=recommend_place">캠핑장소추천</a>
 	<a href="main.do?menu=goods">캠핑용품검색</a>
-	<a href="main.do?menu=notice">공지사항</a>
-	<a onclick="mypage();">마이페이지</a>
+	<a href="main.do?menu=notice">공지사항</a>	
+	<a href="#" onclick="mypage(); return false;">마이페이지</a>
 </div>
