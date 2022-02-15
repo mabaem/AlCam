@@ -345,8 +345,8 @@ public class MemberController {
 		//System.out.println(absPath);
 		Map map = new HashMap();
 		map.put("filename", filename);
-		
-		//session.get
+
+
 		
 		return map;
 	}
