@@ -3,19 +3,6 @@
 /* 화면 중앙배치 */
 *{margin:0;}
 
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-footer {
-    width: 100%;
-    height: 99999px; /* footer의 높이 */
-    position: absolute;  
-    bottom: 0;
-    left: 0;
-}
-
 /* 전체 박스 */
 #box{
 	width: 1000px;
@@ -86,4 +73,6 @@ footer {
 	clear: both;
 	margin: auto;
 	text-align: center;
+	position: absolute;  
+	bottom: 0;
 }
