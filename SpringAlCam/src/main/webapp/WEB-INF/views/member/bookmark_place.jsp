@@ -13,6 +13,11 @@
 
 <style type="text/css">
 
+	#bmk_place_box{
+		text-align: left;
+		width: 780px;
+	}
+
 	#bmkplace_title{
 		text-align: center;
 		
@@ -92,7 +97,7 @@
 
 
 
-<div>
+<div id="bmk_place_box">
 <h1 id="bmkplace_title">캠핑장소 즐겨찾기</h1>
 
 <form>

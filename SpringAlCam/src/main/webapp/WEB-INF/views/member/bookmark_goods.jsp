@@ -13,6 +13,11 @@
 
 <style type="text/css">
 
+	#bmk_goods_box{
+		text-align: left;
+		width: 780px;
+	}
+
 	#bmkgoods_title{
 		text-align: center;
 		
@@ -111,7 +116,7 @@
 </script>
 
 
-<div>
+<div id="bmk_goods_box">
 <h1 id="bmkgoods_title">캠핑용품 즐겨찾기</h1>
 
 <form>
