@@ -316,16 +316,26 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 		
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
 		sb.append("|");
+		
+		sb.append("<ul class=\'pagination\'>");
+		
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
-			if(i == nowPage){ //현재 있는 페이지				
+			if(i == nowPage){ //현재 있는 페이지
+				
+				
+				sb.append("<li class=\'active\'><a href=\'#\'>"+ i +"</a></li>");
+				/*
 				sb.append("&nbsp;<b><font color='red'>");
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</font></b>");
+				*/
 			}
 			else{//현재 페이지가 아니면
+				sb.append("<li><a href='"+ pageURL +"?page="+ i +"&"+ search_filter +"'>"+ i +"</a></li>");
+				/*
 				sb.append("&nbsp;<a href='"+pageURL+"?page=");
 				sb.append(i);
 				sb.append("&" + search_filter);
@@ -334,8 +344,11 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</a>");
+				*/
 			}
 		}// end for
+		
+		sb.append("</ul>");
 		
 		sb.append("&nbsp;|");
 		
