@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,8 +28,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import dao.BmkGoodsDao;
+import dao.CampProductDao;
 import myutil.MyProduct;
 import myutil.Paging;
+import vo.BmkGoodsVo;
 import vo.CampProductVo;
 
 
@@ -37,6 +41,12 @@ public class CampProductController {
 	
 	@Autowired
 	HttpServletRequest request;
+
+	CampProductDao campproduct_dao;
+	
+	public void setCampproduct_dao(CampProductDao campproduct_dao) {
+		this.campproduct_dao = campproduct_dao;
+	}
 
 	@RequestMapping(value = "/goods/camp_list.do", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public String list( 
@@ -70,68 +80,84 @@ public class CampProductController {
 		
 		String responseBody = get(urlStr, requestHeaders); 
 		
-		//System.out.println(responseBody);
-		
-		String json = responseBody; 
-	
 		JSONParser parser = new JSONParser(); 
-		JSONObject obj = (JSONObject)parser.parse(json); 
+		JSONObject obj = (JSONObject)parser.parse(responseBody); 
 		JSONArray item = (JSONArray)obj.get("items"); 
 		
 		try {
-			rowTotal = Integer.parseInt(obj.get("total").toString());
-			//rowTotal = 100;
+			//rowTotal = Integer.parseInt(obj.get("total").toString());
+			//과도한 데이터양으로 total 제한 
+			rowTotal = 100;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		
 		List < CampProductVo > list = new ArrayList<CampProductVo>(); 
+		List < BmkGoodsVo > list2 = new ArrayList<BmkGoodsVo>(); 
 		
 		for (int i = 0; i < item.size(); i++) {
-			 CampProductVo vo = new CampProductVo(); 
-			
+			CampProductVo vo = new CampProductVo(); 
+			BmkGoodsVo vo2 = new BmkGoodsVo();
+			 
 			JSONObject tmp = (JSONObject)item.get(i); 
 			
 			String g_category = (String)tmp.get("category3");
 			String g_name  = (String)tmp.get("title");
-			String g_filename = (String)tmp.get("image");
+			String g_image = (String)tmp.get("image");
 			int g_price=0;
 				try {
 					g_price = Integer.parseInt((String)tmp.get("lprice"));
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-			
 			String g_link = (String)tmp.get("link");
+			String g_idx = (String)tmp.get("productId");
+			
+			//검색된 g_idx를 가지고 DB테이블내 데이터 추출
+			String table_idx =  campproduct_dao.selectlist(g_idx);
 			
 			vo.setG_category(g_category);
 			vo.setG_name(g_name);
-			vo.setG_filename(g_filename);
+			vo.setG_image(g_image);
 			vo.setG_price(g_price);
 			vo.setG_link(g_link);
-			
+			vo.setG_idx(g_idx);
+		
 			list.add(vo);
 			
+			vo2.setG_category(g_category);
+			vo2.setG_name(g_name);
+			vo2.setG_image(g_image);
+			vo2.setG_price(g_price);
+			vo2.setG_link(g_link);
+			
+			list2.add(vo2);
+			
+			// API 데이터와 테이블데이터 비교
+			// 테이블 데이터가 비어있을경우 null return 되기에 Objects.equals 로 비교
+			if(Objects.equals(g_idx, table_idx)) {
+				//System.out.println("통과호출");
+				
+			}else{
+				//System.out.println("저장호출");
+				int res = campproduct_dao.insert(vo);
+				
+			}
+
+			p_name = URLDecoder.decode(p_name, "utf-8");
+			
+			 pageMenu = Paging.getGoodsPaging( 
+					                      p_name, 
+					                      nowPage,
+					 					  rowTotal,
+					 					  MyProduct.Product.BLOCK_LIST,
+					 					  MyProduct.Product.BLOCK_PAGE );
+			 model.addAttribute("pageMenu", pageMenu);
 			
 		}//end-for
-		
-		//디코딩해서 한글로 값 불러오기
-		p_name = URLDecoder.decode(p_name, "utf-8");
-		
-		 pageMenu = Paging.getGoodsPaging( 
-				                      p_name, 
-				                      nowPage,
-				 					  rowTotal,
-				 					  MyProduct.Product.BLOCK_LIST,
-				 					  MyProduct.Product.BLOCK_PAGE );
-		
+
 		model.addAttribute("list",list);
-		model.addAttribute("pageMenu", pageMenu);
-		
-		//확인용
-		//System.out.printf("p_name=%s",p_name);
-		//System.out.println(nowPage);
-		//System.out.println(pageMenu);
+		model.addAttribute("list2",list2);
 		
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -139,6 +165,8 @@ public class CampProductController {
 		}
 		return "goods/camp_product_list";
 	}
+	
+	
 	
 	///////////get,connect,readbody는 네이버 제공 예제 메소드, 서버연결시 필요////////////////////////////////////////////////////
 	

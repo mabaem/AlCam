@@ -13,6 +13,7 @@
 		<typeAlias type="vo.MemberVo"  alias="member"/>
 		<typeAlias type="vo.RPlaceVo"   alias="rplace"/>
 		<typeAlias type="vo.NoticeVo"   alias="notice"/>
+		<typeAlias type="vo.CampProductVo"   alias="campproduct"/>
 	</typeAliases>
 
 	
@@ -23,5 +24,6 @@
 		<mapper resource="config/mybatis/mapper/bmkplace.xml" />
 		<mapper resource="config/mybatis/mapper/bmkgoods.xml" />
 		<mapper resource="config/mybatis/mapper/place.xml" />
+		<mapper resource="config/mybatis/mapper/campproduct.xml" />
 	</mappers>
 </configuration>

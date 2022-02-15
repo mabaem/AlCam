@@ -46,9 +46,9 @@ public class BmkGoodsDaoImpl implements BmkGoodsDao {
 	}
 
 	@Override
-	public int delete(int bmk_p_idx) {
+	public int delete(int bmk_g_idx) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("bmkgoods.bmkgoods_delete", bmk_p_idx);
+		return sqlSession.delete("bmkgoods.bmkgoods_delete", bmk_g_idx);
 	}
 
 	@Override

@@ -154,10 +154,10 @@
 				<td><input type="checkbox" name="check_box" value="${ vo.bmk_g_idx }"></td>
 				<td>${ vo.g_category }</td>
 				<td>
-   		   			<img src="${ pageContext.request.contextPath }/resources/image/${ vo.g_image }" width="90" height="90">
+   		   			<img src="${ vo.g_image }" width="90" height="90">
    		   		</td>
-				<td>${ vo.g_name }</td>
-				<td><fmt:formatNumber type="currency" value="${ vo.g_price }"/></td>
+				<td style="width:160px; "><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
+				<td><fmt:formatNumber   value = "${vo.g_price }"/>(원)</td>
 				<td>
 					<!-- 수량 조정 폼 -->
 					<form>
@@ -167,7 +167,7 @@
 						<input class="btn btn-info" type="submit" value="수정" onclick="bmkgoods_update(this.form);">
 					</form>
 				</td>
-				<td><fmt:formatNumber type="currency" value="${ vo.amount }"/></td>
+				<td><fmt:formatNumber value="${ vo.amount }"/>(원)</td>
 				<td>
 				<form>
 						<input type="hidden" name="bmk_g_idx" value="${ vo.bmk_g_idx }">
@@ -186,7 +186,7 @@
 			<td colspan="7" align="right">
 				총 결제액 :
 			</td>
-			<td><fmt:formatNumber type="currency" value="${ total_amount }" /></td>
+			<td><fmt:formatNumber value="${ total_amount }" />(원)</td>
 		</tr>
 	</table>
 	

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="campproduct">
+
+	<!-- 추가 -->
+	<insert id="campproduct_insert" parameterType="vo.CampProductVo">
+		insert into goods values(#{g_idx},#{g_name},#{g_price},#{g_category},#{g_image},#{g_link})
+	</insert>
+	
+		<!-- 중복제거 -->
+	<select id="campproduct_list" parameterType="String" resultType="String">
+		select g_idx from goods where g_idx=#{g_idx}
+
+	
+	</select>
+	
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -97,11 +97,19 @@ public class BmkGoodsController {
 	@ResponseBody
 	public Map bmkgoods_insert(BmkGoodsVo paramVo) {
 		
-		BmkGoodsVo vo = bmkgoods_dao.selectOne(paramVo);
+		BmkGoodsVo vo2 = bmkgoods_dao.selectOne(paramVo);
+		
+		String g_idx = paramVo.getG_idx();
+		int m_idx = paramVo.getM_idx();
+		System.out.printf("g_idx=%s",g_idx);
+		System.out.println();
+		System.out.printf("m_idx=%s",m_idx);
+		System.out.println();
+		
 		
 		Map map = new HashMap();
 		
-		if(vo!=null) {
+		if(vo2!=null) {
 			
 			map.put("result", "exist");
 		}else {

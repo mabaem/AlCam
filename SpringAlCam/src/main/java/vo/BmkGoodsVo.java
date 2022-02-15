@@ -3,7 +3,7 @@ package vo;
 public class BmkGoodsVo {
 	
 	int     bmk_g_idx;
-	int     g_idx;
+	String  g_idx;
 	String  g_name;
 	int     g_price;
 	String  g_category;
@@ -13,16 +13,34 @@ public class BmkGoodsVo {
 	int     amount;
 	int     m_idx;
 	
+	public BmkGoodsVo() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public BmkGoodsVo(int bmk_g_idx, String g_idx, String g_name, int g_price, String g_category, String g_image,
+			String g_link, int bmk_g_cnt, int amount, int m_idx) {
+		super();
+		this.bmk_g_idx = bmk_g_idx;
+		this.g_idx = g_idx;
+		this.g_name = g_name;
+		this.g_price = g_price;
+		this.g_category = g_category;
+		this.g_image = g_image;
+		this.g_link = g_link;
+		this.bmk_g_cnt = bmk_g_cnt;
+		this.amount = amount;
+		this.m_idx = m_idx;
+	}
 	public int getBmk_g_idx() {
 		return bmk_g_idx;
 	}
 	public void setBmk_g_idx(int bmk_g_idx) {
 		this.bmk_g_idx = bmk_g_idx;
 	}
-	public int getG_idx() {
+	public String getG_idx() {
 		return g_idx;
 	}
-	public void setG_idx(int g_idx) {
+	public void setG_idx(String g_idx) {
 		this.g_idx = g_idx;
 	}
 	public String getG_name() {

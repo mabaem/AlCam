@@ -33,5 +33,10 @@
 	<bean id="place_dao"  class="dao.PlaceDaoImpl">
 	    <property name="sqlSession"  ref="sqlSession"/>
 	</bean>
+	
+	<!-- CampProductDaoImpl -->
+	<bean id="campproduct_dao"  class="dao.CampProductDaoImpl">
+	    <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
 
 </beans>

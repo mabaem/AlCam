@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,7 +177,20 @@
 			<input id= "p_name" type="text" placeholder="캠핑용품 검색" style="width: 300px; height: 40px;">
 			<input id="bt_find" type="button" class="btn btn-default" value="검색" style="width: 70px; height: 40px;">
 		</div>
-			※상품 클릭 시 네이버쇼핑으로 연결됩니다.
+			※상품 클릭 시 네이버쇼핑으로 연결됩니다. 
+					
+						<!-- 로그인 된 상태에서만  -->
+						<c:if test="${not empty user }">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="button" value="즐겨찾기 이동" 
+						onclick="location.href='main.do?menu=member&submenu=bookmark_goods'">
+						</c:if>
 		<hr>
 		<div id="disp">
 		</div>
