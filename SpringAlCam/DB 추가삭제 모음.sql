@@ -26,7 +26,6 @@
 	drop sequence seq_commenttb_c_idx;
 	drop sequence seq_bookmark_bmk_place_p_idx;
 	drop sequence seq_recommend_place_idx;
-	drop sequence seq_goods_g_idx;
 	drop sequence seq_place_p_idx;
 	drop sequence seq_membertb_m_idx;
 

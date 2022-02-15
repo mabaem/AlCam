@@ -131,7 +131,6 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 		if(isPrevPage){
 			System.out.printf("페이징부분 %s",text_search);
 			sb.append(String.format("<a href ='#' onclick='search_place(\"%s\",%d);'>◀</a>", text_search, (startPage-1)));
-			sb.append("◀</a>");
 		}
 		else
 			sb.append("◀");
@@ -161,7 +160,6 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 //-----그룹페이지처리 다음 ----------------------------------------------------------------------------------------------
 		if(isNextPage){
 			sb.append(String.format("<a href ='#' onclick='search_place(\"%s\",%d);'>▶</a>", text_search, (endPage+1)));
-			sb.append("▶</a>");
 		}
 		else
 			sb.append("▶");
