@@ -50,7 +50,7 @@
 	  	      			<!-- 데이터가 있는 경우 -->
 			            <c:if test="${ not empty list}">
 		  	      			<c:forEach var="vo" items="${ list }">
-		  	      				<tr onclick="window.parent.location.href='${ pageContext.request.contextPath }/main.do?menu=notice&n_idx=${ vo.n_idx }&page=${ empty param.page ? 1 : param.page }'"
+		  	      				<tr style = "cursor:pointer;"onclick="window.parent.location.href='${ pageContext.request.contextPath }/main.do?menu=notice&n_idx=${ vo.n_idx }&page=${ empty param.page ? 1 : param.page }'"
 		  	      					onmouseover="this.style.color='#0035d1'" onmouseout="this.style.color='black'">
 		  	      					<td>${ vo.n_subject }</td>
 		  	      					<td>${ vo.m_name }</td>
