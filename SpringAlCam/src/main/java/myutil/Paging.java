@@ -75,7 +75,8 @@ public class Paging {
 			}
 			else{//현재 페이지가 아니면
 				
-				sb.append(String.format("<li><a href='"+pageURL+"?page="+i+"'></a></li>"));
+				sb.append(String.format("<li><a href='"+pageURL+"?page="+i+"'>"));
+				sb.append(i+"</a></li>");
 				/*
 				sb.append("&nbsp;<a href='"+pageURL+"?page=");
 				sb.append(i);

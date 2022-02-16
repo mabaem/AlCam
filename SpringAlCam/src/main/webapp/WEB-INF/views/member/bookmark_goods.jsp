@@ -23,8 +23,7 @@
 		
 		font-size: 20px;
 		font-weight: bold;
-		
-		margin-bottom: 20px;
+
 	}
 
 	th{
@@ -147,11 +146,7 @@
 				</td>
 			</tr>
 		</c:if>	
-		
-		<!-- 통화단위 : 지역지정 -->
-		<fmt:setLocale value="ko_kr"/>
-		
-		
+				
 		<!-- for(BmkGoodsVo vo : list) -->
 		<c:forEach var="vo" items="${ list }">
 		
@@ -159,9 +154,9 @@
 				<td><input type="checkbox" name="check_box" value="${ vo.bmk_g_idx }"></td>
 				<td>${ vo.g_category }</td>
 				<td>
-   		   			<img src="${ vo.g_image }" width="90" height="90">
+   		   			<img src="${ vo.g_image }" width="80" height="80">
    		   		</td>
-				<td style="width:160px; "><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
+				<td style="width:170px; "><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
 				<td><fmt:formatNumber   value = "${vo.g_price }"/>(원)</td>
 				<td>
 					<!-- 수량 조정 폼 -->

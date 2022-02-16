@@ -23,8 +23,6 @@
 		
 		font-size: 20px;
 		font-weight: bold;
-		
-		margin-bottom: 20px;
 	}
 
 	th{
@@ -126,17 +124,13 @@
 			</tr>
 		</c:if>	
 		
-		<!-- 통화단위 : 지역지정 -->
-		<fmt:setLocale value="ko_kr"/>
-		
-		
 		<!-- for(CartVo vo : list) -->
 		<c:forEach var="vo" items="${ list }">
 		
 			<tr id="bmkplace_data_align">
 				<td><input type="checkbox" name="check_box" value="${ vo.bmk_p_idx }"></td>			
 				<td>
-   		   			<img src="${ vo.p_filename }" width="90" height="90" onError="this.src='${ pageContext.request.contextPath }/resources/image/default_img.png'">
+   		   			<img src="${ vo.p_filename }" width="85" height="85" onError="this.src='${ pageContext.request.contextPath }/resources/image/default_img.png'">
    		   		</td>
 				<td>${ vo.p_name }</td>
 				<td>${ vo.p_addr }</td>
