@@ -29,6 +29,9 @@
 	//이름 정규식
 	var regular_m_name  = /^[가-힣]+$/;
 	
+	//아이디 정규식
+	var regular_m_id    = /^[A-Za-z]{1}[A-Za-z0-9]{2,}$/;
+	
 	//비밀번호 정규식
 	var regular_m_pwd   = /^(?=.*\d)(?=.*[a-zA-ZS]).{6,12}$/;
 	
@@ -45,10 +48,8 @@
 			
 			var m_id = $(this).val();
 			
-			if(m_id.length<3){
+			if(regular_m_id.test(m_id)==false){
 				$("#m_id_message").html("아이디는 3자리 이상 영문자/숫자조합 이어야 합니다").css("color", "red");
-			    //유효성 체크
-				$("#m_id_ck").val("false");
 				return;
 			}
 
@@ -226,6 +227,16 @@
 			return;
 		}
 		
+		//아이디 정규식체크
+		if(regular_m_id.test(m_id)==false){
+			
+			alert('아이디는 3자리 이상 영문자/숫자조합 이어야 합니다');
+			f.m_id.focus();
+
+			return;
+    	}
+		
+		//아이디 중복체크
 		if($("#m_id_ck").val()!="true"){
 			
 			alert('이미 사용 중인 아이디 입니다');
