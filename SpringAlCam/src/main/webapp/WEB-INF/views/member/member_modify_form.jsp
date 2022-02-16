@@ -19,7 +19,7 @@
 	#box{
 		width: 750px;
 		margin: auto;
-		margin-top: 50px;
+		margin-top: 10px;
 	}
 	
 </style>
