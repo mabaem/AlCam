@@ -299,70 +299,54 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 		sb = new StringBuffer();
 		
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
+		sb.append("<ul class='pagination'>");
+		
+		
 		if(isPrevPage){
-			sb.append("<a  href='"+pageURL+"?page=");
-			sb.append((startPage-1));
-			sb.append("&" + search_filter);
-			sb.append("'>◀</a>");
+			sb.append("<li class='page-item previous'><a href='"+pageURL+"?page="+(startPage-1)+"&"+search_filter+"'>이전</a></li>");
 			
-			//System.out.printf("1이전%s\n",sb);
 			
 		}
 		else {
-			sb.append("◀");
-			//System.out.printf("2이전%s\n",sb);
+			
+			sb.append("<li class='page-item previous disabled'><a href='#'>이전</a></li>");
+
 		}
 		
 		
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
-		sb.append("|");
-		
-		sb.append("<ul class=\'pagination\'>");
-		
+	
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
 			if(i == nowPage){ //현재 있는 페이지
 				
 				
-				sb.append("<li class=\'active\'><a href=\'#\'>"+ i +"</a></li>");
-				/*
-				sb.append("&nbsp;<b><font color='red'>");
-				sb.append("<span class='page_box'>");
-				sb.append(i);
-				sb.append("</span>");
-				sb.append("</font></b>");
-				*/
+				sb.append("<li class='active'><a href='#'>"+ i +"</a></li>");
+				
 			}
 			else{//현재 페이지가 아니면
 				sb.append("<li><a href='"+ pageURL +"?page="+ i +"&"+ search_filter +"'>"+ i +"</a></li>");
-				/*
-				sb.append("&nbsp;<a href='"+pageURL+"?page=");
-				sb.append(i);
-				sb.append("&" + search_filter);
-				sb.append("'>");
-				sb.append("<span class='page_box'>");
-				sb.append(i);
-				sb.append("</span>");
-				sb.append("</a>");
-				*/
+				
 			}
 		}// end for
 		
-		sb.append("</ul>");
 		
-		sb.append("&nbsp;|");
+		
 		
 //-----그룹페이지처리 다음 ----------------------------------------------------------------------------------------------
+		
+
 		if(isNextPage){
-			sb.append("<a  href='"+pageURL+"?page=");
-			sb.append(endPage+1);
-			sb.append("&" + search_filter);
-			sb.append("'>▶</a>");
 			
+			sb.append("<li class='page-item next'><a href='"+pageURL+"?page="+(endPage+1)+"&"+search_filter+"'>다음</a></li>");
 			
 		}
-		else
-			sb.append("▶");
+		else {
+			sb.append("<li class='page-item next disabled'><a href='#'>다음</a></li>");
+
+		}
+		
+		sb.append("</ul>");
 //---------------------------------------------------------------------------------------------------------------------	    
 
 		return sb.toString();

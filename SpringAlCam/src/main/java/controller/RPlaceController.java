@@ -132,7 +132,7 @@ public class RPlaceController {
 				                    MyConstant.RPlace.BLOCK_PAGE
 				                    );
 		
-		System.out.printf("%s\n", pageMenu);
+		//System.out.printf("%s\n", pageMenu);
 				
 		//게시글 목록가져오기
 		List<RPlaceVo> list = rplace_dao.selectList(map);

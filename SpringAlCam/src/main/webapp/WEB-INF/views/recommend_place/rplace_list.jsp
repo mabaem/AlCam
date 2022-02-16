@@ -28,8 +28,6 @@
 	
 	#rplace_search_menu{
 		text-align: center;
-		margin-top: 2px;
-		margin-bottom: 2px;
 	}  
 	
 	#btn_rplace_insert{
@@ -39,6 +37,7 @@
 	 
 	/* page */
 	#page_menu{
+		text-align: center;
 	}
 	
 	/* Paging.java CSS */
@@ -215,35 +214,26 @@
 	                </tr>
 	             </c:forEach>
           	 </c:if>
-             
-             <!-- 페이지 메뉴 -->
-             <tr>
-                <td colspan="5" align="center">
-                    
-                    <div id="page_menu"> 
-                     ${ pageMenu }
-                    </div>
-                                        
-                     
-                </td>
-             </tr>
-             
-             
+         
        
        </table>
        
+       <div id="page_menu"> 
+            ${ pageMenu }
+      </div>
+       
       <!-- 검색메뉴 -->
-    <div id="rplace_search_menu" style="margin-top: 15px">
-     	<select id="search">
-     		<option value="all">전체보기</option>
-     		<option value="name">이름</option>
-     		<option value="subject">제목</option>
-     		<option value="content">내용</option>
-     		<option value="name_subject_content">이름+제목+내용</option>
-          </select>
-          <input id="search_text" value="${ param.search_text }">
-          <input  class="btn-default" type="button" value="검색" id="search_condition_rplace">
-     </div>
+	    <div id="rplace_search_menu">
+	     	<select id="search">
+	     		<option value="all">전체보기</option>
+	     		<option value="name">이름</option>
+	     		<option value="subject">제목</option>
+	     		<option value="content">내용</option>
+	     		<option value="name_subject_content">이름+제목+내용</option>
+	          </select>
+	          <input id="search_text" value="${ param.search_text }">
+	          <input  class="btn-default" type="button" value="검색" id="search_condition_rplace">
+	     </div>
        
       
        

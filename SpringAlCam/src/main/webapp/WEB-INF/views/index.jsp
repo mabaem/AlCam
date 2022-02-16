@@ -82,17 +82,17 @@
 				<!-- 2. 캠핑장소추천 누른 경우(menu=recommend_place) -->
 				<c:if test="${ (empty param.idx) and (param.menu eq 'recommend_place') }">
 					<%-- <%@include file="recommend_place/rplace_list.jsp" %> --%>
-					<iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/list.do"></iframe>	
+					<iframe id="if_rplace" class="if_rplace" width="1000"  height="600" src="recommend_place/list.do"></iframe>	
 				</c:if>
 				
 				<!-- 2-1. 베스트글 선택한 경우 -->
 				<c:if test="${ not empty param.idx }">
-					  <iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/view.do?idx=${param.idx} "></iframe>
+					  <iframe id="if_rplace" class="if_rplace" width="1000"  height="600" src="recommend_place/view.do?idx=${param.idx} "></iframe>
 				</c:if>
 				
 				<!-- 2-2. 캠핑장소추천 게시판에서 검색어 입력한 경우 -->
 				<c:if test="${ not empty param.search }">
-					  <iframe id="if_rplace" class="if_rplace" width="1000"  height="570" src="recommend_place/list.do?search=${search}&search_text=${encodeURIComponent(search_text)}"></iframe>
+					  <iframe id="if_rplace" class="if_rplace" width="1000"  height="600" src="recommend_place/list.do?search=${search}&search_text=${encodeURIComponent(search_text)}"></iframe>
 				</c:if>
 				
 				
@@ -103,12 +103,12 @@
 				
 				<!-- 4. 공지사항 누른 경우(menu=notice) -->
 				<c:if test="${ (empty param.n_idx) and (param.menu eq 'notice') }">
-					<iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/list.do"></iframe>	
+					<iframe id="if_notice" class="if_notice" width="1000"  height="600" src="notice/list.do"></iframe>	
 				</c:if>
 				
 				<!-- 4-1. 공지사항글 선택한 경우 -->
 				<c:if test="${ not empty param.n_idx }">
-					<iframe id="if_notice" class="if_notice" width="1000"  height="570" src="notice/view.do?n_idx=${ param.n_idx }"></iframe>
+					<iframe id="if_notice" class="if_notice" width="1000"  height="600" src="notice/view.do?n_idx=${ param.n_idx }"></iframe>
 				</c:if>
 				
 				<!-- 5. 마이페이지 누른 경우(menu=member) -->
