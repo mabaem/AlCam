@@ -20,21 +20,6 @@
    		m_name		varchar2(200) 				--작성자명
    );
 
-	create sequence seq_commenttb_c_idx;
-	
-	 create table commenttb
-   (
-   		c_idx  				  int,		--댓글번호
-   		c_content  varchar2(2000),		--내용
-   		c_ip	   varchar2(200),		--아이피
-   		c_regdate  date,				--등록일자
-   		m_idx				  int,		--회원번호
-   		m_id	   varchar2(100),       --회원아이디
-   		m_name	   varchar2(100),		--회원명 	
-   		m_filename varchar2(200),		--회원사진
-   		idx                 int      	--게시글번호
-   );
-
 	create sequence seq_bookmark_bmk_goods_g_idx;
 
 	create table bookmark_goods
@@ -72,6 +57,8 @@
    		p_name	varchar2(200),			--장소이름
    		p_addr	varchar2(200)			--장소주소
    );
+
+	create sequence seq_goods_g_idx;
 
 	create table goods
 	(
@@ -125,11 +112,6 @@
 	--기본키
    alter table notice
       add constraint  pk_notice_idx primary key(n_idx) ;
-
-	--기본키
-   alter table commenttb
-      add constraint  pk_commenttb_c_idx primary key(c_idx) ;
-
 	
 	--기본키
 	alter table bookmark_goods
@@ -162,16 +144,8 @@
 	--외래키
 	alter table notice
 	  add constraint  fk_notice_m_idx foreign key(m_idx)
-	                                      references  membertb(m_idx) ;
-
-	--외래키
-	   alter table commenttb
-	      add constraint  fk_commenttb_m_idx foreign key(m_idx)
-	                                          references  membertb(m_idx) ;
-	                                          
-	   alter table commenttb
-	      add constraint  fk_commenttb_b_idx foreign key(idx)
-	                                          references recommend_place(idx) ; 
+	                                      references  membertb(m_idx)
+	                                      on delete cascade ;
 	
 	--외래키
 	alter table bookmark_goods
@@ -193,12 +167,13 @@
 	alter table bookmark_place
 	      add constraint  fk_bookmark_place_p_idx foreign key(p_idx)
 	                                         references place(p_idx)
-	                                          on delete cascade ;
+	                                         on delete cascade ;
 	
    --외래키
    alter table recommend_place
       add constraint  fk_recommend_place_m_idx foreign key(m_idx)
-	                                          references  membertb(m_idx) ;
+	                                          references  membertb(m_idx)
+	                                          on delete cascade ;
    
 	
 ------------------------------------------------------------------------	
@@ -339,7 +314,7 @@
 	);
 
 
-		-- 북마크 샘플데이터(캠핑용품 및 멤버 데이터 있어야 함)          			   bmk_g_cnt 	m_idx   g_idx 
+    -- 북마크 샘플데이터(캠핑용품 및 멤버 데이터 있어야 함)           bmk_g_cnt 	m_idx   g_idx 
 	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      1);
 	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      2);
 	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      3);
