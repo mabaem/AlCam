@@ -23,7 +23,6 @@
 	#rplace_box{
 		width: 100%;
 		margin: auto;
-		margin-top: 20px;
 	}
 	
 	#rplace_search_menu{
@@ -158,9 +157,9 @@
 
 </script>
 
-  <div style="margin-bottom: 10px; margin-right: 10px;">
+  <div>
   	
-  	 <font id="rplace_title">캠핑장소추천</font>
+  	 <label id="rplace_title"style=" font-size: 20px; margin-top: 20px; margin-bottom:10px;">&nbsp;캠핑장소추천</label>
   	 
   	 <!-- 글쓰기 버튼 -->
  	 <input class="btn" id="btn_rplace_insert" type="button"  value="글쓰기" 

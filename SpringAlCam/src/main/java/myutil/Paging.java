@@ -45,24 +45,38 @@ public class Paging {
 		//HTML코드를 저장할 StringBuffer생성=>코드생성
 		sb = new StringBuffer();
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
+		
+		sb.append("<ul class='pagination'>");
+		
 		if(isPrevPage){
-			sb.append(String.format("<a href =\'%s\'?page=\'%d\'>◀</a>", pageURL, (startPage-1)));
+			
+			sb.append(String.format("<li class='page-item previous'><a href='\"%s\"?page=%d'>이전</a></li>", pageURL, (startPage-1)));
+
+			//sb.append(String.format("<a href =\'%s\'?page=\'%d\'>◀</a>", pageURL, (startPage-1)));
 		}
 		else
-			sb.append("◀");
+			sb.append("<li class='page-item previous disabled'><a href='#'>이전</a></li>");
+			//sb.append("◀");
 		
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
-		sb.append("|");
+		//sb.append("|");
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
 			if(i == nowPage){ //현재 있는 페이지
+				
+				sb.append("<li class='active'><a href='#'>"+ i +"</a></li>");
+				/*
 				sb.append("&nbsp;<b><font color='red'>");
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</font></b>");
+				*/
 			}
 			else{//현재 페이지가 아니면
+				
+				sb.append(String.format("<li><a href='"+pageURL+"?page="+i+"'></a></li>"));
+				/*
 				sb.append("&nbsp;<a href='"+pageURL+"?page=");
 				sb.append(i);
 				sb.append("'>");
@@ -70,19 +84,29 @@ public class Paging {
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</a>");
+				*/
 			}
 		}// end for
 		
-		sb.append("&nbsp;|");
+		//sb.append("&nbsp;|");
 		
 //-----그룹페이지처리 다음 ----------------------------------------------------------------------------------------------
 		if(isNextPage){
+			
+			sb.append(String.format("<li class='page-item next'><a href='"+pageURL+"?page="+(endPage+1)+"'>다음</a></li>"));
+
+			/*
 			sb.append("<a href='"+pageURL+"?page=");
 			sb.append(endPage+1);
 			sb.append("'>▶</a>");
+			*/
 		}
 		else
-			sb.append("▶");
+			sb.append("<li class='page-item next disabled'><a href='#'>다음</a></li>");
+			//sb.append("▶");
+		
+		sb.append("</ul>");
+		
 //---------------------------------------------------------------------------------------------------------------------	    
 
 		return sb.toString();
@@ -126,41 +150,52 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 		//HTML코드를 저장할 StringBuffer생성=>코드생성
 		sb = new StringBuffer();
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
+		
+		sb.append("<ul class='pagination'>");
+		
 		if(isPrevPage){
 			System.out.printf("페이징부분 %s",text_search);
-			sb.append(String.format("<a href ='#' onclick='search_place(\"%s\",%d);'>◀</a>", text_search, (startPage-1)));
+			sb.append(String.format("<li class='page-item previous'><a href='#'  onclick='search_place(\"%s\",%d);'>이전</a></li>", text_search, (startPage-1)));
+			//sb.append(String.format("<a href ='#' onclick='search_place(\"%s\",%d);'>◀</a>", text_search, (startPage-1)));
 		}
 		else
-			sb.append("◀");
+			sb.append("<li class='page-item previous disabled'><a href='#'>이전</a></li>");
 		
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
-		sb.append("|");
+		
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
 			if(i == nowPage){ //현재 있는 페이지
-				sb.append("&nbsp;<b><font color='red'>");
-				sb.append("<span class='page_box'>");
-				sb.append(i);
-				sb.append("</span>");
-				sb.append("</font></b>");
+				
+				sb.append("<li class='active'><a href='#'>"+ i +"</a></li>");
+				
 			}
 			else{//현재 페이지가 아니면
+				
+				sb.append(String.format("<li><a href='#' onclick='search_place(\"%s\",%d);' >", text_search, i));
+				sb.append(i+"</a></li>");	
+				/*
 				sb.append(String.format("&nbsp;<a href ='#' onclick='search_place(\"%s\",%d);'>", text_search, i));
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</a>");
+				*/
 			}
 		}// end for
 		
-		sb.append("&nbsp;|");
-		
 //-----그룹페이지처리 다음 ----------------------------------------------------------------------------------------------
 		if(isNextPage){
-			sb.append(String.format("<a href ='#' onclick='search_place(\"%s\",%d);'>▶</a>", text_search, (endPage+1)));
+			
+			sb.append(String.format("<li class='page-item next'><a href='#' onclick='search_place(\"%s\",%d);'>다음</a></li>", text_search, (endPage+1)));
+			
+			//sb.append(String.format("<a href ='#' onclick='search_place(\"%s\",%d);'>▶</a>", text_search, (endPage+1)));
 		}
 		else
-			sb.append("▶");
+			sb.append("<li class='page-item next disabled'><a href='#'>다음</a></li>");
+
+		sb.append("</ul>");
+		
 //---------------------------------------------------------------------------------------------------------------------	    
 		return sb.toString();
 	}//end-getPlacePaging()	
@@ -206,47 +241,68 @@ public static String getPlacePaging(String text_search,int nowPage, int rowTotal
 		sb = new StringBuffer();
 		
 //-----그룹페이지처리 이전 --------------------------------------------------------------------------------------------		
+		
+		sb.append("<ul class='pagination'>");
+		
 		if(isPrevPage){
 			
-			sb.append(String.format("<a href ='#' onclick='search_product(\"%s\",%d);'>◀</a>", p_name, (startPage-1)));
+			sb.append(String.format("<li class='page-item previous'><a href='#'  onclick='search_product(\"%s\",%d);'>이전</a></li>", p_name, (startPage-1)));
+			
+			//sb.append(String.format("<a href ='#' onclick='search_product(\"%s\",%d);'>◀</a>", p_name, (startPage-1)));
 			//sb.append("<a href ='#' onclick='search_product(" + p_name + "," +(startPage-1)  +");'>◀</a>");
 		}
 		else
-			sb.append("◀");
+			sb.append("<li class='page-item previous disabled'><a href='#'>이전</a></li>");
+			//sb.append("◀");
 		
 //------페이지 목록 출력 -------------------------------------------------------------------------------------------------
-		sb.append("|");
+		//sb.append("|");
 		for(int i=startPage; i<= endPage ;i++){
 			//if(i>totalPage)break;
 			if(i == nowPage){ //현재 있는 페이지
+				
+				sb.append("<li class='active'><a href='#'>"+ i +"</a></li>");
+				/*
 				sb.append("&nbsp;<b><font color='black'>");
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
 				sb.append("</font></b>");
+				*/
 			}
 			else{//현재 페이지가 아니면
 				
+				sb.append(String.format("<li><a href='#' onclick='search_product(\"%s\",%d);' >", p_name, i));
+				sb.append(i+"</a></li>");
+				
 				//sb.append("&nbsp;<a href ='#' onclick='search_product(" + p_name + "," + i  +");'>");
-				sb.append(String.format("&nbsp;<a href ='#' onclick='search_product(\"%s\",%d);'>", p_name, i));
+				/*sb.append(String.format("&nbsp;<a href ='#' onclick='search_product(\"%s\",%d);'>", p_name, i));
 				sb.append("<span class='page_box'>");
 				sb.append(i);
 				sb.append("</span>");
-				sb.append("</a>");
+				sb.append("</a>");*/
 			}
 		}// end for
 		
-		sb.append("&nbsp;|");
+		//sb.append("&nbsp;|");
 		
 //-----그룹페이지처리 다음 ----------------------------------------------------------------------------------------------
 		if(isNextPage){
 			//String.format("<a href ='#' onclick='comment_list(%d));'>▶</a>", endPage+1)
 			//sb.append("<a href ='#' onclick='search_product(" + p_name +  ","+ (endPage+1)  +");'>▶</a>");
-			sb.append(String.format("<a href ='#' onclick='search_product(\"%s\",%d);'>▶</a>", p_name, (endPage+1)));
+			//sb.append(String.format("<a href ='#' onclick='search_product(\"%s\",%d);'>▶</a>", p_name, (endPage+1)));
+			
+			sb.append(String.format("<li class='page-item next'><a href='#' onclick='search_product(\"%s\",%d);'>다음</a></li>", p_name, (endPage+1)));
+
 			
 		}
 		else
-			sb.append("▶");
+			sb.append("<li class='page-item next disabled'><a href='#'>다음</a></li>");
+			//sb.append("▶");
+		
+		
+		sb.append("</ul>");
+		
 //---------------------------------------------------------------------------------------------------------------------	    
 
 		return sb.toString();

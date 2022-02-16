@@ -18,8 +18,7 @@
 <style type="text/css">
 #notice_box{
       width: 100%;
-		margin: auto;
-		margin-top: 20px;
+	  margin: auto;
   }
   
   #notice_title{
@@ -135,8 +134,8 @@
 
 </script>
 
-	 <div style="margin-bottom: 10px; margin-right: 10px;">
-	 	<font id="notice_title">공지사항</font>
+	 <div >
+	 	<label id="notice_title" style=" font-size: 20px; margin-top: 20px; margin-bottom:10px;">&nbsp;공지사항</label>
 		
 		<!-- 관리자 로그인 -->
 		<c:if test="${ user.m_grade == '관리자' }"> 
