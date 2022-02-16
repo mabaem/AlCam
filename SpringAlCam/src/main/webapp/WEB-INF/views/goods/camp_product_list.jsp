@@ -94,7 +94,7 @@
 					<input type="hidden" value="${vo.g_category }">
 				<tr>
 					<td><img src = ${vo.g_image }></td>
-					<td><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
+					<td style="width:400px"><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
 					<td><fmt:formatNumber   value = "${vo.g_price }"/>(원)</td>
 					<td>
 						<form>
@@ -106,9 +106,9 @@
 			
 			</c:forEach>
 			<tr>
-                <td colspan="3" align="center">
+                <td colspan="4" align="center">
                     
-                  <div id="page_menu"> 
+                  <div id="page_menu" style="height:115px"> 
                      ${ pageMenu }
                     </div>            
                 </td>

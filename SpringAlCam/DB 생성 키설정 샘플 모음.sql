@@ -436,7 +436,7 @@ insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
 
 
 insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
-                             '包府磊'
+                             '包府磊',
                              'admin',
                              '1234',
                              '2022',
