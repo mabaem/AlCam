@@ -152,18 +152,18 @@
 		
 			<tr id="bmkgoods_data_align">
 				<td><input type="checkbox" name="check_box" value="${ vo.bmk_g_idx }"></td>
-				<td>${ vo.g_category }</td>
+				<td  style="width:90px;">${ vo.g_category }</td>
 				<td>
    		   			<img src="${ vo.g_image }" width="80" height="80">
    		   		</td>
-				<td style="width:170px; "><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
+				<td style="width:176px;"><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
 				<td><fmt:formatNumber   value = "${vo.g_price }"/>(원)</td>
 				<td>
 					<!-- 수량 조정 폼 -->
 					<form>
 						<input type="hidden" name="bmk_g_idx" value="${ vo.bmk_g_idx }">
 						<input type="hidden" name="page"      value="${ param.page }">
-						<input name="bmk_g_cnt" size="4"  align="center" value="${ vo.bmk_g_cnt }">
+						<input name="bmk_g_cnt" size="1"  align="center" value="${ vo.bmk_g_cnt }">
 						<input class="btn btn-info" type="submit" value="수정" onclick="bmkgoods_update(this.form);">
 					</form>
 				</td>
@@ -176,8 +176,6 @@
 		                       onclick="bmkgoods_delete(this.form)">
 	            </form>
 				</td>
-				 
-				
 			</tr>
 			
 		</c:forEach>
