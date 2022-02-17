@@ -10,5 +10,5 @@
 
 <!-- 인기글(조회수) -->
 <div id="index_best_box">
-	<iframe id="if_best" width="500" height="390" src="recommend_place/best.do"></iframe>
+	<iframe id="if_best" width="500" height="500" src="recommend_place/best.do"></iframe>
 </div>

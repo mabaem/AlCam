@@ -49,15 +49,71 @@ public class RPlaceController {
 		this.rplace_dao = rplace_dao;
 	}
 	
-	//베스트글 10건 조회
+	//베스트글 4건 조회
 	@RequestMapping("/recommend_place/best.do")
 	public String best(Model model) {
 		
 		//게시글 목록가져오기
 		List<RPlaceVo> list = rplace_dao.selectBestList();
 		
+		//System.out.println(list.get(0));
+		
+		//1위
+		int idx1 = list.get(0).getIdx();
+		String filename1 = list.get(0).getFilename();	
+		String subject1 = list.get(0).getSubject();
+		String m_name1 = list.get(0).getM_name();
+		int readhit1 = list.get(0).getReadhit();
+		
+		//2위
+		int idx2 = list.get(1).getIdx();
+		String filename2 = list.get(1).getFilename();	
+		String subject2 = list.get(1).getSubject();
+		String m_name2 = list.get(1).getM_name();
+		int readhit2 = list.get(1).getReadhit();
+		
+		//3위
+		int idx3 = list.get(2).getIdx();
+		String filename3 = list.get(2).getFilename();	
+		String subject3 = list.get(2).getSubject();
+		String m_name3 = list.get(2).getM_name();
+		int readhit3 = list.get(2).getReadhit();
+		
+		//4위
+		int idx4 = list.get(3).getIdx();
+		String filename4 = list.get(3).getFilename();	
+		String subject4 = list.get(3).getSubject();
+		String m_name4 = list.get(3).getM_name();
+		int readhit4 = list.get(3).getReadhit();
+		
+		
+		
 		
 		model.addAttribute("list", list);
+		
+		model.addAttribute("idx1", idx1);
+		model.addAttribute("filename1", filename1);
+		model.addAttribute("subject1", subject1);
+		model.addAttribute("m_name1", m_name1);
+		model.addAttribute("readhit1", readhit1);
+
+		model.addAttribute("idx2", idx2);
+		model.addAttribute("filename2", filename2);
+		model.addAttribute("subject2", subject2);
+		model.addAttribute("m_name2", m_name2);
+		model.addAttribute("readhit2", readhit2);
+
+		model.addAttribute("idx3", idx3);
+		model.addAttribute("filename3", filename3);
+		model.addAttribute("subject3", subject3);
+		model.addAttribute("m_name3", m_name3);
+		model.addAttribute("readhit3", readhit3);
+
+		model.addAttribute("idx4", idx4);
+		model.addAttribute("filename4", filename4);
+		model.addAttribute("subject4", subject4);
+		model.addAttribute("m_name4", m_name4);
+		model.addAttribute("readhit4", readhit4);
 
 		return "recommend_place/rplace_best_list";
 	}

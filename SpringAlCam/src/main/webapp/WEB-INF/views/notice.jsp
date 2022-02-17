@@ -9,5 +9,5 @@
 
 <!-- 공지사항 최신글 -->
 <div id="index_notice_box">
-	<iframe id="if_notice" width="500" height="390" src="notice/recent.do"></iframe>
+	<iframe id="if_notice" width="500" height="500" src="notice/recent.do"></iframe>
 </div>

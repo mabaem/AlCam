@@ -8,9 +8,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
           select * from recommend_place  order by idx desc
      </select>
      
-     <!-- 베스트글 10건 조회 -->
+     <!-- 베스트글 4건 조회 -->
      <select id="rplace_best_list" resultType="rplace">
-     	select * from (select * from recommend_place order by readhit desc) where <![CDATA[rownum <= 10]]>
+     	select * from (select * from recommend_place order by readhit desc) where <![CDATA[rownum <= 4]]>
      </select>
      
      <!-- 조건별/페이지별 조회 -->
