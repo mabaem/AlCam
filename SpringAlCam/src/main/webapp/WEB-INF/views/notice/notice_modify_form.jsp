@@ -34,7 +34,7 @@
 	  var n_subject = f.n_subject.value.trim();
 	 
 	  //공백처리
-	  var n_content = f.n_content.value.replaceAll("\r\n","").trim();
+	  var n_content = f.n_content.value.replaceAll("\r\n", "");
 	                	  
 	  if(n_subject==''){
 		  alert("제목을 입력하세요");

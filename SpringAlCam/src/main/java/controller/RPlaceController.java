@@ -302,6 +302,9 @@ public class RPlaceController {
 		String ip = request.getRemoteAddr();
 		vo.setIp(ip);
 		
+		String content = vo.getContent().replaceAll("\r\n", "<br>");
+		vo.setContent(content);
+		
 		//이미지 넣기
 		//상대경로->절대(저장경로)
 		String webPath = "/resources/image/";
@@ -385,6 +388,10 @@ public class RPlaceController {
 		//회원idx와 회원명을 vo에 넣는다
 		vo.setM_idx(user.getM_idx());
 		vo.setM_name(user.getM_name());
+		
+		
+		String content = vo.getContent().replaceAll("\r\n", "<br>");
+		vo.setContent(content);
 		
 		//System.out.printf("%d %s", vo.getM_idx(), vo.getM_name());
 		

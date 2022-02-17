@@ -35,7 +35,7 @@
 	  var p_addr = f.p_addr.value;
 
 	  //공백처리
-	  var content = f.content.value.replaceAll("\r\n","").trim();
+	  var content = f.content.value.replaceAll("\r\n", "");
 	               	  
 	  if(subject==''){
 		  alert("제목을 입력하세요");

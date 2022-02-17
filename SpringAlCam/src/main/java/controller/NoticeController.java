@@ -189,6 +189,12 @@ public class NoticeController {
 			vo.setM_idx(user.getM_idx());
 			vo.setM_name(user.getM_name());
 			
+			String n_content = vo.getN_content().replaceAll("\r\n", "<br>");
+			vo.setN_content(n_content);
+			
+			
+			
+			
 			//이미지 넣기
 			//상대경로->절대(저장경로)
 			String webPath = "/resources/image/";
@@ -294,6 +300,9 @@ public class NoticeController {
 				
 				return "redirect:list.do";
 			}
+			
+			String n_content = vo.getN_content().replaceAll("\r\n", "<br>");
+			vo.setN_content(n_content);
 			
 			
 			//이미지 넣기

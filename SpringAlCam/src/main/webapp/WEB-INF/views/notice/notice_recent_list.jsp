@@ -58,8 +58,8 @@
 		  	      					onmouseover="this.style.color='#0035d1'" onmouseout="this.style.color='black'">
 		  	      					<td>
 		  	      						<c:choose>
-									        <c:when test="${fn:length(vo.n_subject) > 16}">
-										        <c:out value="${fn:substring(vo.n_subject, 0, 15)}"/>...
+									        <c:when test="${fn:length(vo.n_subject) > 20}">
+										        <c:out value="${fn:substring(vo.n_subject, 0, 19)}"/>...
 										    </c:when>
 										    <c:otherwise>
 											    <c:out value="${vo.n_subject}">
