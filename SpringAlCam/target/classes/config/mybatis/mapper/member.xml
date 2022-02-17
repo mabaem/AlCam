@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 페이징처리 위한 총 회원수 -->
 	<!-- 검색조건별 전체게시물수 : 동적쿼리 -->
-	<select id="member_row_total" resultType="int">
+	<select id="member_row_total" parameterType="Map" resultType="int">
 	    select nvl(count(*),0) from membertb
          <trim prefix="where" prefixOverrides="or">
          	<if test="id != null">

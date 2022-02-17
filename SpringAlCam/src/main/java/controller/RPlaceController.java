@@ -177,7 +177,7 @@ public class RPlaceController {
 		int rowTotal = rplace_dao.selectRowTotal(map);
 				
 		//검색필터 생성
-		String search_filter = String.format("search=\'%s\'&search_text=\'%s\'", search, search_text);
+		String search_filter = String.format("search=%s&search_text=%s", search, search_text);
 		
 		//페이징 메뉴 생성 + 검색필터 추가
 		pageMenu = Paging.getPaging("list.do",

@@ -54,9 +54,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int selectRowTotal() {
+	public int selectRowTotal(Map map) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.member_row_total");
+		return sqlSession.selectOne("member.member_row_total", map);
 	}
 
 	@Override
@@ -64,8 +64,6 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.member_page_list", map);
 	}
-
-
 
 
 }

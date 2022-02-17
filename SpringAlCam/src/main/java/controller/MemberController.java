@@ -443,7 +443,7 @@ public class MemberController {
 		}
 		
 		//전체게시물수
-		int rowTotal = member_dao.selectRowTotal();
+		int rowTotal = member_dao.selectRowTotal(map);
 		
 		//검색필터 생성
 		String search_filter = String.format("search=%s&search_text=%s", search, search_text);		

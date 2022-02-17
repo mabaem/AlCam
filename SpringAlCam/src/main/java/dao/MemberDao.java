@@ -17,7 +17,7 @@ public interface MemberDao {
 	int update_img(MemberVo vo);
 	
 	//페이징 처리
-	int            selectRowTotal();
+	int            selectRowTotal(Map map);
 	List<MemberVo> selectList(Map map);
 	
 }
