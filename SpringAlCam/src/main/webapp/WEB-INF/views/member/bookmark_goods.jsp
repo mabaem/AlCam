@@ -152,11 +152,11 @@
 		
 			<tr id="bmkgoods_data_align">
 				<td><input type="checkbox" name="check_box" value="${ vo.bmk_g_idx }"></td>
-				<td  style="width:90px;">${ vo.g_category }</td>
+				<td  style="width:85px;">${ vo.g_category }</td>
 				<td>
    		   			<img src="${ vo.g_image }" width="80" height="80">
    		   		</td>
-				<td style="width:176px;"><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
+				<td style="width:173px;"><a href = "${vo.g_link }" target = "_blank">${ vo.g_name}</a></td>
 				<td><fmt:formatNumber   value = "${vo.g_price }"/>(원)</td>
 				<td>
 					<!-- 수량 조정 폼 -->

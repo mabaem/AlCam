@@ -45,7 +45,7 @@
 
 <script type="text/javascript"  >
   function  send(f){
-	  
+	 
 	  var m_id  = f.m_id.value.trim();
 	  var m_pwd = f.m_pwd.value.trim();
 	  
@@ -157,8 +157,7 @@
   
 </script>
 
-<!-- 읽던 페이지 url 정보 읽어오기 -->
-<input type="hidden"  name="url"  value="${ param.url }">   
+ 
 
 <div class="container" id="box_login">
 	<div id="title_login">
@@ -169,6 +168,8 @@
 	
 	<div id="subject_login">
 		<form class="form-horizontal" action="/action_page.php">
+			<!-- 읽던 페이지 url 정보 읽어오기 -->
+			<input type="hidden"  name="url"  value="${ param.url }">  
 			<div id="input_id" class="form-group">
 				<label class="control-label col-sm-2">아이디:</label>
 			    <div class="col-sm-10">
