@@ -31,6 +31,12 @@
 		margin-bottom: 20px;
 	}
 	
+	#admin_search_menu{
+		text-align: center;
+		
+		margin-bottom: 10px;
+	}
+	
 	#admin_empty_message{
 		text-align: center;
 		color: red;
@@ -59,7 +65,7 @@
 
 	function del(m_idx) {
 		
-		if(confirm("정말 삭제하시겠습니까?")==false) return;
+		if(confirm("정말 삭제하시겠습니까?\n모든 회원정보가 삭제됩니다")==false) return;
 		location.href="delete.do?m_idx=" + m_idx + "&page=${ empty param.page ? 1 : param.page }";
 	
 	}
@@ -71,6 +77,31 @@
 		location.href="admin_modify_form.do?m_idx=" + m_idx + "&page=${ empty param.page ? 1 : param.page }";
 			
 	}
+	
+	
+	$(document).ready(function(){
+		
+		//검색
+		$("#search_condition_admin").click(function() {
+			
+			   var search 		= $("#search").val();	
+			   var search_text	= $("#search_text").val().trim();
+			   
+			   //전체검색이 아닌데 검색어가 비어있는 경우
+			   if(search != 'all' && search_text==''){   
+				   alert("검색어를 입력하세요");
+				   $("#search_text").val("");
+				   $("#search_text").focus();
+				   return;  
+			   }
+			   
+			   //검색요청
+			   location.href="admin_list.do?search=" + search + "&search_text=" + encodeURIComponent(search_text);
+			   
+		});
+		
+	});
+	   
 
 </script>
 
@@ -80,6 +111,18 @@
 		<c:if test="${ user.m_grade == '관리자' }">
 		<h1 id="admin_title">관리자페이지</h1>
 		<div id="admin_box">
+		
+			<!-- 검색메뉴 -->
+		    <div id="admin_search_menu">
+		     	<select id="search">
+		     		<option value="all">전체보기</option>
+		     		<option value="id">아이디</option>
+		     		<option value="name">이름</option>
+		     		<option value="id_name">아이디+이름</option>
+		          </select>
+		          <input id="search_text" value="${ param.search_text }">
+		          <input class="btn-default" type="button" value="검색" id="search_condition_admin">
+		     </div>
 		      
 			 <table class="table" id="admin_data_align">
 						
@@ -108,8 +151,8 @@
 		      		   		<td>${ fn:substring(vo.m_regdate,0,10) }</td>
 		      		   		<td>${ vo.m_grade }</td>
 		      		   		<td>
-			      		   			<input class="btn btn-info"   type="button" value="수정" onclick="modify_form('${ vo.m_idx }');">
-			      		   			<input class="btn btn-danger" type="button" value="삭제" onclick="del('${ vo.m_idx }');">
+		      		   			<input class="btn btn-info"   type="button" value="수정" onclick="modify_form('${ vo.m_idx }');">
+		      		   			<input class="btn btn-danger" type="button" value="삭제" onclick="del('${ vo.m_idx }');">
 		      		   		</td>
 			      		</tr>
 					</c:forEach>

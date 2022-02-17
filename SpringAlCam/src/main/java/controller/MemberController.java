@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import dao.MemberDao;
-import myutil.MyMember;
+import myutil.MyConstant;
 import myutil.Paging;
 import vo.MemberVo;
 
@@ -404,32 +404,59 @@ public class MemberController {
 	
 	//관리자 페이지
 	@RequestMapping("/member/admin_list.do")
-	public String admin_list(@RequestParam(name="page",defaultValue="1") int nowPage,
+	public String admin_list(@RequestParam(name="page",           defaultValue="1")     int nowPage,
+							  @RequestParam(value = "search",      defaultValue = "all") String search,
+							  @RequestParam(value = "search_text", defaultValue = "")    String search_text,
 			                  Model model) {
 		
 		//페이징 처리
-		int rowTotal = member_dao.selectRowTotal();
-		int start = (nowPage-1) * MyMember.Member.BLOCK_LIST + 1;
-			
-		if(start>rowTotal && nowPage!=1) 
-			nowPage = nowPage-1;
-		
-		start = (nowPage-1) * MyMember.Member.BLOCK_LIST + 1;
-		int end   = start + MyMember.Member.BLOCK_LIST - 1;
+		int start    = (nowPage-1) * MyConstant.Member.BLOCK_LIST + 1;
+		int end      = start + MyConstant.Member.BLOCK_LIST - 1;
 
 		//페이징조건을 담을 맵
 		Map map = new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<MemberVo> list = member_dao.selectList(map);
+		//검색조건을 map에 담기
+		if(!search.equals("all")) {
+			
+			//아이디+이름 검색
+			if(search.equals("id_name")) {
+				//아이디+이름 검색
+				map.put("id", search_text);
+				map.put("name", search_text);
+
+			}
+			//아이디 검색
+			else if(search.equals("id")) {
+				//아이디 검색
+				map.put("id", search_text);
+				
+			}
+			//이름 검색
+			else if(search.equals("name")) {
+				//이름 검색
+				map.put("name", search_text);
+				
+			}
+		}
+		
+		//전체게시물수
+		int rowTotal = member_dao.selectRowTotal();
+		
+		//검색필터 생성
+		String search_filter = String.format("search=%s&search_text=%s", search, search_text);		
 		
 		String pageMenu = Paging.getPaging("admin_list.do",
+											search_filter,
 										    nowPage,     
 					                        rowTotal,
-					                        MyMember.Member.BLOCK_LIST, 
-					                        MyMember.Member.BLOCK_PAGE
+					                        MyConstant.Member.BLOCK_LIST, 
+					                        MyConstant.Member.BLOCK_PAGE
 					                        );
+		
+		List<MemberVo> list = member_dao.selectList(map);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("pageMenu", pageMenu);

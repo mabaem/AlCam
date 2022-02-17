@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.BmkPlaceDao;
-import myutil.MyMember;
+import myutil.MyConstant;
 import myutil.Paging;
 import vo.BmkPlaceVo;
 import vo.MemberVo;
@@ -49,13 +49,13 @@ public class BmkPlaceController {
 		
 		//∆‰¿Ã¬° √≥∏Æ
 		int rowTotal = bmkplace_dao.selectRowTotal(m_idx);
-		int start = (nowPage-1) * MyMember.Bookmark.BLOCK_LIST + 1;
+		int start = (nowPage-1) * MyConstant.Bookmark.BLOCK_LIST + 1;
 			
 		if(start>rowTotal && nowPage!=1) 
 			nowPage = nowPage-1;
 		
-		start = (nowPage-1) * MyMember.Bookmark.BLOCK_LIST + 1;
-		int end   = start + MyMember.Bookmark.BLOCK_LIST - 1;
+		start = (nowPage-1) * MyConstant.Bookmark.BLOCK_LIST + 1;
+		int end   = start + MyConstant.Bookmark.BLOCK_LIST - 1;
 		
 		//∆‰¿Ã¬°¡∂∞«¿ª ¥„¿ª ∏ 
 		Map map = new HashedMap();
@@ -69,8 +69,8 @@ public class BmkPlaceController {
 		String pageMenu = Paging.getPaging("bmkplace_list.do",
 										    nowPage,     
 							                rowTotal,
-							                MyMember.Bookmark.BLOCK_LIST, 
-							                MyMember.Bookmark.BLOCK_PAGE
+							                MyConstant.Bookmark.BLOCK_LIST, 
+							                MyConstant.Bookmark.BLOCK_PAGE
 							                );
 
 		model.addAttribute("list",list);
