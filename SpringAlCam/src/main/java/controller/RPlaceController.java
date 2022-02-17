@@ -54,16 +54,23 @@ public class RPlaceController {
 	public String best(Model model) {
 		
 		//게시글 목록가져오기
+		List<RPlaceVo> res = rplace_dao.selectList();
+		
+		
+		if(res.size() < 4) {
+			return "recommend_place/rplace_best_list";
+		}
+		
 		List<RPlaceVo> list = rplace_dao.selectBestList();
 		
-		//System.out.println(list.get(0));
-		
+				
 		//1위
 		int idx1 = list.get(0).getIdx();
 		String filename1 = list.get(0).getFilename();	
 		String subject1 = list.get(0).getSubject();
 		String m_name1 = list.get(0).getM_name();
 		int readhit1 = list.get(0).getReadhit();
+		
 		
 		//2위
 		int idx2 = list.get(1).getIdx();
@@ -72,12 +79,14 @@ public class RPlaceController {
 		String m_name2 = list.get(1).getM_name();
 		int readhit2 = list.get(1).getReadhit();
 		
+		
 		//3위
 		int idx3 = list.get(2).getIdx();
 		String filename3 = list.get(2).getFilename();	
 		String subject3 = list.get(2).getSubject();
 		String m_name3 = list.get(2).getM_name();
 		int readhit3 = list.get(2).getReadhit();
+		
 		
 		//4위
 		int idx4 = list.get(3).getIdx();
@@ -89,6 +98,7 @@ public class RPlaceController {
 		
 		
 		
+		model.addAttribute("res", res);
 		model.addAttribute("list", list);
 		
 		model.addAttribute("idx1", idx1);
@@ -114,6 +124,7 @@ public class RPlaceController {
 		model.addAttribute("subject4", subject4);
 		model.addAttribute("m_name4", m_name4);
 		model.addAttribute("readhit4", readhit4);
+		
 
 		return "recommend_place/rplace_best_list";
 	}
@@ -243,6 +254,8 @@ public class RPlaceController {
 		}
 
 		int res = rplace_dao.update_use_yn(idx);
+		
+		res=rplace_dao.delete(idx);
 		
 		//어떤용도? query로 사용
 		model.addAttribute("page", page);

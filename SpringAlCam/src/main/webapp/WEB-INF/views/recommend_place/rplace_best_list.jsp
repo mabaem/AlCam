@@ -36,11 +36,12 @@
   	      
 	  	      <div class="panel-body">
 	  	      		<table id="tb_rplace_best">
-	  	      		
-	  	      			<c:if test="${ empty list }">
+	  	      			
+	  	      			<!--  데이터가 4건이 없는 경우 -->
+	  	      			<c:if test="${ (fn:length(res) < 4) or (empty res)  }">
 	  	      				<tr>
-			                    <td colspan="6" rowspan="8" align="center">
-			                       <font color="black">작성된 게시글이 없습니다</font>
+			                    <td colspan="4" rowspan="8" align="center">
+			                       <font color="black">현재 베스트글이 없습니다</font>
 			                    </td>
 			                 </tr>
 	  	      			</c:if>
@@ -48,11 +49,13 @@
 	  	      			
 	  	      			<!-- 데이터가 있는 경우 -->
 	  	      		
-	  	      			<c:if test="${ not empty list}">
+	  	      			<c:if test="${ fn:length(res) >= 4}">
 		  	      			<tr>
 		  	      				<td style="width: 50px;">
 		  	      					<img src="${ pageContext.request.contextPath }/resources/image/rank_1.png" width="30" height="30">
 		  	      				</td>
+		  	      				
+		  	      				
 		  	      				<td style="width: 150px; height: 80px;  cursor:pointer;"
 		  	      					 onclick="window.parent.location.href='${ pageContext.request.contextPath }/main.do?menu=recommend_place&idx=${ idx1 }&page=${ empty param.page ? 1 : param.page }'"
 		  	      					onmouseover="this.style.color='#23a51d'" onmouseout="this.style.color='black'">

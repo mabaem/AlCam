@@ -49,6 +49,11 @@ public class NoticeController {
 		//게시글 목록가져오기
 		List<NoticeVo> list = notice_dao.selectRecentList();
 		
+		if(list.isEmpty()) {
+			
+			return "notice/notice_recent_list";
+			
+		}
 		
 		model.addAttribute("list", list);
 
@@ -249,6 +254,7 @@ public class NoticeController {
 			}
 			
 			int res = notice_dao.update_use_yn(n_idx);
+			res = notice_dao.delete(n_idx);
 			
 			//어떤용도? query로 사용
 			model.addAttribute("page", page);

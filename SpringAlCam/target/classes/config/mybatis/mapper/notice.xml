@@ -105,7 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
      </update>
 <!--  삭제하기  -->
 <delete id="notice_delete" parameterType="int"> 
-	delete * from notice 
+	delete from notice 
 	where n_idx = #{n_idx} 
 </delete>
 </mapper>
