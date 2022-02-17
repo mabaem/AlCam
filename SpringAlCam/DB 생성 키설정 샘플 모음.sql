@@ -119,9 +119,9 @@
 	
 
 -----------------------------------------------------------------------
-	//기본키, 외래키 순 
+	--기본키, 외래키 순 
 	
-	--기본키
+	--공지사항DB 기본키
     alter table notice
        add constraint  pk_notice_idx primary key(n_idx) ;
 	
@@ -222,172 +222,42 @@
 
 
 -----------------------------------------------------------------------
-
-
-
-	--sample data(샘플입니다)
+	--멤버DB 샘플데이터
 	insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
-                             '일길동',
-                             'one',
-                             '1234',
-                             '1980',
-                             '1',
-                             '31',
-                             '남자',
-                             '010-222-1111',
-                             '서울시 관악구 시흥대로',
-                             '12345',
-                             'javaspring@naver.com',
-                             '일반',
-                             'file3',
-                             sysdate
-                            );
+	                             '일길동',
+	                             'one',
+	                             '1234',
+	                             '1980',
+	                             '1',
+	                             '31',
+	                             '남자',
+	                             '010-222-1111',
+	                             '서울시 관악구 시흥대로',
+	                             '12345',
+	                             'javaspring@naver.com',
+	                             '일반',
+	                             'file3',
+	                             sysdate
+	                            );
                             
 	insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
-                             '이길동',
-                             'two',
-                             '1234',
-                             '1988',
-                             '1',
-                             '3',
-                             '여자',
-                             '010-222-1111',
-                             '서울시 관악구 석천빌딩',
-                             '12345',
-                             'javaspring@gmail.com',
-                             '일반',
-                             'file3',
-                            sysdate
-                            );
-
-	--캠핑용품 샘플데이터
-	insert into goods values
-	(
-		seq_goods_g_idx.nextVal,
-		'차박텐트X2020',
-		50000,
-		'텐트,침낭',
-		'default_img.png',
-		'www.naver.com'
-	);
-	
-	insert into goods values
-	(
-		seq_goods_g_idx.nextVal,
-		'차박텐트X2021',
-		70000,
-		'텐트,침낭',
-		'default_img.png',
-		'www.naver.com'
-	);
-	
-	insert into goods values
-	(
-		seq_goods_g_idx.nextVal,
-		'차박텐트X2022',
-		120000,
-		'텐트,침낭',
-		'default_img.png',
-		'www.naver.com'
-	);
-	
-	--캠핑장 샘플데이터
-	insert into place values
-	(
-		seq_place_p_idx.nextVal,
-		'난지캠핑장',
-		'서울시',
-		'02-123-1234',
-		'default_img.png',
-		'100',
-		'100'	
-	);
-	
-	insert into place values
-	(
-		seq_place_p_idx.nextVal,
-		'둘째캠핑장',
-		'제주도',
-		'02-123-1234',
-		'default_img.png',
-		'100',
-		'100'	
-	);
-	
-	insert into place values
-	(
-		seq_place_p_idx.nextVal,
-		'셋째캠핑장',
-		'부산시',
-		'02-123-1234',
-		'default_img.png',
-		'100',
-		'100'	
-	);
-
-
-    -- 북마크 샘플데이터(캠핑용품 및 멤버 데이터 있어야 함)           bmk_g_cnt 	m_idx   g_idx 
-	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      1);
-	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      2);
-	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      3);
-
-	-- 북마크 샘플데이터(캠핑장 및 멤버 데이터 있어야 함)                  m_idx   p_idx 
-	insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,  1,      1);
-	insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,  1,      2);
-	insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,  1,      3);
-
-	--샘플데이터
-	insert into recommend_place values
-    (
-   		seq_recommend_place_idx.nextVal,
-   		'난지캠핑장',	--샘플_장소추천제목
-   		'추천합니다',	--샘플_장소추천내용
-   		'abc.jpg',	--샘플_장소추천파일명
-   		'127.0.0.1',--샘플_장소추천ip
-   		sysdate,	--작성일자
-   		sysdate,	--수정일자
-   		default,	--사용유무
-   		default,	--조회수
-   		1,			--샘플_장소추천m_idx
-   		'일길동',		--샘플_장소추천m_name
-   		1,			--샘플_장소추천p_idx
-   		'난지캠핑장',	--샘플_장소추천p_name
-   		'서울시'		--샘플_장소추천p_addr 		
-    );
-    
-	insert into recommend_place values
-    (
-   		seq_recommend_place_idx.nextVal,
-   		'오토캠핑장',	--샘플_장소추천제목
-   		'강추',	--샘플_장소추천내용
-   		'abcdef.jpg',	--샘플_장소추천파일명
-   		'127.0.0.2',--샘플_장소추천ip
-   		sysdate,	--작성일자
-   		sysdate,	--수정일자
-   		default,	--사용유무
-   		default,	--조회수
-   		1,			--샘플_장소추천m_idx
-   		'일길동',		--샘플_장소추천m_name
-   		1,			--샘플_장소추천p_idx
-   		'난지캠핑장',	--샘플_장소추천p_name
-   		'서울시'		--샘플_장소추천p_addr 	
-    );
-	
-	--샘플데이터
-	insert into place values
-	(
-		12930,
-		'난지캠핑장',
-		'서울시',
-		'02-123-1234',
-		'abc.jpg'
-	);
-	
-	
-	--멤버 샘플데이터
-    update membertb set m_filename='sample' where m_idx=4
-
-	insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
+	                             '이길동',
+	                             'two',
+	                             '1234',
+	                             '1988',
+	                             '1',
+	                             '3',
+	                             '여자',
+	                             '010-222-1111',
+	                             '서울시 관악구 석천빌딩',
+	                             '12345',
+	                             'javaspring@gmail.com',
+	                             '일반',
+	                             'file3',
+	                            sysdate
+	                            );
+                            
+    insert  into membertb  values( (select nvl(max(m_idx),0) + 1 from membertb),
 	                             '라이언',
 	                             'lion',
 	                             'lion1234',
@@ -437,8 +307,131 @@
 	                             '관리자',
 	                             'sample',
 	                             sysdate
+	);                        
+
+	--캠핑용품DB 샘플데이터
+	insert into goods values
+	(
+		seq_goods_g_idx.nextVal,
+		'차박텐트X2020',
+		50000,
+		'텐트,침낭',
+		'default_img.png',
+		'www.naver.com'
+	);
+	
+	insert into goods values
+	(
+		seq_goods_g_idx.nextVal,
+		'차박텐트X2021',
+		70000,
+		'텐트,침낭',
+		'default_img.png',
+		'www.naver.com'
+	);
+	
+	insert into goods values
+	(
+		seq_goods_g_idx.nextVal,
+		'차박텐트X2022',
+		120000,
+		'텐트,침낭',
+		'default_img.png',
+		'www.naver.com'
+	);
+	
+	--캠핑장DB 샘플데이터
+	insert into place values
+	(
+		seq_place_p_idx.nextVal,
+		'난지캠핑장',
+		'서울시',
+		'02-123-1234',
+		'default_img.png',
+		'100',
+		'100'	
+	);
+	
+	insert into place values
+	(
+		seq_place_p_idx.nextVal,
+		'둘째캠핑장',
+		'제주도',
+		'02-123-1234',
+		'default_img.png',
+		'100',
+		'100'	
+	);
+	
+	insert into place values
+	(
+		seq_place_p_idx.nextVal,
+		'셋째캠핑장',
+		'부산시',
+		'02-123-1234',
+		'default_img.png',
+		'100',
+		'100'	
 	);
 
+
+    --캠핑용품북마크 샘플데이터(캠핑용품 및 멤버 데이터 있어야 함)     bmk_g_cnt  m_idx   g_idx 
+	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      1);
+	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      2);
+	insert into bookmark_goods values(seq_bookmark_bmk_goods_g_idx.nextVal, 1,      1,      3);
+
+	--캠핑장소북마크 샘플데이터(캠핑장 및 멤버 데이터 있어야 함)           m_idx   p_idx 
+	insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,  1,      1);
+	insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,  1,      2);
+	insert into bookmark_place values(seq_bookmark_bmk_place_p_idx.nextVal,  1,      3);
+
+	--장소추천게시판DB 샘플데이터
+	insert into recommend_place values
+    (
+   		seq_recommend_place_idx.nextVal,
+   		'난지캠핑장',	--샘플_장소추천제목
+   		'추천합니다',	--샘플_장소추천내용
+   		'abc.jpg',	    --샘플_장소추천파일명
+   		'127.0.0.1',    --샘플_장소추천ip
+   		sysdate,	    --작성일자
+   		sysdate,	    --수정일자
+   		default,	    --사용유무
+   		default,	    --조회수
+   		1,			    --샘플_장소추천m_idx
+   		'일길동',		--샘플_장소추천m_name
+   		1,			    --샘플_장소추천p_idx
+   		'난지캠핑장',	--샘플_장소추천p_name
+   		'서울시'		--샘플_장소추천p_addr 		
+    );
+    
+	insert into recommend_place values
+    (
+   		seq_recommend_place_idx.nextVal,
+   		'오토캠핑장',	--샘플_장소추천제목
+   		'강추',	        --샘플_장소추천내용
+   		'abcdef.jpg',	--샘플_장소추천파일명
+   		'127.0.0.2',    --샘플_장소추천ip
+   		sysdate,	    --작성일자
+   		sysdate,	    --수정일자
+   		default,	    --사용유무
+   		default,	    --조회수
+   		1,			    --샘플_장소추천m_idx
+   		'일길동',		--샘플_장소추천m_name
+   		1,			    --샘플_장소추천p_idx
+   		'난지캠핑장',	--샘플_장소추천p_name
+   		'서울시'		--샘플_장소추천p_addr 	
+    );
+	
+	--캠핑장소DB 샘플데이터
+	insert into place values
+	(
+		12930,
+		'난지캠핑장',
+		'서울시',
+		'02-123-1234',
+		'abc.jpg'
+	);
+	
 	
 
 commit
