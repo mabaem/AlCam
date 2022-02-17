@@ -33,7 +33,7 @@
 			
 		if(confirm("로그인 하신 후 마이페이지 이용 가능합니다\n로그인 하시겠습니까?")==false) return;
 		
-		location.href="${ pageContext.request.contextPath }/member/login_form.do";
+		location.href="member/login_form.do?url="+encodeURIComponent(location.href)+"?menu=member";
 		return;
 		
 		}else{ //로그인 한 경우

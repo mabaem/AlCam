@@ -62,7 +62,7 @@
 		   
 		   //로그인 폼
 		   //location.href="${ pageContext.request.contextPath }/member/login_form.do";
-		   window.parent.location.href="${ pageContext.request.contextPath }/member/login_form.do";
+		   window.parent.location.href="${ pageContext.request.contextPath }/member/login_form.do?url=../main.do?menu=recommend_place";
 		   return;
 	   }
 	   
